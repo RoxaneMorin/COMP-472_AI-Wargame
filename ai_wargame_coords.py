@@ -10,7 +10,7 @@ import random
 import requests
 
 
-@dataclass(slots=True)
+#@dataclass(slots=True)
 class Coord:
     """Representation of a game cell coordinate (row, col)."""
     row : int = 0
@@ -70,7 +70,7 @@ class Coord:
             return None
         
 
-@dataclass(slots=True)
+#@dataclass(slots=True)
 class CoordPair:
     """Representation of a game move or a rectangular area via 2 Coords."""
     src : Coord = field(default_factory=Coord)

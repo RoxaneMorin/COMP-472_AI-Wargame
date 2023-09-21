@@ -11,7 +11,7 @@ import random
 import requests
 
 
-@dataclass(slots=True)
+#@dataclass(slots=True)
 class Unit:
     player: Player = Player.Attacker
     type: UnitType = UnitType.Program

@@ -15,7 +15,7 @@ import random
 import requests
 
 
-@dataclass(slots=True)
+#@dataclass(slots=True)
 class Game:
     """Representation of the game state."""
     board: list[list[Unit | None]] = field(default_factory=list)
