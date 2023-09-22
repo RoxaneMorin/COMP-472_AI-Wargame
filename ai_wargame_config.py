@@ -42,7 +42,7 @@ class GameType(Enum):
 
 ##############################################################################################################
 
-#@dataclass(slots=True)
+@dataclass(slots=True)
 class Options:
     """Representation of the game options."""
     dim: int = 5
@@ -61,7 +61,7 @@ class Options:
 
 ##############################################################################################################
 
-#@dataclass(slots=True)
+@dataclass(slots=True)
 class Stats:
     """Representation of the global game statistics."""
     evaluations_per_depth : dict[int,int] = field(default_factory=dict)

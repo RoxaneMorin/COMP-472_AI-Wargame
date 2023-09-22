@@ -10,7 +10,7 @@ import random
 import requests
 
 
-#@dataclass(slots=True)
+@dataclass(slots=True)
 class Coord:
     """Representation of a game cell coordinate (row, col)."""
     row : int = 0
@@ -65,12 +65,15 @@ class Coord:
             coord = Coord()
             coord.row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".find(s[0:1].upper())
             coord.col = "0123456789abcdef".find(s[1:2].lower())
+            
+            print(coord)
+            
             return coord
         else:
             return None
         
 
-#@dataclass(slots=True)
+@dataclass(slots=True)
 class CoordPair:
     """Representation of a game move or a rectangular area via 2 Coords."""
     src : Coord = field(default_factory=Coord)
