@@ -88,14 +88,56 @@ class Game:
             self.remove_dead(coord)
 
     def is_valid_move(self, coords : CoordPair) -> bool:
-        """Validate a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!!"""
+        """Validate a move expressed as a CoordPair. WiP by Roxane."""
         if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
             return False
+        
+        # Is the player targeting one of their units?
         unit = self.get(coords.src)
         if unit is None or unit.player != self.next_player:
+            print("This was not a valid unit.")
             return False
+        
+        # Is the destination adjacent to the unit? 
+        if not(coords.dst in coords.src.iter_adjacent()):
+            print("This destination is not adjacent to the unit's current location.")
+            return False
+        
+        # Is the destination free?
         unit = self.get(coords.dst)
-        return (unit is None)
+        if not(unit is None):
+            print("This destination is already occupied.")
+            return False
+        #return (unit is None)
+        
+        # What are we? 
+        # Techs and Viruses can always move in all directions.E2
+        if (self.board[coords.src.row][coords.src.col].type == UnitType.Tech) or (self.board[coords.src.row][coords.src.col].type == UnitType.Virus):
+            return True
+        
+        # Else,
+        # AI, Firewall and Program units cannot move when an adversary unit is adjacent.
+        for u in coords.src.iter_adjacent():
+            try: # There's likely a better way to do this, humm.
+                if self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player:
+                    # Currently has an issue with "wrapping around" when looking at the adjacent squares. C4 is considered adjacent to C0, etc.
+                    print("This unit cannot move as it is engaged in combat.")
+                    return False
+            except: continue
+
+        # The Attacker's Ai, Firewall and Program units can only move up or left.
+        if (self.board[coords.src.row][coords.src.col].player == Player.Attacker and coords.src.col < coords.dst.col) or (self.board[coords.src.row][coords.src.col].player == Player.Attacker and coords.src.row < coords.dst.row):
+            print("Attacker's AI, Firewall and Program units can only move up or left.")
+            return False
+        
+        # The Defender's Ai, Firewall and Programs can only move down or right.
+        if (self.board[coords.src.row][coords.src.col].player == Player.Defender and coords.src.col > coords.dst.col) or (self.board[coords.src.row][coords.src.col].player == Player.Defender and coords.src.row > coords.dst.row):
+            print("Defender's AI, Firewall and Program units can only move down or right.")
+            return False
+        
+        # All clear!
+        return True
+        
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
         """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!!"""
