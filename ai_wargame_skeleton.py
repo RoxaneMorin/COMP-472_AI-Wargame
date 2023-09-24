@@ -1,4 +1,4 @@
-from __future__ import annotations
+ dfrom __future__ import annotations
 import argparse
 import copy
 from datetime import datetime
@@ -104,10 +104,12 @@ class Game:
             return False
         
         # Is the destination free?
-        unit = self.get(coords.dst)
-        if not(unit is None):
-            print("This destination is already occupied.")
-            return False
+        # When it is not, interpret the movement as an attack or a heal.
+        # Check for its own validity.
+#        unit = self.get(coords.dst)
+#        if not(unit is None):
+#            print("This destination is already occupied.")
+#            return False
         #return (unit is None)
         
         # What are we? 
