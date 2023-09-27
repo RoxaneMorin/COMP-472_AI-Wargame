@@ -1,4 +1,4 @@
- dfrom __future__ import annotations
+from __future__ import annotations
 import argparse
 import copy
 from datetime import datetime
@@ -12,8 +12,7 @@ from ai_wargame_coords import Coord, CoordPair
 
 
 import random
-import requests
-
+from pip._vendor import requests
 
 @dataclass(slots=True)
 class Game:
@@ -106,10 +105,10 @@ class Game:
         # Is the destination free?
         # When it is not, interpret the movement as an attack or a heal.
         # Check for its own validity.
-#        unit = self.get(coords.dst)
-#        if not(unit is None):
-#            print("This destination is already occupied.")
-#            return False
+        target = self.get(coords.dst)
+        if not(target is None):
+            print("This destination is already occupied.")
+            return False
         #return (unit is None)
         
         # What are we? 
@@ -139,14 +138,97 @@ class Game:
         
         # All clear!
         return True
+
+    def is_valid_attack(self, coords : CoordPair) -> bool :
+        """Validate an attack expressed as a CoordPair. done by Duc"""
+        #verify that coordinates are valid
+        if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
+            print("Either the destination or source coordinate is not valid.")
+            return False
         
+        #verify that coordinates are adjacent
+        if not(coords.dst in coords.src.iter_adjacent()):
+            print("This destination is not adjacent to the unit's current location.")
+            return False
+        
+        #verify that unit controlled belongs to player
+        unit = self.get(coords.src)
+        if unit is None or unit.player != self.next_player:
+            print("This was not a valid unit to control.")
+            return False
+
+        #verify that coordinates are occupied by enemies / not the same player
+        target = self.get(coords.dst)
+        if target is None or target.player == self.next_player:
+            print("This was not a valid unit to attack.")
+            return False
+        return True
+    
+    def is_valid_repair(self, coords : CoordPair) -> bool :
+        """Validate a repair expressed as a CoordPair. done by Duc"""
+        #verify that coordinates are valid
+        if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
+            print("Either the destination or source coordinate is not valid.")
+            return False
+        
+        #verify that coordinates are adjacent
+        if not(coords.dst in coords.src.iter_adjacent()):
+            print("This destination is not adjacent to the unit's current location.")
+            return False
+        
+        #verify that unit controlled belongs to player
+        unit = self.get(coords.src)
+        if unit is None or unit.player != self.next_player:
+            print("This was not a valid unit to control.")
+            return False
+
+        #verify that coordinates belongs to player
+        target = self.get(coords.dst)
+        if target is None or target.player != self.next_player:
+            print("This was not a valid unit to repair.")
+            return False
+        
+        #verify that repair would heal, so only AI -> Virus or Tech & Tech -> AI, Firewall, or Program
+        if not(unit.type == UnitType.AI and (target.type == UnitType.Virus or target.type == UnitType.Tech)) or not (unit.type == UnitType.Tech and (target.type == UnitType.AI or target.type == UnitType.Firewall or target.type == UnitType.Program)):
+            print("The repairer or repaired are of the wrong type of unit.")
+            return False
+        
+        #verify that repair target is not at max health
+        if target.health == 9:
+            print("This unit does not need to be repaired.")
+            return False
+        return True
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
         """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!!"""
+        #perform move action
         if self.is_valid_move(coords):
             self.set(coords.dst,self.get(coords.src))
             self.set(coords.src,None)
             return (True,"")
+        #perform attack action
+        elif self.is_valid_attack(coords):        
+            attacker = self.get(coords.src)
+            defender = self.get(coords.dst)
+            #reduce attacker & defender HP by damage table 
+            attacker.damage_amount(defender)
+            defender.damage_amount(attacker)
+            print(attacker.health)
+            print(defender.health)
+            #fix attacker & defender HP
+            attacker.mod_health(attacker.health)
+            defender.mod_health(defender.health)
+            return (True,"Attack successful")
+        #perform repair action
+        elif self.is_valid_repair(coords):      
+            healer = self.get(coords.src)
+            target = self.get(coords.dst)
+            #repair target HP by repair table
+            healer.repair_amount(target)
+            print(target.health)
+            #fix target HP
+            target.mod_health(target.health)
+            return (True,"Repair successful")
         return (False,"invalid move")
 
     def next_turn(self):

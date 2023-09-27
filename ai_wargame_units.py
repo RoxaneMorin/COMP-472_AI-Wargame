@@ -8,8 +8,7 @@ from time import sleep
 from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import Player, UnitType
 import random
-import requests
-
+from pip._vendor import requests
 
 @dataclass(slots=True)
 class Unit:

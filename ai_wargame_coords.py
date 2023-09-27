@@ -7,8 +7,7 @@ from dataclasses import dataclass, field
 from time import sleep
 from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 import random
-import requests
-
+from pip._vendor import requests
 
 @dataclass(slots=True)
 class Coord:
