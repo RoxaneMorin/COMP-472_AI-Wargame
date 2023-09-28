@@ -105,6 +105,8 @@ class Game:
             print("This destination is not adjacent to the unit's current location.")
             return False
         
+        return True
+        
     
     def is_valid_move(self, coords : CoordPair) -> bool:
         """Validate a move expressed as a CoordPair. Done by Roxane."""
@@ -210,7 +212,7 @@ class Game:
                 
                 #repair target HP by repair table
                 heal_amount = healer.repair_amount(target)
-                #print(target.health)
+                #print(heal_amount)
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
