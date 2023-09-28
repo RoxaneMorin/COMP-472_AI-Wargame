@@ -154,6 +154,8 @@ class Game:
         if target is None or target.player == self.next_player:
             print("This was not a valid unit to attack.")
             return False
+        
+
         return True
     
     def is_valid_repair(self, coords : CoordPair) -> bool :
@@ -165,14 +167,22 @@ class Game:
             return False
         
         #verify that repair would heal, so only AI -> Virus or Tech & Tech -> AI, Firewall, or Program
-        if not(unit.type == UnitType.AI and (target.type == UnitType.Virus or target.type == UnitType.Tech)) or not (unit.type == UnitType.Tech and (target.type == UnitType.AI or target.type == UnitType.Firewall or target.type == UnitType.Program)):
-            print("The repairer or repaired are of the wrong type of unit.")
+        unit = self.get(coords.src)
+        ai = UnitType.AI
+        firewall = UnitType.Firewall
+        program = UnitType.Program
+        tech = UnitType.Tech
+        virus = UnitType.Virus
+        if not(unit.type == ai and (target.type == virus or target.type == tech)) and not(unit.type == tech and (target.type == ai or target.type == firewall or target.type == program)):
+            print("The repairing unit or repaired unit is of the wrong type of unit.")
             return False
         
         #verify that repair target is not at max health
         if target.health == 9:
             print("This unit does not need to be repaired.")
-            return False
+            return False    
+        
+
         return True
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
@@ -197,11 +207,8 @@ class Game:
                 d_to_a = defender.damage_amount(attacker)
                 
                 #fix attacker & defender HP
-                attacker.mod_health(-d_to_a)
-                defender.mod_health(-a_to_d)
-                
-                #print(attacker.health)
-                #print(defender.health)
+                self.mod_health(coords.src, -d_to_a)
+                self.mod_health(coords.dst, -a_to_d)
                 
                 return (True,"Attack successful")
             
@@ -212,7 +219,6 @@ class Game:
                 
                 #repair target HP by repair table
                 heal_amount = healer.repair_amount(target)
-                #print(heal_amount)
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
