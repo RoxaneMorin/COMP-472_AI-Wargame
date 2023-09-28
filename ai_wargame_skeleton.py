@@ -88,6 +88,7 @@ class Game:
 
     def is_valid_move(self, coords : CoordPair) -> bool:
         """Validate a move expressed as a CoordPair. WiP by Roxane."""
+        
         if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
             return False
         
@@ -206,30 +207,39 @@ class Game:
             self.set(coords.dst,self.get(coords.src))
             self.set(coords.src,None)
             return (True,"")
+        
         #perform attack action
         elif self.is_valid_attack(coords):        
             attacker = self.get(coords.src)
             defender = self.get(coords.dst)
+            
             #reduce attacker & defender HP by damage table 
-            attacker.damage_amount(defender)
-            defender.damage_amount(attacker)
-            print(attacker.health)
-            print(defender.health)
+            a_to_d = attacker.damage_amount(defender)
+            d_to_a = defender.damage_amount(attacker)
+            
             #fix attacker & defender HP
-            attacker.mod_health(attacker.health)
-            defender.mod_health(defender.health)
+            attacker.mod_health(-d_to_a)
+            defender.mod_health(-a_to_d)
+            
+            #print(attacker.health)
+            #print(defender.health)
+            
             return (True,"Attack successful")
+        
         #perform repair action
         elif self.is_valid_repair(coords):      
             healer = self.get(coords.src)
             target = self.get(coords.dst)
+            
             #repair target HP by repair table
-            healer.repair_amount(target)
-            print(target.health)
+            heal_amount = healer.repair_amount(target)
+            #print(target.health)
+            
             #fix target HP
-            target.mod_health(target.health)
+            target.mod_health(+heal_amount)
             return (True,"Repair successful")
-        return (False,"invalid move")
+        
+        return (False,"Invalid move")
 
     def next_turn(self):
         """Transitions game to the next turn."""
