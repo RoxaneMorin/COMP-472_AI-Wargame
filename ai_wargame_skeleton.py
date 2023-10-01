@@ -337,11 +337,25 @@ class Game:
     def is_finished(self) -> bool:
         """Check if the game is over."""
         return self.has_winner() is not None
-
+    
     def has_winner(self) -> Player | None:
         """Check if the game is over and returns winner"""
-        if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
+        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
+        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
+        
+        if remaining_attacker == 0:
             return Player.Defender
+        elif remaining_defender == 0:
+            return Player.Attacker
+        
+        if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
+            # If the game runs out of turns, whoever has the most units remaining wins.
+            if (remaining_attacker > remaining_defender): 
+                return Player.Attacker
+            # Ties go to the defender.
+            else:
+                return Player.Defender
+
         elif self._attacker_has_ai:
             if self._defender_has_ai:
                 return None
@@ -418,7 +432,7 @@ class Game:
             if r.status_code == 200 and r.json()['success']:
                 data = r.json()['data']
                 if data is not None:
-                    if data['turn'] == self.turns_played+1:
+                    if data['turn'] == self.E+1:
                         move = CoordPair(
                             Coord(data['from']['row'],data['from']['col']),
                             Coord(data['to']['row'],data['to']['col'])
