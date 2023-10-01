@@ -186,7 +186,7 @@ class Game:
         return True
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
-        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!!"""
+        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!! Written by Duc and Roxane."""
         
         #Preliminary checks used by all actions.
         if self.is_valid_move_preliminary(coords):
@@ -224,8 +224,7 @@ class Game:
                 target.mod_health(+heal_amount)
                 return (True,"Repair successful")
         
-        else: 
-            return (False,"Invalid move")
+        return (False,"Invalid move")
 
     def next_turn(self):
         """Transitions game to the next turn."""
