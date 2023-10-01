@@ -101,7 +101,7 @@ class Game:
             return False
         
         # Is the destination adjacent to the unit? 
-        if not(coords.dst in coords.src.iter_adjacent()):
+        if not(coords.dst in coords.src.iter_adjacent()) and (coords.src != coords.dst):
             print("This destination is not adjacent to the unit's current location.")
             return False
         
@@ -224,6 +224,16 @@ class Game:
                 #fix target HP
                 target.mod_health(+heal_amount)
                 return (True,"Repair successful")
+            
+            # perform self destruct
+            elif (coords.src == coords.dst):
+                self.mod_health(coords.dst, -9)
+                for u in coords.src.iter_adjacent_diags():
+                    try:
+                        self.mod_health(u, -2)
+                    except: continue
+                return (True,"The targeted unit has self destructed")
+                
         
         return (False,"Invalid move")
 

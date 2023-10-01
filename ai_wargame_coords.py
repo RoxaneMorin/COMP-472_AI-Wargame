@@ -53,6 +53,17 @@ class Coord:
         yield Coord(self.row,self.col-1)
         yield Coord(self.row+1,self.col)
         yield Coord(self.row,self.col+1)
+        
+    def iter_adjacent_diags(self) -> Iterable[Coord]:
+        """Iterates over adjacent Coords, diagonals included."""
+        yield Coord(self.row-1,self.col-1)
+        yield Coord(self.row-1,self.col)
+        yield Coord(self.row,self.col-1)
+        yield Coord(self.row+1,self.col-1)
+        yield Coord(self.row+1,self.col)
+        yield Coord(self.row,self.col+1)
+        yield Coord(self.row-1,self.col+1)
+        yield Coord(self.row+1,self.col+1)
 
     @classmethod
     def from_string(cls, s : str) -> Coord | None:
