@@ -115,7 +115,7 @@ class Game:
         # Check for its own validity.
         target = self.get(coords.dst)
         if not(target is None):
-            print("This destination is already occupied.")
+            print("The targeted desination is occupied.")
             return False
         #return (unit is None)
         
@@ -127,9 +127,10 @@ class Game:
         # Else,
         # AI, Firewall and Program units cannot move when an adversary unit is adjacent.
         for u in coords.src.iter_adjacent():
+            print("Observing the tile {}".format(u))
             try: # There's likely a better way to do this, humm.
-                if self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player:
-                    # Currently has an issue with "wrapping around" when looking at the adjacent squares. C4 is considered adjacent to C0, etc.
+                if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player) and ('f' not in u.to_string()):
+                    # Fixed the 'wrapping around', but it's pretty hacky. Should review in the future.
                     print("This unit cannot move as it is engaged in combat.")
                     return False
             except: continue
@@ -186,7 +187,7 @@ class Game:
         return True
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
-        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!! Written by Duc and Roxane."""
+        """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
         
         #Preliminary checks used by all actions.
         if self.is_valid_move_preliminary(coords):
