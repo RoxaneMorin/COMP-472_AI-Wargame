@@ -12,10 +12,10 @@ from ai_wargame_coords import Coord, CoordPair
 
 
 import random
-import requests
+from pip._vendor import requests
 
 
-@dataclass(slots=True)
+@dataclass()
 class Game:
     """Representation of the game state."""
     board: list[list[Unit | None]] = field(default_factory=list)
