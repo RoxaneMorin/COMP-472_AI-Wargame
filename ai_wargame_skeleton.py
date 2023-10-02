@@ -27,7 +27,7 @@ class Game:
     _defender_has_ai : bool = False
 
     #create file to write output game trace
-    file = open("gametrace-f-5-100", 'w')
+    file = open("gametrace-f-5-100.txt", 'w')
 
     def __post_init__(self):
         """Automatically called after class init to set up the default board state."""
@@ -249,15 +249,21 @@ class Game:
         self.turns_played += 1
 
     def write_to_file(self,output):
-        if(self.has_winner() is not None):
-            self.file.write(self.has_winner() + " wins in " + self.turns_played + " moves!")
-            self.file.close()
+        if self.is_finished():
+            with open('gametrace-f-5-100.txt', 'a') as file:  
+                winner = self.has_winner()
+                if winner:
+                    file.write(winner.name + " wins in " + str(self.turns_played) + " moves!")
+                else:
+                    file.write("The game ended in a draw after " + str(self.turns_played) + " moves.")
+                file.flush()
         else:
-            if self.turns_played == 0:
-                self.file.write("Initial Board Configuration: \n\n" + output)
-            else:
-                self.file.write("\nCurrent Board Information: \n\n" + output)
-        self.file.flush()
+            with open('gametrace-f-5-100.txt', 'a') as file: 
+                if self.turns_played == 0:
+                    file.write("Initial Board Configuration: \n\n" + output)
+                else:
+                    file.write("\nCurrent Board Information: \n\n" + output)
+                file.flush()
         
 
     def to_string(self) -> str:
@@ -362,8 +368,8 @@ class Game:
         remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
         remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
         
-        print(remaining_attacker)
-        print(remaining_defender)
+        #print(remaining_attacker)
+        #print(remaining_defender)
         
         if remaining_attacker == 0:
             #print("No attacker units left.")
