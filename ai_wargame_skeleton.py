@@ -362,8 +362,8 @@ class Game:
         remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
         remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
         
-        print(remaining_attacker)
-        print(remaining_defender)
+        #print(remaining_attacker)
+        #print(remaining_defender)
         
         if remaining_attacker == 0:
             #print("No attacker units left.")
