@@ -442,7 +442,7 @@ class Game:
             if r.status_code == 200 and r.json()['success']:
                 data = r.json()['data']
                 if data is not None:
-                    if data['turn'] == self.E+1:
+                    if data['turn'] == self.turns_played+1:
                         move = CoordPair(
                             Coord(data['from']['row'],data['from']['col']),
                             Coord(data['to']['row'],data['to']['col'])
