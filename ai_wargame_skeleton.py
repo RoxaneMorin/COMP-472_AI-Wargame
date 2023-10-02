@@ -1,4 +1,4 @@
- dfrom __future__ import annotations
+from __future__ import annotations
 import argparse
 import copy
 from datetime import datetime
@@ -12,10 +12,9 @@ from ai_wargame_coords import Coord, CoordPair
 
 
 import random
-import requests
+from pip._vendor import requests
 
-
-@dataclass(slots=True)
+@dataclass()
 class Game:
     """Representation of the game state."""
     board: list[list[Unit | None]] = field(default_factory=list)
@@ -25,6 +24,9 @@ class Game:
     stats: Stats = field(default_factory=Stats)
     _attacker_has_ai : bool = True
     _defender_has_ai : bool = True
+
+    #create file to write output game trace
+    file = open("gametrace-f-5-100", 'w')
 
     def __post_init__(self):
         """Automatically called after class init to set up the default board state."""
@@ -86,16 +88,19 @@ class Game:
         if target is not None:
             target.mod_health(health_delta)
             self.remove_dead(coord)
-
-    def is_valid_move(self, coords : CoordPair) -> bool:
-        """Validate a move expressed as a CoordPair. WiP by Roxane."""
+    
+    
+    def is_valid_move_preliminary(self, coords : CoordPair) -> bool:
+        """Validate a move expressed as a CoordPair. Done by Roxane and Duc."""
+        # Are the coords valid?
         if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
+            print("These coordinates are not valid.")
             return False
         
         # Is the player targeting one of their units?
         unit = self.get(coords.src)
         if unit is None or unit.player != self.next_player:
-            print("This was not a valid unit.")
+            print("This is not a unit belonging to the active player.")
             return False
         
         # Is the destination adjacent to the unit? 
@@ -103,13 +108,18 @@ class Game:
             print("This destination is not adjacent to the unit's current location.")
             return False
         
+        return True
+        
+    
+    def is_valid_move(self, coords : CoordPair) -> bool:
+        """Validate a move expressed as a CoordPair. Done by Roxane."""
         # Is the destination free?
         # When it is not, interpret the movement as an attack or a heal.
         # Check for its own validity.
-#        unit = self.get(coords.dst)
-#        if not(unit is None):
-#            print("This destination is already occupied.")
-#            return False
+        target = self.get(coords.dst)
+        if not(target is None):
+            print("The targeted desination is occupied.")
+            return False
         #return (unit is None)
         
         # What are we? 
@@ -120,9 +130,10 @@ class Game:
         # Else,
         # AI, Firewall and Program units cannot move when an adversary unit is adjacent.
         for u in coords.src.iter_adjacent():
+            print("Observing the tile {}".format(u))
             try: # There's likely a better way to do this, humm.
-                if self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player:
-                    # Currently has an issue with "wrapping around" when looking at the adjacent squares. C4 is considered adjacent to C0, etc.
+                if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player) and ('f' not in u.to_string()):
+                    # Fixed the 'wrapping around', but it's pretty hacky. Should review in the future.
                     print("This unit cannot move as it is engaged in combat.")
                     return False
             except: continue
@@ -139,20 +150,103 @@ class Game:
         
         # All clear!
         return True
+
+    def is_valid_attack(self, coords : CoordPair) -> bool :
+        """Validate an attack expressed as a CoordPair. Done by Duc"""
+        #verify that coordinates are occupied by enemies / not the same player
+        target = self.get(coords.dst)
+        if target is None or target.player == self.next_player:
+            print("This was not a valid unit to attack.")
+            return False
+        
+        return True
+    
+    def is_valid_repair(self, coords : CoordPair) -> bool :
+        """Validate a repair expressed as a CoordPair. Done by Duc"""
+        #verify that coordinates belongs to player
+        target = self.get(coords.dst)
+        if target is None or target.player != self.next_player:
+            print("This was not a valid unit to repair.")
+            return False
+        
+        #verify that repair would heal, so only AI -> Virus or Tech & Tech -> AI, Firewall, or Program
+        unit = self.get(coords.src)
+        ai = UnitType.AI
+        firewall = UnitType.Firewall
+        program = UnitType.Program
+        tech = UnitType.Tech
+        virus = UnitType.Virus
+        if not(unit.type == ai and (target.type == virus or target.type == tech)) and not(unit.type == tech and (target.type == ai or target.type == firewall or target.type == program)):
+            print("The repairing unit or repaired unit is of the wrong type of unit.")
+            return False
+        
+        #verify that repair target is not at max health
+        if target.health == 9:
+            print("This unit does not need to be repaired.")
+            return False    
         
 
+        return True
+
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
-        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!!"""
-        if self.is_valid_move(coords):
-            self.set(coords.dst,self.get(coords.src))
-            self.set(coords.src,None)
-            return (True,"")
-        return (False,"invalid move")
+        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!! Written by Duc and Roxane."""
+        
+        #Preliminary checks used by all actions.
+        if self.is_valid_move_preliminary(coords):
+            
+            #perform move action
+            if self.is_valid_move(coords):
+                self.set(coords.dst,self.get(coords.src))
+                self.set(coords.src,None)
+                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                return (True,"")
+            
+            #perform attack action
+            elif self.is_valid_attack(coords):        
+                attacker = self.get(coords.src)
+                defender = self.get(coords.dst)
+                
+                #reduce attacker & defender HP by damage table 
+                a_to_d = attacker.damage_amount(defender)
+                d_to_a = defender.damage_amount(attacker)
+                
+                #fix attacker & defender HP
+                self.mod_health(coords.src, -d_to_a)
+                self.mod_health(coords.dst, -a_to_d)
+                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                return (True,"Attack successful")
+            
+            #perform repair action
+            elif self.is_valid_repair(coords):      
+                healer = self.get(coords.src)
+                target = self.get(coords.dst)
+                
+                #repair target HP by repair table
+                heal_amount = healer.repair_amount(target)
+                
+                #fix target HP
+                target.mod_health(+heal_amount)
+                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                return (True,"Repair successful")
+        
+        return (False,"Invalid move")
 
     def next_turn(self):
         """Transitions game to the next turn."""
         self.next_player = self.next_player.next()
         self.turns_played += 1
+
+    def write_to_file(self,output):
+        if(self.has_winner() is not None):
+            self.file.write(self.has_winner() + " wins in " + self.turns_played + " moves!")
+            self.file.close()
+        else:
+            if self.turns_played == 0:
+                self.file.write("Initial Board Configuration: \n\n" + output)
+            else:
+                self.file.write("\nCurrent Board Information: \n\n" + output)
+        self.file.flush()
+        
 
     def to_string(self) -> str:
         """Pretty text representation of the game."""
@@ -179,6 +273,7 @@ class Game:
                 else:
                     output += f"{str(unit):^3} "
             output += "\n"
+        self.write_to_file(output)
         return output
 
     def __str__(self) -> str:
@@ -349,6 +444,7 @@ class Game:
         except Exception as error:
             print(f"Broker error: {error}")
         return None
+    
 
 ##############################################################################################################
 
@@ -409,6 +505,7 @@ def main():
             else:
                 print("Computer doesn't know what to do!!!")
                 exit(1)
+
 
 ##############################################################################################################
 

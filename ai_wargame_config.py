@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from time import sleep
 from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 import random
-import requests
+from pip._vendor import requests
 
 
 # maximum and minimum values for our heuristic scores (usually represents an end of game condition)
@@ -24,6 +24,7 @@ class UnitType(Enum):
 
 class Player(Enum):
     """The 2 players."""
+    
     Attacker = 0
     Defender = 1
 
@@ -42,7 +43,7 @@ class GameType(Enum):
 
 ##############################################################################################################
 
-@dataclass(slots=True)
+@dataclass()
 class Options:
     """Representation of the game options."""
     dim: int = 5
@@ -54,14 +55,14 @@ class Options:
     max_turns : int | None = 100
     randomize_moves : bool = True
     broker : str | None = None
-    
-    
+
+
     # Create a constructor that does take an argument.
-    
+
 
 ##############################################################################################################
 
-@dataclass(slots=True)
+@dataclass()
 class Stats:
     """Representation of the global game statistics."""
     evaluations_per_depth : dict[int,int] = field(default_factory=dict)

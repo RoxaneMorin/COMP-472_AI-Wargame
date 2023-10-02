@@ -7,10 +7,9 @@ from dataclasses import dataclass, field
 from time import sleep
 from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 import random
-import requests
+from pip._vendor import requests
 
-
-@dataclass(slots=True)
+@dataclass()
 class Coord:
     """Representation of a game cell coordinate (row, col)."""
     row : int = 0
@@ -33,11 +32,11 @@ class Coord:
     def to_string(self) -> str:
         """Text representation of this Coord."""
         return self.row_string()+self.col_string()
-    
+
     def __str__(self) -> str:
         """Text representation of this Coord."""
         return self.to_string()
-    
+
     def clone(self) -> Coord:
         """Clone a Coord."""
         return copy.copy(self)
@@ -65,15 +64,15 @@ class Coord:
             coord = Coord()
             coord.row = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".find(s[0:1].upper())
             coord.col = "0123456789abcdef".find(s[1:2].lower())
-            
+
             print(coord)
-            
+
             return coord
         else:
             return None
-        
 
-@dataclass(slots=True)
+
+@dataclass()
 class CoordPair:
     """Representation of a game move or a rectangular area via 2 Coords."""
     src : Coord = field(default_factory=Coord)
@@ -82,7 +81,7 @@ class CoordPair:
     def to_string(self) -> str:
         """Text representation of a CoordPair."""
         return self.src.to_string()+" "+self.dst.to_string()
-    
+
     def __str__(self) -> str:
         """Text representation of a CoordPair."""
         return self.to_string()
@@ -101,12 +100,12 @@ class CoordPair:
     def from_quad(cls, row0: int, col0: int, row1: int, col1: int) -> CoordPair:
         """Create a CoordPair from 4 integers."""
         return CoordPair(Coord(row0,col0),Coord(row1,col1))
-    
+
     @classmethod
     def from_dim(cls, dim: int) -> CoordPair:
         """Create a CoordPair based on a dim-sized rectangle."""
         return CoordPair(Coord(0,0),Coord(dim-1,dim-1))
-    
+
     @classmethod
     def from_string(cls, s : str) -> CoordPair | None:
         """Create a CoordPair from a string. ex: A3 B2"""
@@ -122,4 +121,3 @@ class CoordPair:
             return coords
         else:
             return None
-        
