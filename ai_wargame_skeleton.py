@@ -12,9 +12,10 @@ from ai_wargame_coords import Coord, CoordPair
 
 
 import random
-from pip._vendor import requests
+import requests
 
-@dataclass()
+
+@dataclass(slots=True)
 class Game:
     """Representation of the game state."""
     board: list[list[Unit | None]] = field(default_factory=list)
@@ -22,8 +23,8 @@ class Game:
     turns_played : int = 0
     options: Options = field(default_factory=Options)
     stats: Stats = field(default_factory=Stats)
-    _attacker_has_ai : bool = True
-    _defender_has_ai : bool = True
+    _attacker_has_ai : bool = False
+    _defender_has_ai : bool = False
 
     #create file to write output game trace
     file = open("gametrace-f-5-100", 'w')
@@ -104,7 +105,7 @@ class Game:
             return False
         
         # Is the destination adjacent to the unit? 
-        if not(coords.dst in coords.src.iter_adjacent()):
+        if not(coords.dst in coords.src.iter_adjacent()) and (coords.src != coords.dst):
             print("This destination is not adjacent to the unit's current location.")
             return False
         
@@ -159,6 +160,7 @@ class Game:
             print("This was not a valid unit to attack.")
             return False
         
+
         return True
     
     def is_valid_repair(self, coords : CoordPair) -> bool :
@@ -189,7 +191,7 @@ class Game:
         return True
 
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
-        """Validate and perform a move expressed as a CoordPair. TODO: WRITE MISSING CODE!!! Written by Duc and Roxane."""
+        """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
         
         #Preliminary checks used by all actions.
         if self.is_valid_move_preliminary(coords):
@@ -228,6 +230,16 @@ class Game:
                 target.mod_health(+heal_amount)
                 self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
                 return (True,"Repair successful")
+            
+            # perform self destruct
+            elif (coords.src == coords.dst):
+                self.mod_health(coords.dst, -9)
+                for u in coords.src.iter_adjacent_diags():
+                    try:
+                        self.mod_health(u, -2)
+                    except: continue
+                return (True,"The targeted unit has self destructed")
+                
         
         return (False,"Invalid move")
 
@@ -344,18 +356,42 @@ class Game:
     def is_finished(self) -> bool:
         """Check if the game is over."""
         return self.has_winner() is not None
-
+    
     def has_winner(self) -> Player | None:
         """Check if the game is over and returns winner"""
-        if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
+        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
+        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
+        
+        print(remaining_attacker)
+        print(remaining_defender)
+        
+        if remaining_attacker == 0:
+            #print("No attacker units left.")
             return Player.Defender
-        elif self._attacker_has_ai:
+        elif remaining_defender == 0:
+            #print("No deffender units left.")
+            return Player.Attacker
+        
+        if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
+            # If the game runs out of turns, whoever has the most units remaining wins.
+            #print("The max number of turns has been reached.")
+            if (remaining_attacker > remaining_defender): 
+                #print("The attacker has more remaining units.")
+                return Player.Attacker
+            # Ties go to the defender.
+            else:
+                #print("The defender is still holding strong.")
+                return Player.Defender
+
+        if self._attacker_has_ai:
             if self._defender_has_ai:
                 return None
             else:
                 return Player.Attacker    
         elif self._defender_has_ai:
             return Player.Defender
+    
+        return None
 
     def move_candidates(self) -> Iterable[CoordPair]:
         """Generate valid move candidates for the next player."""

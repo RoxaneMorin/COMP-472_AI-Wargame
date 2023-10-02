@@ -9,7 +9,6 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 import random
 from pip._vendor import requests
 
-
 # maximum and minimum values for our heuristic scores (usually represents an end of game condition)
 MAX_HEURISTIC_SCORE = 2000000000
 MIN_HEURISTIC_SCORE = -2000000000
