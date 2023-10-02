@@ -22,8 +22,8 @@ class Game:
     turns_played : int = 0
     options: Options = field(default_factory=Options)
     stats: Stats = field(default_factory=Stats)
-    _attacker_has_ai : bool = True
-    _defender_has_ai : bool = True
+    _attacker_has_ai : bool = False # Turning these off to avoid victory weirdness.
+    _defender_has_ai : bool = False
 
     def __post_init__(self):
         """Automatically called after class init to set up the default board state."""
@@ -343,26 +343,36 @@ class Game:
         remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
         remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
         
+        print(remaining_attacker)
+        print(remaining_defender)
+        
         if remaining_attacker == 0:
+            #print("No attacker units left.")
             return Player.Defender
         elif remaining_defender == 0:
+            #print("No deffender units left.")
             return Player.Attacker
         
         if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
             # If the game runs out of turns, whoever has the most units remaining wins.
+            #print("The max number of turns has been reached.")
             if (remaining_attacker > remaining_defender): 
+                #print("The attacker has more remaining units.")
                 return Player.Attacker
             # Ties go to the defender.
             else:
+                #print("The defender is still holding strong.")
                 return Player.Defender
 
-        elif self._attacker_has_ai:
+        if self._attacker_has_ai:
             if self._defender_has_ai:
                 return None
             else:
                 return Player.Attacker    
         elif self._defender_has_ai:
             return Player.Defender
+        
+        return None
 
     def move_candidates(self) -> Iterable[CoordPair]:
         """Generate valid move candidates for the next player."""
