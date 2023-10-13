@@ -14,6 +14,12 @@ from ai_wargame_coords import Coord, CoordPair
 import random
 from pip._vendor import requests
 
+#
+#Team members:
+#- Roxane Morin, 40191881.
+#- Duc Bui, 40061043.
+#- Brianna Malpartida, 40045115.
+#
 
 @dataclass()
 class Game:
@@ -399,7 +405,7 @@ class Game:
     
         return None
 
-    def move_candidates(self) -> Iterable[CoordPair]:
+    def move_candidates(self) -> Iterable[CoordPair]: ##### TO DO: integrate this into our own stuff
         """Generate valid move candidates for the next player."""
         move = CoordPair()
         for (src,_) in self.player_units(self.next_player):
@@ -423,18 +429,25 @@ class Game:
     def suggest_move(self) -> CoordPair | None:
         """Suggest the next move using minimax alpha beta. TODO: REPLACE RANDOM_MOVE WITH PROPER GAME LOGIC!!!"""
         start_time = datetime.now()
+        
         (score, move, avg_depth) = self.random_move()
+        
         elapsed_seconds = (datetime.now() - start_time).total_seconds()
         self.stats.total_seconds += elapsed_seconds
+        
         print(f"Heuristic score: {score}")
         print(f"Average recursive depth: {avg_depth:0.1f}")
         print(f"Evals per depth: ",end='')
+        
         for k in sorted(self.stats.evaluations_per_depth.keys()):
             print(f"{k}:{self.stats.evaluations_per_depth[k]} ",end='')
         print()
+        
         total_evals = sum(self.stats.evaluations_per_depth.values())
+        
         if self.stats.total_seconds > 0:
             print(f"Eval perf.: {total_evals/self.stats.total_seconds/1000:0.1f}k/s")
+            
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
         return move
 
