@@ -166,7 +166,6 @@ class Game:
             print("This was not a valid unit to attack.")
             return False
         
-
         return True
     
     def is_valid_repair(self, coords : CoordPair) -> bool :
@@ -192,10 +191,22 @@ class Game:
         if target.health == 9:
             print("This unit does not need to be repaired.")
             return False    
-        
 
         return True
-
+    
+    def is_valid_move_any(self, coords : CoordPair) -> bool :
+        # The premilinary checks are not actually needed here.
+        
+        # Check using our various is_valid_x functions.
+        if self.is_valid_move(coords) or self.is_valid_attack(coords) or self.is_valid_repair(coords):
+            return True
+        # Else, check for self destructuon.
+        elif (coords.src == coords.dst):
+            return True
+        
+        # Else, return false.
+        return False
+    
     def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
         """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
         
@@ -402,14 +413,14 @@ class Game:
                 return Player.Attacker    
         return Player.Defender
 
-    def move_candidates(self) -> Iterable[CoordPair]: ##### TO DO: integrate this into our own stuff
+    def move_candidates(self) -> Iterable[CoordPair]:
         """Generate valid move candidates for the next player."""
         move = CoordPair()
         for (src,_) in self.player_units(self.next_player):
             move.src = src
             for dst in src.iter_adjacent():
                 move.dst = dst
-                if self.is_valid_move(move): ## NEED TO INTEGRATE OUR OWN STUFF INTO THIS
+                if self.is_valid_move_any(move): # Should do for integrating our stuff.
                     yield move.clone()
             move.dst = src
             yield move.clone()
