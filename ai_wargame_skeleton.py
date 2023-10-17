@@ -29,8 +29,8 @@ class Game:
     turns_played : int = 0
     options: Options = field(default_factory=Options)
     stats: Stats = field(default_factory=Stats)
-    _attacker_has_ai : bool = False
-    _defender_has_ai : bool = False
+    _attacker_has_ai : bool = True
+    _defender_has_ai : bool = True
 
     #create file to write output game trace
     file = open("gametrace-f-5-100.txt", 'w')
@@ -400,10 +400,7 @@ class Game:
                 return None
             else:
                 return Player.Attacker    
-        elif self._defender_has_ai:
-            return Player.Defender
-    
-        return None
+        return Player.Defender
 
     def move_candidates(self) -> Iterable[CoordPair]: ##### TO DO: integrate this into our own stuff
         """Generate valid move candidates for the next player."""
@@ -412,7 +409,7 @@ class Game:
             move.src = src
             for dst in src.iter_adjacent():
                 move.dst = dst
-                if self.is_valid_move(move):
+                if self.is_valid_move(move): ## NEED TO INTEGRATE OUR OWN STUFF INTO THIS
                     yield move.clone()
             move.dst = src
             yield move.clone()
@@ -436,7 +433,7 @@ class Game:
         self.stats.total_seconds += elapsed_seconds
         
         print(f"Heuristic score: {score}")
-        print(f"Average recursive depth: {avg_depth:0.1f}")
+        #print(f"Average recursive depth: {avg_depth:0.1f}")
         print(f"Evals per depth: ",end='')
         
         for k in sorted(self.stats.evaluations_per_depth.keys()):
