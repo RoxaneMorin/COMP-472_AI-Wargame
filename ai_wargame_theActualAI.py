@@ -59,6 +59,8 @@ def generate_child_nodes(current_player, current_board, current_depth, maxdepth,
     
     child_nodes = []
     
+    # There's already a function that generates the valid potential moves. We only need to draw their boards from there.
+    
     # Generate the nodes:
     # for each of the active player's units in the current board.
         # try all moves
@@ -102,7 +104,7 @@ def move_by_minimax(current_player, current_board, maxdepth):
     
     return best_move
 
-    # To do: handle min depth.
+    # To do: handle min depth. I don't think that's actually needed.
     # To do: handle max time elapsed.
 
 
@@ -142,5 +144,10 @@ def heuristic_score(current_player, board_config) -> int:
     
     # Score the given board configuration.
     # 
+    
+    # Ideas:
+        # player vs enemy units left alive
+        # total health of one's units vs enemy's (weighted by unit type?)
+        # 
     
     return 1
