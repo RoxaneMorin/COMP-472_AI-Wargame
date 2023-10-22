@@ -143,7 +143,7 @@ class Game:
         for u in coords.src.iter_adjacent():
             #if wordy: print("Observing the tile {}".format(u))
             try: # There's likely a better way to do this, humm.
-                if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player) and ('f' not in u.to_string()):
+                if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player):
                     # Fixed the 'wrapping around', but it's pretty hacky. Should review in the future.
                     if wordy: print("This unit cannot move as it is engaged in combat.")
                     return False
@@ -202,8 +202,8 @@ class Game:
         # The premilinary checks are not actually needed here.
         
         # Hacky way to filter out the invalid coords that get generated.
-        if ('Z' in coords.to_string()) or ('f' in coords.to_string()):
-            return False
+        #if ('Z' in coords.to_string()) or ('f' in coords.to_string()):
+        #    return False
         
         # Check using our various is_valid_x functions.
         if self.is_valid_move(coords, wordy) or self.is_valid_attack(coords, wordy) or self.is_valid_repair(coords, wordy):

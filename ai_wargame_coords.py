@@ -49,21 +49,22 @@ class Coord:
 
     def iter_adjacent(self) -> Iterable[Coord]:
         """Iterates over adjacent Coords."""
-        yield Coord(self.row-1,self.col)
-        yield Coord(self.row,self.col-1)
-        yield Coord(self.row+1,self.col)
-        yield Coord(self.row,self.col+1)
+        for dr, dc in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
+            new_row = self.row + dr
+            new_col = self.col + dc
+            
+            if new_row >= 0 and new_col >= 0 and new_row < 5 and new_col < 5:
+                yield Coord(new_row, new_col)
         
     def iter_adjacent_diags(self) -> Iterable[Coord]:
         """Iterates over adjacent Coords, diagonals included."""
-        yield Coord(self.row-1,self.col-1)
-        yield Coord(self.row-1,self.col)
-        yield Coord(self.row,self.col-1)
-        yield Coord(self.row+1,self.col-1)
-        yield Coord(self.row+1,self.col)
-        yield Coord(self.row,self.col+1)
-        yield Coord(self.row-1,self.col+1)
-        yield Coord(self.row+1,self.col+1)
+        for dr in range(-1, 2):
+            for dc in range(-1, 2):
+                new_row = self.row + dr
+                new_col = self.col + dc
+            
+                if new_row >= 0 and new_col >= 0 and new_row < 5 and new_col < 5:
+                    yield Coord(new_row, new_col)
 
     @classmethod
     def from_string(cls, s : str) -> Coord | None:
