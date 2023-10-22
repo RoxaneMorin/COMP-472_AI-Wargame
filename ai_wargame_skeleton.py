@@ -9,7 +9,7 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import UnitType, Player, GameType, Options, Stats, HeurType
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
-import ai_wargame_theActualAI
+from ai_wargame_theActualAI import GameTreeNode
 from copy import deepcopy
 
 
