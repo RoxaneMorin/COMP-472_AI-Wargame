@@ -593,7 +593,7 @@ def main():
         elif game.options.game_type == GameType.CompVsDefender and game.next_player == Player.Defender:
             game.human_turn()
         else:
-            player = game.next_player
+            player = game.next_player # Not sure this is actually being used.
             move = game.computer_turn()
             if move is not None:
                 game.post_move_to_broker(move)

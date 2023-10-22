@@ -55,11 +55,7 @@ class Options:
     max_turns : int | None = 100
     randomize_moves : bool = True
     broker : str | None = None
-    heuristic_function = HeurType = HeurType.e0
-
-
-    # Create a constructor that does take an argument.
-
+    heuristic_function : HeurType = HeurType.e0
 
 ##############################################################################################################
 

@@ -132,6 +132,7 @@ def minimax (current_player, current_node, maxdepth):
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
+        current_node.score_me(current_player)
         return current_node.myScore
     
     if current_player == Player.Attacker: # Maximizing player
@@ -161,6 +162,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
+        current_node.score_me(current_player)
         return current_node.myScore
     
     if current_player == Player.Attacker: # Maximizing player
@@ -190,8 +192,8 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
 # Heuristic function
 def heuristic_score(current_player, current_game) -> int:
     
-    # Score the given board configuration.
-    # 
+    # Score the given board configuration.# 
+
     
     vp1 = 0
     tp1 = 0
@@ -203,7 +205,11 @@ def heuristic_score(current_player, current_game) -> int:
     fp2 = 0
     pp2 = 0
     aip2 = 0
+    
     for _ in current_game.player_units(current_player):
+        
+        print(Unit.type)
+        
         if Unit.type == UnitType.Virus:
             vp1 += 1
         elif Unit.type == UnitType.Tech:
@@ -233,13 +239,22 @@ def heuristic_score(current_player, current_game) -> int:
     
         # demo heuristic
     e0 = (3*vp1 + 3*tp1 + 3*fp1 + 3*pp1 + 9999*aip1) - (3*vp2 + 3*tp2 + 3*fp2 + 3*pp2 + 9999*aip2)
-        # player vs enemy units left alive
+    
+    
+    
+    
+        # player vs enemy units left alive?
     e1 = (remaining1 - remaining2)
         # total health of one's units vs enemy's (weighted by unit type?)
     e2 = (remainingHP1 - remainingHP2)
     
+    
+    
     if current_game.options.heuristic_function == HeurType.e0 : 
+        print(e0)
         return e0
+    
+    
     elif current_game.options.heuristic_function  == HeurType.e1 :
         return e1
     elif current_game.options.heuristic_function  == HeurType.e2 :
