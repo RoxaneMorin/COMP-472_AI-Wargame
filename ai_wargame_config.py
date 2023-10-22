@@ -9,10 +9,6 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 import random
 from pip._vendor import requests
 
-# maximum and minimum values for our heuristic scores (usually represents an end of game condition)
-MAX_HEURISTIC_SCORE = 2000000000
-MIN_HEURISTIC_SCORE = -2000000000
-
 class UnitType(Enum):
     """Every unit type."""
     AI = 0
@@ -40,6 +36,11 @@ class GameType(Enum):
     CompVsDefender = 2
     CompVsComp = 3
 
+class HeurType(Enum):
+    e0 = 0
+    e1 = 1
+    e2 = 2
+
 ##############################################################################################################
 
 @dataclass()
@@ -54,10 +55,7 @@ class Options:
     max_turns : int | None = 100
     randomize_moves : bool = True
     broker : str | None = None
-
-
-    # Create a constructor that does take an argument.
-
+    heuristic_function : HeurType = HeurType.e0
 
 ##############################################################################################################
 
