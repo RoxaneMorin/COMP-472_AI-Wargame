@@ -6,7 +6,7 @@ from enum import Enum
 from dataclasses import dataclass, field
 from time import sleep
 from typing import Tuple, TypeVar, Type, Iterable, ClassVar
-from ai_wargame_config import UnitType, Player, GameType, Options, Stats
+from ai_wargame_config import HeurType, UnitType, Player, GameType, Options, Stats
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
 import ai_wargame_theActualAI
@@ -531,6 +531,7 @@ def main():
     parser.add_argument('--max_time', type=float, help='maximum search time')
     parser.add_argument('--game_type', type=str, default="manual", help='game type: auto|attacker|defender|manual')
     parser.add_argument('--broker', type=str, help='play via a game broker')
+    parser.add_argument('--heuristic_function', type=str, default="e0", help='heuristic functions: e0|e1|e2')
     args = parser.parse_args()
 
     # parse the game type
@@ -542,9 +543,18 @@ def main():
         game_type = GameType.AttackerVsDefender
     else:
         game_type = GameType.CompVsComp
+        
+    #parse the heuristic function
+    if args.heuristic_function == "e0" :
+        heuristic_function = HeurType.e0
+    elif args.heuristic_function == "e1" :
+        heuristic_function = HeurType.e1
+    elif args.heuristic_function == "e2" :
+        heuristic_function = HeurType.e2
 
     # set up game options
     options = Options(game_type=game_type)
+    options = Options(heuristic_function=heuristic_function)
 
     # override class defaults via command line options
     if args.max_depth is not None:
