@@ -253,11 +253,25 @@ def heuristic_score(current_player, current_game) -> int:
     # Attacker vs Defender units left alive.
     elif current_game.options.heuristic_function  == HeurType.e1 :
         e1 = (total_units_attacker - total_units_defender)
+        
+        # Winning is very good!
+        if total_units_attacker == 0:
+            e1 -= 9999
+        elif total_units_defender == 0:
+            e1 += 9999
+        
         #print(e1)
         return e1
     
     # Total health of one's units vs enemy's (weighted by unit type?)
     elif current_game.options.heuristic_function  == HeurType.e2 :
         e2 = (remaining_hp_attacker - remaining_hp_defender)
+        
+        # Winning is very good!
+        if remaining_hp_attacker == 0:
+            e1 -= 9999
+        elif remaining_hp_defender == 0:
+            e1 += 9999
+        
         #print(e2)
         return e2
