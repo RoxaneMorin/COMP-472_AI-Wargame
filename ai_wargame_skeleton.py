@@ -9,6 +9,7 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import UnitType, Player, GameType, Options, Stats
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
+import ai_wargame_theActualAI
 from copy import deepcopy
 
 
@@ -442,7 +443,10 @@ class Game:
         """Suggest the next move using minimax alpha beta. TODO: REPLACE RANDOM_MOVE WITH PROPER GAME LOGIC!!!"""
         start_time = datetime.now()
         
-        (score, move, avg_depth) = self.random_move()
+        ## Line where we replace the random move.
+        #(score, move, avg_depth) = self.random_move()
+        (score, move) = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
+        
         
         elapsed_seconds = (datetime.now() - start_time).total_seconds()
         self.stats.total_seconds += elapsed_seconds
