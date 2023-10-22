@@ -9,6 +9,7 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import UnitType, Player, GameType, Options, Stats
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
+from copy import deepcopy
 
 
 import random
@@ -53,14 +54,14 @@ class Game:
         self.set(Coord(md,md-2),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md-1,md-1),Unit(player=Player.Attacker,type=UnitType.Firewall))
 
-    def clone(self) -> Game:
-        """Make a new copy of a game for minimax recursion.
+    def clone(self):
+        #Make a new copy of a game for minimax recursion.
+        new_matrix = [] #append visited states (for now)
+        for row in self.board:
+            new_board = deepcopy(self.board)
+            new_matrix.append(new_board)
+        return new_matrix
 
-        Shallow copy of everything except the board (options and stats are shared).
-        """
-        new = copy.copy(self)
-        new.board = copy.deepcopy(self.board)
-        return new
 
     def is_empty(self, coord : Coord) -> bool:
         """Check if contents of a board cell of the game at Coord is empty (must be valid coord)."""
@@ -218,9 +219,12 @@ class Game:
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
                 self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                self.clone()  #clone the board
+
                 return (True,"")
             
-            #perform attack action
+            #perform attack actione2 e1
+
             elif self.is_valid_attack(coords):        
                 attacker = self.get(coords.src)
                 defender = self.get(coords.dst)
