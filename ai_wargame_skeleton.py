@@ -34,9 +34,6 @@ class Game:
     _attacker_has_ai : bool = True
     _defender_has_ai : bool = True
 
-    node = GameTreeNode(board_configuration=board)
-
-
     #create file to write output game trace
     file = open("gametrace-f-5-100.txt", 'w')
 
@@ -58,11 +55,12 @@ class Game:
         self.set(Coord(md,md-2),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md-1,md-1),Unit(player=Player.Attacker,type=UnitType.Firewall))
 
-    def clone(self):
-        #Make a new copy of a game for minimax recursion.
-        new_board = deepcopy(self.board)
-        print(new_board)
-        return new_board
+    def clone(self) -> Game:
+        # Make a new copy of a game for minimax recursion.
+        # Shallow copy of everything except the board (options and stats are shared).
+        new = copy.copy(self)
+        new.board = copy.deepcopy(self.board)
+        return new
 
 
     def is_empty(self, coord : Coord) -> bool:
@@ -100,35 +98,35 @@ class Game:
             self.remove_dead(coord)
     
     
-    def is_valid_move_preliminary(self, coords : CoordPair) -> bool:
+    def is_valid_move_preliminary(self, coords : CoordPair, wordy=True) -> bool:
         """Validate a move expressed as a CoordPair. Done by Roxane and Duc."""
         # Are the coords valid?
         if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
-            print("These coordinates are not valid.")
+            if wordy: print("These coordinates are not valid.")
             return False
         
         # Is the player targeting one of their units?
         unit = self.get(coords.src)
         if unit is None or unit.player != self.next_player:
-            print("This is not a unit belonging to the active player.")
+            if wordy: print("This is not a unit belonging to the active player.")
             return False
         
         # Is the destination adjacent to the unit? 
         if not(coords.dst in coords.src.iter_adjacent()) and (coords.src != coords.dst):
-            print("This destination is not adjacent to the unit's current location.")
+            if wordy: print("This destination is not adjacent to the unit's current location.")
             return False
         
         return True
         
     
-    def is_valid_move(self, coords : CoordPair) -> bool:
+    def is_valid_move(self, coords : CoordPair, wordy=True) -> bool:
         """Validate a move expressed as a CoordPair. Done by Roxane."""
         # Is the destination free?
         # When it is not, interpret the movement as an attack or a heal.
         # Check for its own validity.
         target = self.get(coords.dst)
         if not(target is None):
-            print("The targeted desination is occupied.")
+            if wordy: print("The targeted desination is occupied.")
             return False
         #return (unit is None)
         
@@ -140,43 +138,43 @@ class Game:
         # Else,
         # AI, Firewall and Program units cannot move when an adversary unit is adjacent.
         for u in coords.src.iter_adjacent():
-            print("Observing the tile {}".format(u))
+            if wordy: print("Observing the tile {}".format(u))
             try: # There's likely a better way to do this, humm.
                 if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player) and ('f' not in u.to_string()):
                     # Fixed the 'wrapping around', but it's pretty hacky. Should review in the future.
-                    print("This unit cannot move as it is engaged in combat.")
+                    if wordy: print("This unit cannot move as it is engaged in combat.")
                     return False
             except: continue
 
         # The Attacker's Ai, Firewall and Program units can only move up or left.
         if (self.board[coords.src.row][coords.src.col].player == Player.Attacker and coords.src.col < coords.dst.col) or (self.board[coords.src.row][coords.src.col].player == Player.Attacker and coords.src.row < coords.dst.row):
-            print("Attacker's AI, Firewall and Program units can only move up or left.")
+            if wordy: print("Attacker's AI, Firewall and Program units can only move up or left.")
             return False
         
         # The Defender's Ai, Firewall and Programs can only move down or right.
         if (self.board[coords.src.row][coords.src.col].player == Player.Defender and coords.src.col > coords.dst.col) or (self.board[coords.src.row][coords.src.col].player == Player.Defender and coords.src.row > coords.dst.row):
-            print("Defender's AI, Firewall and Program units can only move down or right.")
+            if wordy: print("Defender's AI, Firewall and Program units can only move down or right.")
             return False
         
         # All clear!
         return True
 
-    def is_valid_attack(self, coords : CoordPair) -> bool :
+    def is_valid_attack(self, coords : CoordPair, wordy=True) -> bool :
         """Validate an attack expressed as a CoordPair. Done by Duc"""
         #verify that coordinates are occupied by enemies / not the same player
         target = self.get(coords.dst)
         if target is None or target.player == self.next_player:
-            print("This was not a valid unit to attack.")
+            if wordy: print("This was not a valid unit to attack.")
             return False
         
         return True
     
-    def is_valid_repair(self, coords : CoordPair) -> bool :
+    def is_valid_repair(self, coords : CoordPair, wordy=True) -> bool :
         """Validate a repair expressed as a CoordPair. Done by Duc"""
         #verify that coordinates belongs to player
         target = self.get(coords.dst)
         if target is None or target.player != self.next_player:
-            print("This was not a valid unit to repair.")
+            if wordy: print("This was not a valid unit to repair.")
             return False
         
         #verify that repair would heal, so only AI -> Virus or Tech & Tech -> AI, Firewall, or Program
@@ -187,12 +185,12 @@ class Game:
         tech = UnitType.Tech
         virus = UnitType.Virus
         if not(unit.type == ai and (target.type == virus or target.type == tech)) and not(unit.type == tech and (target.type == ai or target.type == firewall or target.type == program)):
-            print("The repairing unit or repaired unit is of the wrong type of unit.")
+            if wordy: print("The repairing unit or repaired unit is of the wrong type of unit.")
             return False
         
         #verify that repair target is not at max health
         if target.health == 9:
-            print("This unit does not need to be repaired.")
+            if wordy: print("This unit does not need to be repaired.")
             return False    
 
         return True
@@ -201,7 +199,7 @@ class Game:
         # The premilinary checks are not actually needed here.
         
         # Check using our various is_valid_x functions.
-        if self.is_valid_move(coords) or self.is_valid_attack(coords) or self.is_valid_repair(coords):
+        if self.is_valid_move(coords, False) or self.is_valid_attack(coords, False) or self.is_valid_repair(coords, False):
             return True
         # Else, check for self destructuon.
         elif (coords.src == coords.dst):

@@ -10,9 +10,13 @@ from ai_wargame_config import UnitType, Player, GameType, Options, Stats
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
 
-
 import random
 from pip._vendor import requests
+
+
+# maximum and minimum values for our heuristic scores (usually represents an end of game condition)
+MAX_HEURISTIC_SCORE = 2000000000
+MIN_HEURISTIC_SCORE = -2000000000
 
 
 # Putting these in a separate file for now, but they'll have to go in the main code for ease of reference.
@@ -23,61 +27,66 @@ from pip._vendor import requests
 
 # Class for a game tree node.
 class GameTreeNode:
-    myBoardConfiguration = None # configuration of the game board(2d list)
     myGameConfiguration = None # configuration of the general game associated with this move, for ease of access.
-    myBoardConfiguration = None # configuration of the game board
+    myBoardConfiguration = None # configuration of the game board.
     
     myParent = None # parent node
     myChildren = [] # child nodes
+    
+    myMove = None
     
     myDepth = 0 # int depth
     myScore = 0 # int score
     
     # Node constructor
-    def __init__(self, parent = None, board_configuration = None): # Also needs to know who is the current player?
-        # Where to compute the board configuration?
+    def __init__(self, current_game, move, parent = None): # Also needs to know who is the current player?
+        self.myGameConfiguration = current_game
+        self.myBoardConfiguration = current_game.board
+        self.myMove = move
+        
         self.myParent = parent
         if (self.myParent != None): self.myDepth = self.myParent.myDepth + 1
-        self.myBoardConfiguration = board_configuration
         
-    # Generate the node's children.
-    def generate_children(self, current_player, maxdepth):
-        self.myChildren = generate_child_nodes(current_player, self, self.myBoardConfiguration, self.myDepth, maxdepth)
+        #print(self.to_string())
+        
     
     # Calculate the node's heuristic score.
     def score_me(self, current_player):
         self.myScore = heuristic_score(current_player, self.myBoardConfiguration)
 
-    def get_move(self, previous_board) -> Tuple[int, CoordPair | None, float]:
-        # To do: return the move that transforms the input board into the one represented by this node.
-        return
+    def get_move(self) -> Tuple[int, CoordPair | None, float]:
+        # Seems to work without knowing the previous board.
+        return self.myMove
     
     def to_string(self) -> str:
-        return "My parent: {}.\nMy depth: {}.".format(self.myParent, self.myDepth)
+        return "\nMy move: {}. My Score: {}. My player: {}. My depth: {}".format(self.myMove, self.myScore, self.myGameConfiguration.next_player, self.myDepth)
 
 
 
 # Function that explores and lists the possible moves / builds the game tree
-def generate_child_nodes(current_player, current_board, current_depth, maxdepth, currentNode = None):
+def generate_child_nodes(current_player, current_game, current_depth, maxdepth, currentNode = None):
     
+    current_game.next_player = current_player # Required to make sure they switch properly.
+
+    # Generate the nodes:
     child_nodes = []
     
-    # There's already a function that generates the valid potential moves. We only need to draw their boards from there.
-    
-    # Generate the nodes:
-    # for each of the active player's units in the current board.
-        # try all moves
-        # try all attacks
-        # try all heals
-        # try all self destructs
-    # See the main file for code that already seems to do this.
-    # Draw a potential board for each
-    
-    # If the current depth is lower than the max depth, also generate the nodes' children 
-    #if current_depth < maxdepth:
-    
-    #child_nodes.append(GameTreeNode())
-
+    # For each valid potential move...
+    for potential_move in current_game.move_candidates():
+        # Clone the game/board.
+        new_game = current_game.clone()
+        
+        # Perform the move on it. 
+        ## TO DO: perform the move on node_game!
+        
+        # Create the node proper.
+        new_node = GameTreeNode(current_game = new_game, move = potential_move, parent = currentNode)
+        child_nodes.append(new_node)
+        
+        # If the current depth is lower than the max depth, also generate the nodes' children 
+        if new_node.myDepth < maxdepth:
+            new_node.myChildren = generate_child_nodes(current_player.next(), new_game, current_depth+1, maxdepth, new_node)
+            
     return child_nodes
 
 
@@ -86,13 +95,12 @@ def generate_child_nodes(current_player, current_board, current_depth, maxdepth,
 def move_by_minimax(current_game, current_player, maxdepth): # Should we pass the game itself?
  
     best_move = None
-    best_value = float('-inf') if (current_player == Player.Attacker) else float('inf')
-    
-    print(current_game)
+    best_value = MIN_HEURISTIC_SCORE if (current_player == Player.Attacker) else MAX_HEURISTIC_SCORE
     
     # Generate the game tree to the maxdepth.
-    current_board = current_game.board
-    initial_children = generate_child_nodes(current_player, current_board, 0, maxdepth) # Or should the current depth be one?
+    initial_children = generate_child_nodes(current_player, current_game, 0, maxdepth) # Or should the current depth be one?
+    
+    #print("\nThe current player is {}\n".format(current_player))
     
     # If the current player is the attacker, start with min.
     if current_player == Player.Attacker:
@@ -100,17 +108,17 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
             current_value = minimax(current_player.next(), child, maxdepth)
             if current_value > best_value:
                 best_value = current_value
-                best_move = child.get_move(current_board)
+                best_move = child.get_move()
+                
     else: # Else, start with max. 
         for child in initial_children:
             current_value = minimax(current_player.next(), child, maxdepth)
             if current_value < best_value: # Having the player check above instead of here repeats more code, but ensures we make fewer checks.
                 best_value = current_value
-                best_move = child.get_move(current_board)
+                best_move = child.get_move()
     
     return best_value, best_move
 
-    # To do: handle min depth. I don't think that's actually needed.
     # To do: handle max time elapsed.
 
 
@@ -125,7 +133,7 @@ def minimax (current_player, current_node, maxdepth):
         return current_node.myScore
     
     if current_player == Player.Attacker: # Maximizing player
-        best_value = int('-inf')
+        best_value = MIN_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
             # To do: Implement alphabeta pruning.
@@ -134,7 +142,7 @@ def minimax (current_player, current_node, maxdepth):
         return best_value
     
     else: # Minimizing player.
-        best_value = int('inf')
+        best_value = MAX_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
             # To do: Implement alphabeta pruning.
