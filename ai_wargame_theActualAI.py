@@ -23,7 +23,7 @@ from pip._vendor import requests
 
 # Class for a game tree node.
 class GameTreeNode:
-    myBoardConfiguration = None # configuration of the game board
+    myBoardConfiguration = None # configuration of the game board(2d list)
     
     myParent = None # parent node
     myChildren = [] # child nodes
@@ -32,10 +32,11 @@ class GameTreeNode:
     myScore = 0 # int score
     
     # Node constructor
-    def __init__(self, parent = None): # Also needs to know who is the current player?
+    def __init__(self, parent = None, board_configuration = None): # Also needs to know who is the current player?
         # Where to compute the board configuration?
         self.myParent = parent
         if (self.myParent != None): self.myDepth = self.myParent.myDepth + 1
+        self.myBoardConfiguration = board_configuration
         
     # Generate the node's children.
     def generate_children(self, current_player, maxdepth):

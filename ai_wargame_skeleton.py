@@ -9,6 +9,7 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import UnitType, Player, GameType, Options, Stats
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
+from ai_wargame_theActualAI import GameTreeNode
 from copy import deepcopy
 
 
@@ -33,6 +34,9 @@ class Game:
     _attacker_has_ai : bool = True
     _defender_has_ai : bool = True
 
+    node = GameTreeNode(board_configuration=board)
+
+
     #create file to write output game trace
     file = open("gametrace-f-5-100.txt", 'w')
 
@@ -56,11 +60,9 @@ class Game:
 
     def clone(self):
         #Make a new copy of a game for minimax recursion.
-        new_matrix = [] #append visited states (for now)
-        for row in self.board:
-            new_board = deepcopy(self.board)
-            new_matrix.append(new_board)
-        return new_matrix
+        new_board = deepcopy(self.board)
+        print(new_board)
+        return new_board
 
 
     def is_empty(self, coord : Coord) -> bool:
