@@ -193,7 +193,12 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
 def heuristic_score(current_player, current_game) -> int:
     
     # Score the given board configuration.# 
-
+    
+    total_units_attacker = 0
+    total_units_defender = 0
+    
+    remaining_hp_attacker = 0
+    remaining_hp_defender = 0
     
     vp1 = 0
     tp1 = 0
@@ -206,56 +211,50 @@ def heuristic_score(current_player, current_game) -> int:
     pp2 = 0
     aip2 = 0
     
-    for _ in current_game.player_units(current_player):
+    for coords, unit in current_game.player_units(Player.Attacker):
+        total_units_attacker += 1
+        remaining_hp_attacker += unit.health
         
-        print(Unit.type)
-        
-        if Unit.type == UnitType.Virus:
-            vp1 += 1
-        elif Unit.type == UnitType.Tech:
+        if unit.type == UnitType.Virus:
+            vp1 += 1  
+        elif unit.type == UnitType.Tech:
             tp1 += 1
-        elif Unit.type == UnitType.Firewall:
+        elif unit.type == UnitType.Firewall:
             fp1 += 1
-        elif Unit.type == UnitType.Program:
+        elif unit.type == UnitType.Program:
             pp1 += 1
-        elif Unit.type == UnitType.AI:
+        elif unit.type == UnitType.AI:
             aip1 += 1
-    for _ in current_game.player_units(current_player.next()):
-        if Unit.type == UnitType.Virus:
+    
+    for coords, unit in current_game.player_units(Player.Defender):
+        total_units_defender += 1
+        remaining_hp_defender += unit.health
+        
+        if unit.type == UnitType.Virus:
             vp2 += 1
-        elif Unit.type == UnitType.Tech:
+        elif unit.type == UnitType.Tech:
             tp2 += 1
-        elif Unit.type == UnitType.Firewall:
+        elif unit.type == UnitType.Firewall:
             fp2 += 1
-        elif Unit.type == UnitType.Program:
+        elif unit.type == UnitType.Program:
             pp2 += 1
-        elif Unit.type == UnitType.AI:
-            aip2 += 1            
+        elif unit.type == UnitType.AI:
+            aip2 += 1         
 
-    remaining1 = sum(1 for _ in current_game.player_units(current_player))
-    remaining2 = sum(1 for _ in current_game.player_units(current_player.next()))
-    remainingHP1 = sum(Unit.health for _ in current_game.player_units(current_player))
-    remainingHP2 = sum(Unit.health for _ in current_game.player_units(current_player.next()))
-    
-        # demo heuristic
-    e0 = (3*vp1 + 3*tp1 + 3*fp1 + 3*pp1 + 9999*aip1) - (3*vp2 + 3*tp2 + 3*fp2 + 3*pp2 + 9999*aip2)
-    
-    
-    
-    
-        # player vs enemy units left alive?
-    e1 = (remaining1 - remaining2)
-        # total health of one's units vs enemy's (weighted by unit type?)
-    e2 = (remainingHP1 - remainingHP2)
-    
-    
-    
+    # Demo heuristic
     if current_game.options.heuristic_function == HeurType.e0 : 
-        print(e0)
+        e0 = (3*vp1 + 3*tp1 + 3*fp1 + 3*pp1 + 9999*aip1) - (3*vp2 + 3*tp2 + 3*fp2 + 3*pp2 + 9999*aip2)
+        #print(e0)
         return e0
     
-    
+    # Attacker vs Defender units left alive.
     elif current_game.options.heuristic_function  == HeurType.e1 :
+        e1 = (total_units_attacker - total_units_defender)
+        #print(e1)
         return e1
+    
+    # Total health of one's units vs enemy's (weighted by unit type?)
     elif current_game.options.heuristic_function  == HeurType.e2 :
+        e2 = (remaining_hp_attacker - remaining_hp_defender)
+        #print(e2)
         return e2
