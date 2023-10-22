@@ -24,6 +24,8 @@ from pip._vendor import requests
 # Class for a game tree node.
 class GameTreeNode:
     myBoardConfiguration = None # configuration of the game board(2d list)
+    myGameConfiguration = None # configuration of the general game associated with this move, for ease of access.
+    myBoardConfiguration = None # configuration of the game board
     
     myParent = None # parent node
     myChildren = [] # child nodes
@@ -81,12 +83,15 @@ def generate_child_nodes(current_player, current_board, current_depth, maxdepth,
 
 
 # Basic recursive minimax algorithm
-def move_by_minimax(current_player, current_board, maxdepth):
+def move_by_minimax(current_game, current_player, maxdepth): # Should we pass the game itself?
  
     best_move = None
-    best_value = int('-inf') if (current_player == Player.Attacker) else int('inf')
+    best_value = float('-inf') if (current_player == Player.Attacker) else float('inf')
+    
+    print(current_game)
     
     # Generate the game tree to the maxdepth.
+    current_board = current_game.board
     initial_children = generate_child_nodes(current_player, current_board, 0, maxdepth) # Or should the current depth be one?
     
     # If the current player is the attacker, start with min.
@@ -103,7 +108,7 @@ def move_by_minimax(current_player, current_board, maxdepth):
                 best_value = current_value
                 best_move = child.get_move(current_board)
     
-    return best_move
+    return best_value, best_move
 
     # To do: handle min depth. I don't think that's actually needed.
     # To do: handle max time elapsed.
