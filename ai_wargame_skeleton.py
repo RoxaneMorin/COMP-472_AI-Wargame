@@ -9,7 +9,7 @@ from typing import Tuple, TypeVar, Type, Iterable, ClassVar
 from ai_wargame_config import UnitType, Player, GameType, Options, Stats, HeurType
 from ai_wargame_units import Unit
 from ai_wargame_coords import Coord, CoordPair
-from ai_wargame_theActualAI import GameTreeNode
+import ai_wargame_theActualAI
 from copy import deepcopy
 
 
@@ -219,12 +219,12 @@ class Game:
         """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
 
         #Preliminary checks used by all actions.
-        if self.is_valid_move_preliminary(coords):
+        if self.is_valid_move_preliminary(coords, wordy):
             
             if wordy: print("") # Skip a line.
             
             #perform move action
-            if self.is_valid_move(coords):
+            if self.is_valid_move(coords, wordy):
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
                 if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
@@ -234,7 +234,7 @@ class Game:
             
             #perform attack actione2 e1
 
-            elif self.is_valid_attack(coords):        
+            elif self.is_valid_attack(coords, wordy):        
                 attacker = self.get(coords.src)
                 defender = self.get(coords.dst)
                 
@@ -249,7 +249,7 @@ class Game:
                 return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
-            elif self.is_valid_repair(coords):      
+            elif self.is_valid_repair(coords, wordy):      
                 healer = self.get(coords.src)
                 target = self.get(coords.dst)
                 

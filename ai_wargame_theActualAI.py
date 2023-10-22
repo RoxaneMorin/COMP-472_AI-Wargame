@@ -76,7 +76,7 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
         new_game = current_game.clone()
         
         # Perform the move on it. 
-        ## TO DO: perform the move on node_game!
+        new_game.perform_move(potential_move, wordy=False)
         
         # Create the node proper.
         new_node = GameTreeNode(current_game = new_game, move = potential_move, parent = currentNode)
@@ -240,7 +240,10 @@ def heuristic_score(current_player, current_game) -> int:
             pp2 += 1
         elif unit.type == UnitType.AI:
             aip2 += 1         
-
+    
+    #print("\nRemaining HP for the attacker: {}".format(remaining_hp_attacker))
+    #print("Remaining HP for the defender: {}".format(remaining_hp_defender))
+    
     # Demo heuristic
     if current_game.options.heuristic_function == HeurType.e0 : 
         e0 = (3*vp1 + 3*tp1 + 3*fp1 + 3*pp1 + 9999*aip1) - (3*vp2 + 3*tp2 + 3*fp2 + 3*pp2 + 9999*aip2)
