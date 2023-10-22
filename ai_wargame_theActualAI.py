@@ -105,7 +105,10 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
     # If the current player is the attacker, start with min.
     if current_player == Player.Attacker:
         for child in initial_children:
-            current_value = minimax(current_player.next(), child, maxdepth)
+            if (Options.alpha_beta == False):
+                current_value = minimax(current_player.next(), child, maxdepth)
+            else:
+                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, int('-inf'), int('inf'))            
             if current_value > best_value:
                 best_value = current_value
                 best_move = child.get_move()
@@ -150,8 +153,39 @@ def minimax (current_player, current_node, maxdepth):
             best_value = min(best_value, current_value)
         return best_value
     
-    # To do: implement optional alpha-beta pruning.
-
+    #implement optional alpha-beta pruning.
+def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b):
+    
+    # Attacker is max, defender is min.    
+    if (current_node.myDepth == maxdepth): # Have we reached the maximum depth?
+        # I'm not sure I'm doing depth the right way. 
+        # To do: also check whether the node leads in someone's victory?
+        # Do we calculate the score here?
+        return current_node.myScore
+    
+    if current_player == Player.Attacker: # Maximizing player
+        best_value = int('-inf')
+        
+        for child in current_node.myChildren:
+            #Implement alphabeta pruning.
+            current_value = minimax(current_player.next(), child, maxdepth, current_depth+1, a, b)
+            best_value = max(best_value, current_value)   
+            a = max(a, best_value)
+            if b <= a :
+                break;
+        return best_value
+    
+    else: # Minimizing player.
+        best_value = int('inf')
+        
+        for child in current_node.myChildren:
+            #Implement alphabeta pruning.
+            current_value = minimax(current_player.next(), child, maxdepth, current_depth+1, a, b)
+            best_value = min(best_value, current_value)
+            b = min(b, best_value)
+            if b <= a:
+                break;
+        return best_value
 
 # Heuristic function
 def heuristic_score(current_player, board_config) -> int:
