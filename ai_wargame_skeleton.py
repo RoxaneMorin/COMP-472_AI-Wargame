@@ -138,7 +138,7 @@ class Game:
         # Else,
         # AI, Firewall and Program units cannot move when an adversary unit is adjacent.
         for u in coords.src.iter_adjacent():
-            if wordy: print("Observing the tile {}".format(u))
+            #if wordy: print("Observing the tile {}".format(u))
             try: # There's likely a better way to do this, humm.
                 if (self.board[coords.src.row][coords.src.col].player != self.board[u.row][u.col].player) and ('f' not in u.to_string()):
                     # Fixed the 'wrapping around', but it's pretty hacky. Should review in the future.
@@ -164,7 +164,7 @@ class Game:
         #verify that coordinates are occupied by enemies / not the same player
         target = self.get(coords.dst)
         if target is None or target.player == self.next_player:
-            if wordy: print("This was not a valid unit to attack.")
+            if wordy: print("The target is not a valid unit to attack.")
             return False
         
         return True
@@ -174,7 +174,7 @@ class Game:
         #verify that coordinates belongs to player
         target = self.get(coords.dst)
         if target is None or target.player != self.next_player:
-            if wordy: print("This was not a valid unit to repair.")
+            if wordy: print("The target is not a valid unit to repair.")
             return False
         
         #verify that repair would heal, so only AI -> Virus or Tech & Tech -> AI, Firewall, or Program
@@ -195,11 +195,11 @@ class Game:
 
         return True
     
-    def is_valid_move_any(self, coords : CoordPair) -> bool :
+    def is_valid_move_any(self, coords : CoordPair, wordy=False) -> bool :
         # The premilinary checks are not actually needed here.
         
         # Check using our various is_valid_x functions.
-        if self.is_valid_move(coords, False) or self.is_valid_attack(coords, False) or self.is_valid_repair(coords, False):
+        if self.is_valid_move(coords, wordy) or self.is_valid_attack(coords, wordy) or self.is_valid_repair(coords, wordy):
             return True
         # Else, check for self destructuon.
         elif (coords.src == coords.dst):
@@ -208,20 +208,22 @@ class Game:
         # Else, return false.
         return False
     
-    def perform_move(self, coords : CoordPair) -> Tuple[bool,str]:
+    def perform_move(self, coords : CoordPair, wordy=True) -> Tuple[bool,str]:
         """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
         
         #Preliminary checks used by all actions.
         if self.is_valid_move_preliminary(coords):
             
+            if wordy: print("") # Skip a line.
+            
             #perform move action
             if self.is_valid_move(coords):
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
-                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
                 self.clone()  #clone the board
 
-                return (True,"")
+                return (True,"Move successful ({}).".format(coords.to_string()))
             
             #perform attack actione2 e1
 
@@ -236,8 +238,8 @@ class Game:
                 #fix attacker & defender HP
                 self.mod_health(coords.src, -d_to_a)
                 self.mod_health(coords.dst, -a_to_d)
-                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
-                return (True,"Attack successful")
+                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
             elif self.is_valid_repair(coords):      
@@ -249,8 +251,8 @@ class Game:
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
-                self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
-                return (True,"Repair successful")
+                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                return (True,"Repair successful ({}).".format(coords.to_string()))
             
             # perform self destruct
             elif (coords.src == coords.dst):
@@ -259,8 +261,7 @@ class Game:
                     try:
                         self.mod_health(u, -2)
                     except: continue
-                return (True,"The targeted unit has self destructed")
-                
+                return (True,"The targeted unit has self destructed ({}).".format(coords.to_string()))
         
         return (False,"Invalid move")
 
@@ -336,16 +337,17 @@ class Game:
             else:
                 print('Invalid coordinates! Try again.')
     
-    def human_turn(self):
+    def human_turn(self, wordy=True):
         """Human player plays a move (or get via broker)."""
         if self.options.broker is not None:
-            print("Getting next move with auto-retry from game broker...")
+            if wordy: print("Getting next move with auto-retry from game broker...")
             while True:
                 mv = self.get_move_from_broker()
                 if mv is not None:
                     (success,result) = self.perform_move(mv)
-                    print(f"Broker {self.next_player.name}: ",end='')
-                    print(result)
+                    if wordy: 
+                        print(f"Broker {self.next_player.name}: ",end='')
+                        print(result)
                     if success:
                         self.next_turn()
                         break
@@ -355,21 +357,23 @@ class Game:
                 mv = self.read_move()
                 (success,result) = self.perform_move(mv)
                 if success:
-                    print(f"Player {self.next_player.name}: ",end='')
-                    print(result)
+                    if wordy: 
+                        print(f"Player {self.next_player.name}: ",end='')
+                        print(result)
                     self.next_turn()
                     break
                 else:
                     print("The move is not valid! Try again.")
 
-    def computer_turn(self) -> CoordPair | None:
+    def computer_turn(self, wordy=True) -> CoordPair | None:
         """Computer plays a move."""
         mv = self.suggest_move()
         if mv is not None:
             (success,result) = self.perform_move(mv)
             if success:
-                print(f"Computer {self.next_player.name}: ",end='')
-                print(result)
+                if wordy: 
+                    print(f"Computer {self.next_player.name}: ",end='')
+                    print(result)
                 self.next_turn()
         return mv
 
@@ -424,7 +428,7 @@ class Game:
             move.src = src
             for dst in src.iter_adjacent():
                 move.dst = dst
-                if self.is_valid_move_any(move): # Should do for integrating our stuff.
+                if self.is_valid_move_any(move, wordy=False): # Should do for integrating our stuff.
                     yield move.clone()
             move.dst = src
             yield move.clone()

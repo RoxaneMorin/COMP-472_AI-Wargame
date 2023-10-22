@@ -91,7 +91,7 @@ class CoordPair:
 
     def to_string(self) -> str:
         """Text representation of a CoordPair."""
-        return self.src.to_string()+" "+self.dst.to_string()
+        return (self.src.to_string() + " " + self.dst.to_string())
 
     def __str__(self) -> str:
         """Text representation of a CoordPair."""
