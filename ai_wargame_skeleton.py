@@ -100,6 +100,9 @@ class Game:
     
     def is_valid_move_preliminary(self, coords : CoordPair, wordy=True) -> bool:
         """Validate a move expressed as a CoordPair. Done by Roxane and Duc."""
+        
+        #print("coords in is_valid_move_preliminary: {}".format(coords))
+        
         # Are the coords valid?
         if not self.is_valid_coord(coords.src) or not self.is_valid_coord(coords.dst):
             if wordy: print("These coordinates are not valid.")
@@ -198,6 +201,10 @@ class Game:
     def is_valid_move_any(self, coords : CoordPair, wordy=False) -> bool :
         # The premilinary checks are not actually needed here.
         
+        # Hacky way to filter out the invalid coords that get generated.
+        if ('Z' in coords.to_string()) or ('f' in coords.to_string()):
+            return False
+        
         # Check using our various is_valid_x functions.
         if self.is_valid_move(coords, wordy) or self.is_valid_attack(coords, wordy) or self.is_valid_repair(coords, wordy):
             return True
@@ -210,7 +217,7 @@ class Game:
     
     def perform_move(self, coords : CoordPair, wordy=True) -> Tuple[bool,str]:
         """Validate and perform a move expressed as a CoordPair. Written by Duc and Roxane."""
-        
+
         #Preliminary checks used by all actions.
         if self.is_valid_move_preliminary(coords):
             
@@ -294,6 +301,7 @@ class Game:
         output = ""
         output += f"Next player: {self.next_player.name}\n"
         output += f"Turns played: {self.turns_played}\n"
+        output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         coord = Coord()
         output += "\n   "
         for col in range(dim):
@@ -393,8 +401,8 @@ class Game:
         remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
         remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
         
-        #print(remaining_attacker)
-        #print(remaining_defender)
+        #print("Remaining attacker units: {}".format(remaining_attacker))
+        #print("Remaining defender units: {}".format(remaining_defender))
         
         if remaining_attacker == 0:
             #print("No attacker units left.")
@@ -402,6 +410,8 @@ class Game:
         elif remaining_defender == 0:
             #print("No deffender units left.")
             return Player.Attacker
+        
+        #print("Remaining turns: {}".format(self.options.max_turns - self.turns_played))
         
         if self.options.max_turns is not None and self.turns_played >= self.options.max_turns:
             # If the game runs out of turns, whoever has the most units remaining wins.
@@ -414,12 +424,14 @@ class Game:
                 #print("The defender is still holding strong.")
                 return Player.Defender
 
-        if self._attacker_has_ai:
-            if self._defender_has_ai:
-                return None
-            else:
-                return Player.Attacker    
-        return Player.Defender
+        #if self._attacker_has_ai:
+        #    if self._defender_has_ai:
+        #        return None
+        #    else:
+        #        return Player.Attacker    
+        
+        # Else, no victor yet. Return None.
+        return None
 
     def move_candidates(self) -> Iterable[CoordPair]:
         """Generate valid move candidates for the next player."""

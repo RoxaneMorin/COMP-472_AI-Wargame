@@ -49,7 +49,6 @@ class GameTreeNode:
         
         #print(self.to_string())
         
-    
     # Calculate the node's heuristic score.
     def score_me(self, current_player):
         self.myScore = heuristic_score(current_player, self.myBoardConfiguration)
@@ -108,7 +107,7 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
             if (Options.alpha_beta == False):
                 current_value = minimax(current_player.next(), child, maxdepth)
             else:
-                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, int('-inf'), int('inf'))            
+                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)            
             if current_value > best_value:
                 best_value = current_value
                 best_move = child.get_move()
@@ -152,7 +151,8 @@ def minimax (current_player, current_node, maxdepth):
             current_value = minimax(current_player.next(), child, maxdepth)
             best_value = min(best_value, current_value)
         return best_value
-    
+
+
     #implement optional alpha-beta pruning.
 def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b):
     
@@ -164,11 +164,11 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         return current_node.myScore
     
     if current_player == Player.Attacker: # Maximizing player
-        best_value = int('-inf')
+        best_value = MIN_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
             #Implement alphabeta pruning.
-            current_value = minimax(current_player.next(), child, maxdepth, current_depth+1, a, b)
+            current_value = minimax_pruning(current_player.next(), child, maxdepth, current_depth+1, a, b)
             best_value = max(best_value, current_value)   
             a = max(a, best_value)
             if b <= a :
@@ -176,11 +176,11 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         return best_value
     
     else: # Minimizing player.
-        best_value = int('inf')
+        best_value = MAX_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
             #Implement alphabeta pruning.
-            current_value = minimax(current_player.next(), child, maxdepth, current_depth+1, a, b)
+            current_value = minimax_pruning(current_player.next(), child, maxdepth, current_depth+1, a, b)
             best_value = min(best_value, current_value)
             b = min(b, best_value)
             if b <= a:
