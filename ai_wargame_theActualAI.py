@@ -63,7 +63,9 @@ class GameTreeNode:
 
 
 # Function that explores and lists the possible moves / builds the game tree
-def generate_child_nodes(current_player, current_game, current_depth, maxdepth, currentNode = None):
+def generate_child_nodes(current_player, current_game, current_depth, maxdepth, currentNode = None, generateDescendents = False):
+    
+    #print("Generating a child at level {}".format(current_depth))
     
     current_game.next_player = current_player # Required to make sure they switch properly.
 
@@ -83,8 +85,8 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
         child_nodes.append(new_node)
         
         # If the current depth is lower than the max depth, also generate the nodes' children 
-        if new_node.myDepth < maxdepth:
-            new_node.myChildren = generate_child_nodes(current_player.next(), new_game, current_depth+1, maxdepth, new_node)
+        if generateDescendents == True and new_node.myDepth < maxdepth:
+            new_node.myChildren = generate_child_nodes(current_player.next(), new_game, current_depth+1, maxdepth, new_node, generateDescendents = False)
             
     return child_nodes
 
@@ -96,25 +98,34 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
     best_move = None
     best_value = MIN_HEURISTIC_SCORE if (current_player == Player.Attacker) else MAX_HEURISTIC_SCORE
     
+    
+    ## Should we generate the tree as we go along instead?
     # Generate the game tree to the maxdepth.
-    initial_children = generate_child_nodes(current_player, current_game, 0, maxdepth) # Or should the current depth be one?
+    initial_children = generate_child_nodes(current_player, current_game, 0, maxdepth, generateDescendents = False) # Or should the current depth be one?
     
     #print("\nThe current player is {}\n".format(current_player))
     
     # If the current player is the attacker, start with min.
     if current_player == Player.Attacker:
         for child in initial_children:
+            
             if (Options.alpha_beta == False):
                 current_value = minimax(current_player.next(), child, maxdepth)
             else:
-                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)            
+                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)   
+                
             if current_value > best_value:
                 best_value = current_value
                 best_move = child.get_move()
                 
     else: # Else, start with max. 
         for child in initial_children:
-            current_value = minimax(current_player.next(), child, maxdepth)
+            
+            if (Options.alpha_beta == False):
+                current_value = minimax(current_player.next(), child, maxdepth)
+            else:
+                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)   
+            
             if current_value < best_value: # Having the player check above instead of here repeats more code, but ensures we make fewer checks.
                 best_value = current_value
                 best_move = child.get_move()
@@ -135,6 +146,8 @@ def minimax (current_player, current_node, maxdepth):
         current_node.score_me(current_player)
         return current_node.myScore
     
+    current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
+    
     if current_player == Player.Attacker: # Maximizing player
         best_value = MIN_HEURISTIC_SCORE
         
@@ -146,15 +159,16 @@ def minimax (current_player, current_node, maxdepth):
     
     else: # Minimizing player.
         best_value = MAX_HEURISTIC_SCORE
-        
+
         for child in current_node.myChildren:
             # To do: Implement alphabeta pruning.
             current_value = minimax(current_player.next(), child, maxdepth)
             best_value = min(best_value, current_value)
+            
         return best_value
 
 
-    #implement optional alpha-beta pruning.
+ # Implement optional alpha-beta pruning.
 def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b):
     
     # Attacker is max, defender is min.    
@@ -164,6 +178,8 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         # Do we calculate the score here?
         current_node.score_me(current_player)
         return current_node.myScore
+    
+    current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
     
     if current_player == Player.Attacker: # Maximizing player
         best_value = MIN_HEURISTIC_SCORE
@@ -188,6 +204,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
             if b <= a:
                 break;
         return best_value
+
 
 # Heuristic function
 def heuristic_score(current_player, current_game) -> int:
