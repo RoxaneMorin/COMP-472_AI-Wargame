@@ -49,8 +49,9 @@ class GameTreeNode:
         #print(self.to_string())
         
     # Calculate the node's heuristic score.
-    def score_me(self, current_player):
-        self.myScore = heuristic_score(current_player, self.myGameConfiguration)
+    def score_me(self):
+        self.myScore = heuristic_score(self.myGameConfiguration)
+        print(self.myScore)
 
     def get_move(self) -> Tuple[int, CoordPair | None, float]:
         # Seems to work without knowing the previous board.
@@ -142,7 +143,7 @@ def minimax (current_player, current_node, maxdepth):
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
-        current_node.score_me(current_player)
+        current_node.score_me()
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
@@ -175,7 +176,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
-        current_node.score_me(current_player)
+        current_node.score_me()
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
@@ -206,87 +207,109 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
 
 
 # Heuristic function
-def heuristic_score(current_player, current_game) -> int:
+def heuristic_score(current_game) -> int:
     
     # Score the given board configuration.# 
-    
-    # If we are using the new heuristic, call it before anything else.
-    if current_game.options.heuristic_function  == HeurType.e1 :
-        return new_heuristic(current_player, current_game)
-    
-    
-    total_units_attacker = 0
-    total_units_defender = 0
-    
-    remaining_hp_attacker = 0
-    remaining_hp_defender = 0
-    
-    vp1 = 0
-    tp1 = 0
-    fp1 = 0
-    pp1 = 0
-    aip1 = 0
-    vp2 = 0
-    tp2 = 0
-    fp2 = 0
-    pp2 = 0
-    aip2 = 0
-    
-    for coords, unit in current_game.player_units(Player.Attacker):
-        total_units_attacker += 1
-        remaining_hp_attacker += unit.health
-        
-        if unit.type == UnitType.Virus:
-            vp1 += 1  
-        elif unit.type == UnitType.Tech:
-            tp1 += 1
-        elif unit.type == UnitType.Firewall:
-            fp1 += 1
-        elif unit.type == UnitType.Program:
-            pp1 += 1
-        elif unit.type == UnitType.AI:
-            aip1 += 1
-    
-    for coords, unit in current_game.player_units(Player.Defender):
-        total_units_defender += 1
-        remaining_hp_defender += unit.health
-        
-        if unit.type == UnitType.Virus:
-            vp2 += 1
-        elif unit.type == UnitType.Tech:
-            tp2 += 1
-        elif unit.type == UnitType.Firewall:
-            fp2 += 1
-        elif unit.type == UnitType.Program:
-            pp2 += 1
-        elif unit.type == UnitType.AI:
-            aip2 += 1         
-    
-    #print("\nRemaining HP for the attacker: {}".format(remaining_hp_attacker))
-    #print("Remaining HP for the defender: {}".format(remaining_hp_defender))
-    
+
     # Demo heuristic
     if current_game.options.heuristic_function == HeurType.e0 : 
+        
+        vp1 = 0
+        tp1 = 0
+        fp1 = 0
+        pp1 = 0
+        aip1 = 0
+        vp2 = 0
+        tp2 = 0
+        fp2 = 0
+        pp2 = 0
+        aip2 = 0
+        
+        for coords, unit in current_game.player_units(Player.Attacker):
+            if unit.type == UnitType.Virus:
+                vp1 += 1  
+            elif unit.type == UnitType.Tech:
+                tp1 += 1
+            elif unit.type == UnitType.Firewall:
+                fp1 += 1
+            elif unit.type == UnitType.Program:
+                pp1 += 1
+            elif unit.type == UnitType.AI:
+                aip1 += 1
+        
+        for coords, unit in current_game.player_units(Player.Defender):
+            if unit.type == UnitType.Virus:
+                vp2 += 1
+            elif unit.type == UnitType.Tech:
+                tp2 += 1
+            elif unit.type == UnitType.Firewall:
+                fp2 += 1
+            elif unit.type == UnitType.Program:
+                pp2 += 1
+            elif unit.type == UnitType.AI:
+                aip2 += 1         
+        
         e0 = (3*vp1 + 3*tp1 + 3*fp1 + 3*pp1 + 9999*aip1) - (3*vp2 + 3*tp2 + 3*fp2 + 3*pp2 + 9999*aip2)
-        #print(e0)
         return e0
     
-    # Old e1, commenting out.
-    # Attacker vs Defender units left alive.
-    # elif current_game.options.heuristic_function  == HeurType.e1 :
-    #     e1 = (total_units_attacker - total_units_defender)
-        
-    #     # Winning is very good!
-    #     if total_units_attacker == 0:
-    #         e1 = e1 - 9999
-    #     elif total_units_defender == 0:
-    #         e1 = e1 + 9999
-        
-    #     #print(e1)
-    #     return e1
     
-    # Total health of one's units vs enemy's (weighted by unit type?)
+    # Total health of one's units vs enemy's, weighted by unit type.
+    elif current_game.options.heuristic_function  == HeurType.e1 :
+        remaining_hp_attacker = 0
+        remaining_hp_defender = 0
+        
+        for coords, unit in current_game.player_units(Player.Attacker):
+            if unit.type == UnitType.Virus:
+                remaining_hp_attacker += unit.health * 4.6
+            elif unit.type == UnitType.Tech:
+                remaining_hp_attacker += unit.health * 2
+            elif unit.type == UnitType.Firewall:
+                remaining_hp_attacker += unit.health * 1
+            else: # AI or program
+                remaining_hp_attacker += unit.health * 2.6
+        
+        current_game.player_units(Player.Defender)
+        
+        for coords, unit in current_game.player_units(Player.Defender):
+            if unit.type == UnitType.Virus:
+                remaining_hp_defender += unit.health * 4.6
+            elif unit.type == UnitType.Tech:
+                remaining_hp_defender += unit.health * 2
+            elif unit.type == UnitType.Firewall:
+                remaining_hp_defender += unit.health * 1
+            else: # AI or program
+                remaining_hp_defender += unit.health * 2.6
+        
+        e1 = (remaining_hp_attacker * 0.829 - remaining_hp_defender)
+        # Scale attacker's score to even out the initial health difference. Let's see how that goes.
+        
+        # Winning is very good!
+        if remaining_hp_attacker == 0:
+            e1 = e1 - 9999
+            
+        elif remaining_hp_defender == 0:
+            e1 = e1 + 9999
+        
+        return e1
+
+    
+    # Total health of one's units vs enemy's
     elif current_game.options.heuristic_function  == HeurType.e2 :
+        
+        total_units_attacker = 0
+        total_units_defender = 0
+        
+        remaining_hp_attacker = 0
+        remaining_hp_defender = 0
+        
+        for coords, unit in current_game.player_units(Player.Attacker):
+            total_units_attacker += 1
+            remaining_hp_attacker += unit.health
+        
+        for coords, unit in current_game.player_units(Player.Defender):
+            total_units_defender += 1
+            remaining_hp_defender += unit.health
+        
         e2 = (remaining_hp_attacker - remaining_hp_defender)
         
         # Winning is very good!
@@ -298,43 +321,8 @@ def heuristic_score(current_player, current_game) -> int:
         #print(e2)
         return e2
     
-# New beefed up health heuristic.
-def new_heuristic(current_player, current_game) -> int:
 
-    remaining_hp_attacker = 0
-    remaining_hp_defender = 0
-    
-    for coords, unit in current_game.player_units(Player.Attacker):
-        if unit.type == UnitType.Virus:
-            remaining_hp_attacker += unit.health * 4.6
-        elif unit.type == UnitType.Tech:
-            remaining_hp_attacker += unit.health * 2
-        elif unit.type == UnitType.Firewall:
-            remaining_hp_attacker += unit.health * 1
-        else: # AI or program
-            remaining_hp_attacker += unit.health * 2.6
-    
-    for coords, unit in current_game.player_units(Player.Defender):
-        if unit.type == UnitType.Virus:
-            remaining_hp_defender += unit.health * 4.6
-        elif unit.type == UnitType.Tech:
-            remaining_hp_defender += unit.health * 2
-        elif unit.type == UnitType.Firewall:
-            remaining_hp_defender += unit.health * 1
-        else: # AI or program
-            remaining_hp_defender += unit.health * 2.6
-    
-    score = (remaining_hp_attacker * 0.829 - remaining_hp_defender)
-    # Scale attacker's score to even out the initial health difference. Let's see how that goes.
-    
-    # Winning is very good!
-    if remaining_hp_attacker == 0:
-        score = score - 9999
-    elif remaining_hp_defender == 0:
-        score = score + 9999
-    
-    return score
-    
+
 # Average AI damage: 2.6
 # Average Virus damage: 4.6
 # Average Tech damage: 2
