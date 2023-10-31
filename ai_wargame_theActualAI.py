@@ -51,7 +51,7 @@ class GameTreeNode:
     # Calculate the node's heuristic score.
     def score_me(self):
         self.myScore = heuristic_score(self.myGameConfiguration)
-        print(self.myScore)
+        #print(self.myScore)
 
     def get_move(self) -> Tuple[int, CoordPair | None, float]:
         # Seems to work without knowing the previous board.
@@ -84,8 +84,8 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
         new_node = GameTreeNode(current_game = new_game, move = potential_move, parent = currentNode)
         child_nodes.append(new_node)
         
-        # If the current depth is lower than the max depth, also generate the nodes' children 
-        if generateDescendents == True and new_node.myDepth < maxdepth:
+        # If the current depth is lower than the max depth, and isn't a victory state, also generate the nodes' children 
+        if generateDescendents == True and new_node.myDepth < maxdepth and new_game.has_winner() == None :
             new_node.myChildren = generate_child_nodes(current_player.next(), new_game, current_depth+1, maxdepth, new_node, generateDescendents = False)
             
     return child_nodes
@@ -139,7 +139,7 @@ def minimax (current_player, current_node, maxdepth):
     
     # Attacker is max, defender is min.
     
-    if (current_node.myDepth == maxdepth): # Have we reached the maximum depth?
+    if (current_node.myDepth == maxdepth) or current_node.myGameConfiguration.has_winner() != None: # Have we reached the maximum depth?
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
@@ -172,7 +172,7 @@ def minimax (current_player, current_node, maxdepth):
 def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b):
     
     # Attacker is max, defender is min.    
-    if (current_node.myDepth == maxdepth): # Have we reached the maximum depth?
+    if (current_node.myDepth == maxdepth) or current_node.myGameConfiguration.has_winner() != None: # Have we reached the maximum depth?
         # I'm not sure I'm doing depth the right way. 
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?

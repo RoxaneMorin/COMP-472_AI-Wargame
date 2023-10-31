@@ -1,128 +1,158 @@
 
 
-Move Played: C4 B4
+Move Played: D3 C3
 
 Move Played: B1 C1
 
-Move Played: E2 E1
-
-Move Played: C1 D1
-
-Move Played: E3 E2
-
-Move Played: A2 B2
-
-Move Played: D3 C3
-
-Move Played: A1 A2
-
-Move Played: C3 B3
+Move Played: C3 C2
 
 Move Played: A2 A3
 
-Move Played: E1 D1
+Move Played: C4 B4
 
-Move Played: C0 D0
-
-Move Played: E1 D1
-
-Move Played: E1 E0
-
-Move Played: D0 E0
+Move Played: A1 A2
 
 Move Played: E2 E1
-
-Move Played: B3 A3
 
 Move Played: A3 A4
 
 Move Played: B4 A4
 
-Move Played: A4 A3
-
-Move Played: B3 A3
-
-Move Played: A3 A2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: B3 B2
-
-Move Played: A2 B2
-
-Move Played: A2 B2
+Move Played: C0 D0
 
 Move Played: B4 A4
 
 Move Played: A2 A3
 
-Move Played: D4 C4
+Move Played: B4 A4
 
-Move Played: A3 A2
+Move Played: A3 A4
 
-Move Played: C4 C3
+Move Played: B4 A4
 
-Move Played: A2 A3
+Move Played: A3 A4
 
-Move Played: A4 A3
+Move Played: B4 A4
 
-Move Played: B0 C0
+Move Played: A3 A4
 
-Move Played: A4 A3
+Move Played: B4 A4
 
-Move Played: C0 D0
-
-Move Played: A3 A2
+Move Played: A3 A4
 
 Move Played: A0 A1
 
-Move Played: C3 C2
+Move Played: D4 C4
+
+Move Played: B0 A0
+
+Move Played: C4 B4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
+
+Move Played: B4 A4
+
+Move Played: A3 A4
 
 Move Played: A1 A2
-
-Move Played: E1 E2
-
-Move Played: D0 D1
-
-Move Played: A2 A1
-
-Move Played: A1 A2
-
-Move Played: C2 B2
-
-Move Played: B2 C2
-
-Move Played: C2 B2
-
-Move Played: D1 D2
 
 Move Played: C2 C1
 
-Move Played: D2 E2
+Move Played: A2 A3
 
-Move Played: E4 E3
+Move Played: C2 C1
 
-Move Played: C1 B1
+Move Played: A2 A3
 
-Move Played: B1 A1
+Move Played: C2 C1
+
+Move Played: A2 B2
+
+Move Played: C2 B2
+
+Move Played: A3 A2
+
+Move Played: C2 C1
+
+Move Played: B2 A2
+
+Move Played: C2 B2
+
+Move Played: A2 B2
+
+Move Played: B2 C2
+
+Move Played: E1 D1
+
+Move Played: C1 D1
+
+Move Played: E3 D3
+
+Move Played: A0 B0
+
+Move Played: D1 D0
+
+Move Played: A4 B4
+
+Move Played: D3 C3
+
+Move Played: A2 A1
+
+Move Played: C3 C2
+
+Move Played: A1 A0
+
+Move Played: C3 B3
+
+Move Played: A0 A1
+
+Move Played: B3 B4
+
+Move Played: A1 A2
+
+Move Played: D1 D0
+
+Move Played: A2 B2
+
+Move Played: D1 D0
+
+Move Played: B2 C2
+
+Move Played: B3 B4
+
+Move Played: B0 A0
+
+Move Played: B3 B4
+
+Move Played: A0 B0
+
+Move Played: B3 B4
+
+Move Played: B0 C0
+
+Move Played: B3 A3
+
+Move Played: D1 D0
 Current Board Information: 
 
 Next player: Defender
@@ -131,9 +161,9 @@ Remaining turns: 99
 
     0   1   2   3   4  
 A: dA9 dT9 dF9  .   .  
-B: dT9 dP9  .   .   .  
-C: dF9  .   .  aF9 aP9 
-D:  .   .   .   .  aV9 
+B: dT9 dP9  .   .  aP9 
+C: dF9  .   .   .   .  
+D:  .   .   .  aF9 aV9 
 E:  .   .  aP9 aV9 aA9 
 
 Current Board Information: 
@@ -144,9 +174,9 @@ Remaining turns: 98
 
     0   1   2   3   4  
 A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .   .  
-C: dF9 dP9  .  aF9 aP9 
-D:  .   .   .   .  aV9 
+B: dT9  .   .   .  aP9 
+C: dF9 dP9  .   .   .  
+D:  .   .   .  aF9 aV9 
 E:  .   .  aP9 aV9 aA9 
 
 Current Board Information: 
@@ -157,10 +187,10 @@ Remaining turns: 97
 
     0   1   2   3   4  
 A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .   .  
-C: dF9 dP9 aF9  .  aP9 
-D:  .   .   .   .  aV9 
-E:  .   .  aP9 aV9 aA9 
+B: dT9  .   .   .  aP9 
+C: dF9 dP9  .   .   .  
+D:  .   .   .  aF9 aV9 
+E:  .  aP9  .  aV9 aA9 
 
 Current Board Information: 
 
@@ -169,11 +199,11 @@ Turns played: 4
 Remaining turns: 96
 
     0   1   2   3   4  
-A: dA9 dT9  .  dF9  .  
-B: dT9  .   .   .   .  
-C: dF9 dP9 aF9  .  aP9 
-D:  .   .   .   .  aV9 
-E:  .   .  aP9 aV9 aA9 
+A: dA9 dT9 dF9  .   .  
+B: dT9  .   .   .  aP9 
+C: dF9  .   .   .   .  
+D:  .  dP9  .  aF9 aV9 
+E:  .  aP9  .  aV9 aA9 
 
 Current Board Information: 
 
@@ -182,11 +212,11 @@ Turns played: 5
 Remaining turns: 95
 
     0   1   2   3   4  
-A: dA9 dT9  .  dF9  .  
+A: dA9 dT9 dF9  .   .  
 B: dT9  .   .   .  aP9 
-C: dF9 dP9 aF9  .   .  
-D:  .   .   .   .  aV9 
-E:  .   .  aP9 aV9 aA9 
+C: dF9  .   .   .   .  
+D:  .  dP9  .  aF9 aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -195,11 +225,11 @@ Turns played: 6
 Remaining turns: 94
 
     0   1   2   3   4  
-A: dA9  .  dT9 dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9 dP9 aF9  .   .  
-D:  .   .   .   .  aV9 
-E:  .   .  aP9 aV9 aA9 
+A: dA9 dT9  .   .   .  
+B: dT9  .  dF9  .  aP9 
+C: dF9  .   .   .   .  
+D:  .  dP9  .  aF9 aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -208,11 +238,11 @@ Turns played: 7
 Remaining turns: 93
 
     0   1   2   3   4  
-A: dA9  .  dT9 dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9 dP9 aF9  .   .  
-D:  .   .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9 dT9  .   .   .  
+B: dT9  .  dF9  .  aP9 
+C: dF9  .   .  aF9  .  
+D:  .  dP9  .   .  aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -221,11 +251,11 @@ Turns played: 8
 Remaining turns: 92
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF9 
-B: dT9  .   .   .  aP9 
-C: dF9 dP9 aF9  .   .  
-D:  .   .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT9  .   .  
+B: dT9  .  dF9  .  aP9 
+C: dF9  .   .  aF9  .  
+D:  .  dP9  .   .  aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -234,11 +264,11 @@ Turns played: 9
 Remaining turns: 91
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF8 
-B: dT9  .   .   .  aP8 
-C: dF9 dP9 aF9  .   .  
-D:  .   .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT9  .   .  
+B: dT9  .  dF9 aF9 aP9 
+C: dF9  .   .   .   .  
+D:  .  dP9  .   .  aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -247,11 +277,11 @@ Turns played: 10
 Remaining turns: 90
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF8 
-B: dT9  .   .   .  aP8 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C: dF9  .   .   .   .  
+D:  .  dP9  .   .  aV9 
+E:  .  aP9 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -260,11 +290,11 @@ Turns played: 11
 Remaining turns: 89
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF7 
-B: dT9  .   .   .  aP7 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C: dF9  .   .   .   .  
+D:  .  dP6  .   .  aV9 
+E:  .  aP6 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -273,11 +303,11 @@ Turns played: 12
 Remaining turns: 88
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF7 
-B: dT9  .   .   .  aP7 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF9 dP6  .   .  aV9 
+E:  .  aP6 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -286,11 +316,11 @@ Turns played: 13
 Remaining turns: 87
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF6 
-B: dT9  .   .   .  aP6 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF9 dP3  .   .  aV9 
+E:  .  aP3 aV9  .  aA9 
 
 Current Board Information: 
 
@@ -299,11 +329,11 @@ Turns played: 14
 Remaining turns: 86
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF9 
-B: dT9  .   .   .  aP6 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF7  .   .   .  aV9 
+E:  .  aP1 aV7  .  aA9 
 
 Current Board Information: 
 
@@ -312,11 +342,11 @@ Turns played: 15
 Remaining turns: 85
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF8 
-B: dT9  .   .   .  aP5 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF7  .   .   .  aV9 
+E: aP1  .  aV7  .  aA9 
 
 Current Board Information: 
 
@@ -325,11 +355,11 @@ Turns played: 16
 Remaining turns: 84
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF9 
-B: dT9  .   .   .  aP5 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF6  .   .   .  aV9 
+E:  .   .  aV7  .  aA9 
 
 Current Board Information: 
 
@@ -338,11 +368,11 @@ Turns played: 17
 Remaining turns: 83
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF8 
-B: dT9  .   .   .  aP4 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D: dF6  .   .   .  aV9 
+E:  .  aV7  .   .  aA9 
 
 Current Board Information: 
 
@@ -351,11 +381,11 @@ Turns played: 18
 Remaining turns: 82
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF9 
-B: dT9  .   .   .  aP4 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT9  .  
+B: dT9  .  dF9 aF9 aP9 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -364,11 +394,11 @@ Turns played: 19
 Remaining turns: 81
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF8 
-B: dT9  .   .   .  aP3 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT8  .  
+B: dT9  .  dF9 aF8 aP9 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -377,11 +407,11 @@ Turns played: 20
 Remaining turns: 80
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF9 
-B: dT9  .   .   .  aP3 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .   .  dT8 
+B: dT9  .  dF9 aF8 aP9 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -390,11 +420,11 @@ Turns played: 21
 Remaining turns: 79
 
     0   1   2   3   4  
-A: dA9  .   .  dT7 dF7 
-B: dT9  .   .   .   .  
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .   .  dT5 
+B: dT9  .  dF9 aF8 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -403,11 +433,11 @@ Turns played: 22
 Remaining turns: 78
 
     0   1   2   3   4  
-A:  .  dA9  .  dT7 dF7 
-B: dT9  .   .   .   .  
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .  aV9 
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT5  .  
+B: dT9  .  dF9 aF8 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -416,11 +446,11 @@ Turns played: 23
 Remaining turns: 77
 
     0   1   2   3   4  
-A:  .  dA9  .  dT7 dF7 
-B: dT9  .   .   .   .  
-C:  .  dP9 aF9  .  aV9 
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT4  .  
+B: dT9  .  dF9 aF7 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -429,11 +459,11 @@ Turns played: 24
 Remaining turns: 76
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF7 
-B:  .   .   .   .   .  
-C:  .  dP9 aF9  .  aV9 
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF7 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -442,11 +472,11 @@ Turns played: 25
 Remaining turns: 75
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF7 
-B:  .   .   .   .  aV9 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF6 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -455,11 +485,11 @@ Turns played: 26
 Remaining turns: 74
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV9 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF6 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -468,11 +498,11 @@ Turns played: 27
 Remaining turns: 73
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV8 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF5 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -481,11 +511,11 @@ Turns played: 28
 Remaining turns: 72
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV8 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF5 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -494,11 +524,11 @@ Turns played: 29
 Remaining turns: 71
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV7 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF4 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -507,11 +537,11 @@ Turns played: 30
 Remaining turns: 70
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV7 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF4 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -520,11 +550,11 @@ Turns played: 31
 Remaining turns: 69
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV6 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF3 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -533,11 +563,11 @@ Turns played: 32
 Remaining turns: 68
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV6 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF3 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -546,11 +576,11 @@ Turns played: 33
 Remaining turns: 67
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV5 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF2 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -559,11 +589,11 @@ Turns played: 34
 Remaining turns: 66
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV5 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF2 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -572,11 +602,11 @@ Turns played: 35
 Remaining turns: 65
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV4 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF8 aF1 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -585,11 +615,11 @@ Turns played: 36
 Remaining turns: 64
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV4 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT4  .   .  
+B: dT9  .  dF9 aF1 aP8 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -598,11 +628,11 @@ Turns played: 37
 Remaining turns: 63
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF8 
-B:  .   .   .   .  aV3 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT2  .   .  
+B: dT9  .  dF7  .  aP6 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -611,11 +641,11 @@ Turns played: 38
 Remaining turns: 62
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT7 dF9 
-B:  .   .   .   .  aV3 
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT2  .   .  
+B: dT9  .  dF9  .  aP6 
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -624,11 +654,11 @@ Turns played: 39
 Remaining turns: 61
 
     0   1   2   3   4  
-A: dT9 dA9  .  dT5 dF7 
-B:  .   .   .   .   .  
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT2  .  aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -637,11 +667,11 @@ Turns played: 40
 Remaining turns: 60
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT5 dF7 
-B:  .   .   .   .   .  
-C:  .  dP9 aF9  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT2 aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .   .   .  
+D:  .   .   .   .  aV9 
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -650,11 +680,11 @@ Turns played: 41
 Remaining turns: 59
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT5 dF7 
-B:  .   .   .   .   .  
-C:  .  dP8 aF8  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT2 aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .   .  aV9 
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -663,11 +693,11 @@ Turns played: 42
 Remaining turns: 58
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT6 dF7 
-B:  .   .   .   .   .  
-C:  .  dP8 aF8  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT2  .  aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .   .  aV9 
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -676,11 +706,11 @@ Turns played: 43
 Remaining turns: 57
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT6 dF7 
-B:  .   .   .   .   .  
-C:  .  dP7 aF7  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  dT2  .  aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -689,11 +719,11 @@ Turns played: 44
 Remaining turns: 56
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT7 dF7 
-B:  .   .   .   .   .  
-C:  .  dP7 aF7  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  dT2 aP6 
+B: dT9  .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -702,11 +732,11 @@ Turns played: 45
 Remaining turns: 55
 
     0   1   2   3   4  
-A: dT9  .  dA9 dT7 dF7 
-B:  .   .   .   .   .  
-C:  .  dP6 aF6  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .   .  aP5 
+B: dT9  .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -715,11 +745,11 @@ Turns played: 46
 Remaining turns: 54
 
     0   1   2   3   4  
-A: dT9  .   .  dT7 dF7 
-B:  .   .  dA9  .   .  
-C:  .  dP6 aF6  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .   .  aP5 
+B:  .   .  dF9  .   .  
+C: dT9  .   .  aV9  .  
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -728,11 +758,11 @@ Turns played: 47
 Remaining turns: 53
 
     0   1   2   3   4  
-A: dT9  .   .  dT7 dF7 
-B:  .   .  dA8  .   .  
-C:  .  dP6 aF5  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  aP5  .  
+B:  .   .  dF9  .   .  
+C: dT9  .   .  aV9  .  
+D:  .   .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -741,11 +771,11 @@ Turns played: 48
 Remaining turns: 52
 
     0   1   2   3   4  
-A: dT9  .  dT7  .  dF7 
-B:  .   .  dA8  .   .  
-C:  .  dP6 aF5  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .   .  aP5  .  
+B:  .   .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D: dT9  .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -754,11 +784,11 @@ Turns played: 49
 Remaining turns: 51
 
     0   1   2   3   4  
-A: dT9  .  dT7  .  dF7 
-B:  .   .  dA8  .   .  
-C:  .  dP5 aF4  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A: dA9  .  aP5  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D: dT9  .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -767,11 +797,11 @@ Turns played: 50
 Remaining turns: 50
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .  dA8  .   .  
-C:  .  dP5 aF4  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA9 aP5  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .   .  aV9  .  
+D: dT9  .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -780,11 +810,11 @@ Turns played: 51
 Remaining turns: 49
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .  dA7  .   .  
-C:  .  dP5 aF3  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA9 aP5  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D: dT9  .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -793,11 +823,11 @@ Turns played: 52
 Remaining turns: 48
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .  dA9  .   .  
-C:  .  dP5 aF3  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA6 aP2  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D: dT9  .   .   .   .  
+E:  .  aV5  .   .  aA9 
 
 Current Board Information: 
 
@@ -806,11 +836,11 @@ Turns played: 53
 Remaining turns: 47
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .  dA7  .   .  
-C:  .  dP3  .   .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA6 aP2  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D: dT9  .   .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -819,11 +849,11 @@ Turns played: 54
 Remaining turns: 46
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .   .   .   .  
-C:  .  dP3 dA7  .   .  
-D: dF9  .   .   .   .  
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA6 aP2  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -832,11 +862,11 @@ Turns played: 55
 Remaining turns: 45
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .   .   .   .  
-C:  .  dP3 dA7  .   .  
-D: dF9 aP9  .   .   .  
-E:  .   .   .  aV9 aA9 
+A:  .  dA3  .   .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -845,11 +875,11 @@ Turns played: 56
 Remaining turns: 44
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .   .   .   .  
-C:  .   .  dA7  .   .  
-D: dF9 aP6  .   .   .  
-E:  .   .   .  aV9 aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF9  .   .  
+C:  .   .  aV9  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -858,11 +888,11 @@ Turns played: 57
 Remaining turns: 43
 
     0   1   2   3   4  
-A: dT9  .  dT8  .  dF7 
-B:  .   .   .   .   .  
-C:  .   .  dA7  .   .  
-D: dF9 aP6  .  aV9  .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF8  .   .  
+C:  .   .  aV8  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -871,11 +901,11 @@ Turns played: 58
 Remaining turns: 42
 
     0   1   2   3   4  
-A:  .   .  dT8  .  dF7 
-B: dT9  .   .   .   .  
-C:  .   .  dA7  .   .  
-D: dF9 aP6  .  aV9  .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF7  .   .  
+C:  .   .  aV7  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -884,11 +914,11 @@ Turns played: 59
 Remaining turns: 41
 
     0   1   2   3   4  
-A:  .   .  dT8  .  dF7 
-B: dT9  .   .   .   .  
-C:  .   .  dA7  .   .  
-D: dF8 aP5  .  aV9  .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .   .  aV6  .   .  
+D:  .  dT9  .   .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -897,11 +927,11 @@ Turns played: 60
 Remaining turns: 40
 
     0   1   2   3   4  
-A:  .   .  dT8  .   .  
-B: dT9  .   .   .  dF7 
-C:  .   .  dA7  .   .  
-D: dF8 aP5  .  aV9  .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .   .  aV6  .   .  
+D:  .   .  dT9  .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -910,11 +940,11 @@ Turns played: 61
 Remaining turns: 39
 
     0   1   2   3   4  
-A:  .   .  dT8  .   .  
-B: dT9  .   .   .  dF7 
-C:  .   .  dA7 aV9  .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .  aV6  .   .   .  
+D:  .   .  dT9  .   .  
+E:  .   .  aV5  .  aA9 
 
 Current Board Information: 
 
@@ -923,10 +953,10 @@ Turns played: 62
 Remaining turns: 38
 
     0   1   2   3   4  
-A:  .  dT8  .   .   .  
-B: dT9  .   .   .  dF7 
-C:  .   .  dA7 aV9  .  
-D: dF8 aP5  .   .   .  
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .  aV6  .   .   .  
+D:  .   .  dT3  .   .  
 E:  .   .   .   .  aA9 
 
 Current Board Information: 
@@ -936,11 +966,11 @@ Turns played: 63
 Remaining turns: 37
 
     0   1   2   3   4  
-A:  .  dT8  .   .   .  
-B: dT9  .   .   .  dF7 
-C:  .   .   .  aV6  .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .  aV6  .   .   .  
+D:  .   .  dT3  .   .  
+E:  .   .   .  aA9  .  
 
 Current Board Information: 
 
@@ -949,11 +979,11 @@ Turns played: 64
 Remaining turns: 36
 
     0   1   2   3   4  
-A: dT8  .   .   .   .  
-B: dT9  .   .   .  dF7 
-C:  .   .   .  aV6  .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .  aV6  .   .   .  
+D:  .  dT3  .   .   .  
+E:  .   .   .  aA9  .  
 
 Current Board Information: 
 
@@ -962,11 +992,11 @@ Turns played: 65
 Remaining turns: 35
 
     0   1   2   3   4  
-A: dT8  .   .   .   .  
-B: dT9  .   .  aV6 dF7 
-C:  .   .   .   .   .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
+C:  .  aV6  .   .   .  
+D:  .  dT3  .   .   .  
+E:  .   .  aA9  .   .  
 
 Current Board Information: 
 
@@ -975,11 +1005,11 @@ Turns played: 66
 Remaining turns: 34
 
     0   1   2   3   4  
-A:  .  dT8  .   .   .  
-B: dT9  .   .  aV6 dF7 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
 C:  .   .   .   .   .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+D:  .   .   .   .   .  
+E:  .   .  aA9  .   .  
 
 Current Board Information: 
 
@@ -988,11 +1018,11 @@ Turns played: 67
 Remaining turns: 33
 
     0   1   2   3   4  
-A:  .  dT8  .   .   .  
-B: dT9  .   .  aV5 dF6 
+A:  .   .  dA3  .   .  
+B:  .   .  dF6  .   .  
 C:  .   .   .   .   .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+D:  .   .  aA9  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1001,11 +1031,11 @@ Turns played: 68
 Remaining turns: 32
 
     0   1   2   3   4  
-A:  .   .  dT8  .   .  
-B: dT9  .   .  aV5 dF6 
-C:  .   .   .   .   .  
-D: dF8 aP5  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .   .   .   .  
+C:  .   .  dF6  .   .  
+D:  .   .  aA9  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1014,11 +1044,11 @@ Turns played: 69
 Remaining turns: 31
 
     0   1   2   3   4  
-A:  .   .  dT8  .   .  
-B: dT9  .   .  aV5 dF6 
-C:  .   .   .   .   .  
-D: dF7 aP4  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .  dA3  .   .  
+B:  .   .   .   .   .  
+C:  .   .  dF5  .   .  
+D:  .   .  aA8  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1027,11 +1057,11 @@ Turns played: 70
 Remaining turns: 30
 
     0   1   2   3   4  
-A:  .   .   .   .   .  
-B: dT9  .  dT8 aV5 dF6 
-C:  .   .   .   .   .  
-D: dF7 aP4  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .  dA3  .  
+B:  .   .   .   .   .  
+C:  .   .  dF5  .   .  
+D:  .   .  aA8  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1040,11 +1070,11 @@ Turns played: 71
 Remaining turns: 29
 
     0   1   2   3   4  
-A:  .   .   .   .   .  
-B: dT9  .  dT8 aV5 dF6 
-C:  .   .   .   .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .  dA3  .  
+B:  .   .   .   .   .  
+C:  .   .  dF4  .   .  
+D:  .   .  aA7  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1053,11 +1083,11 @@ Turns played: 72
 Remaining turns: 28
 
     0   1   2   3   4  
-A:  .   .   .   .   .  
-B: dT9  .   .  aV5 dF6 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .   .  dA3 
+B:  .   .   .   .   .  
+C:  .   .  dF4  .   .  
+D:  .   .  aA7  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1066,11 +1096,11 @@ Turns played: 73
 Remaining turns: 27
 
     0   1   2   3   4  
-A:  .   .   .   .   .  
-B: dT9  .   .  aV4 dF5 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .   .  dA3 
+B:  .   .   .   .   .  
+C:  .   .  dF3  .   .  
+D:  .   .  aA6  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1079,11 +1109,11 @@ Turns played: 74
 Remaining turns: 26
 
     0   1   2   3   4  
-A: dT9  .   .   .   .  
-B:  .   .   .  aV4 dF5 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .   .   .  
+B:  .   .   .   .  dA3 
+C:  .   .  dF3  .   .  
+D:  .   .  aA6  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1092,11 +1122,11 @@ Turns played: 75
 Remaining turns: 25
 
     0   1   2   3   4  
-A: dT9  .   .   .   .  
-B:  .   .   .  aV3 dF4 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .   .   .  
+B:  .   .   .   .  dA3 
+C:  .   .  dF2  .   .  
+D:  .   .  aA5  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1106,10 +1136,10 @@ Remaining turns: 24
 
     0   1   2   3   4  
 A:  .   .   .   .   .  
-B: dT9  .   .  aV3 dF4 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+B:  .   .   .   .   .  
+C:  .   .  dF2  .  dA3 
+D:  .   .  aA5  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1119,10 +1149,10 @@ Remaining turns: 23
 
     0   1   2   3   4  
 A:  .   .   .   .   .  
-B: dT9  .   .  aV2 dF3 
-C:  .   .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+B:  .   .   .   .   .  
+C:  .   .  dF1  .  dA3 
+D:  .   .  aA4  .   .  
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1132,10 +1162,10 @@ Remaining turns: 22
 
     0   1   2   3   4  
 A:  .   .   .   .   .  
-B:  .   .   .  aV2 dF3 
-C: dT9  .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+B:  .   .   .   .   .  
+C:  .   .  dF1  .   .  
+D:  .   .  aA4  .  dA3 
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1144,11 +1174,11 @@ Turns played: 79
 Remaining turns: 21
 
     0   1   2   3   4  
-A:  .   .   .  aV2  .  
-B:  .   .   .   .  dF3 
-C: dT9  .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+A:  .   .   .   .   .  
+B:  .   .   .   .   .  
+C:  .   .   .   .   .  
+D:  .   .  aA3  .  dA3 
+E:  .   .   .   .   .  
 
 Current Board Information: 
 
@@ -1159,9 +1189,9 @@ Remaining turns: 20
     0   1   2   3   4  
 A:  .   .   .   .   .  
 B:  .   .   .   .   .  
-C: dT9  .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .  aA9 
+C:  .   .   .   .   .  
+D:  .   .  aA3  .   .  
+E:  .   .   .   .  dA3 
 
 Current Board Information: 
 
@@ -1172,32 +1202,7 @@ Remaining turns: 19
     0   1   2   3   4  
 A:  .   .   .   .   .  
 B:  .   .   .   .   .  
-C: dT9  .  dT8  .   .  
-D: dF6 aP3  .   .   .  
-E:  .   .   .   .   .  
-
-Current Board Information: 
-
-Next player: Attacker
-Turns played: 82
-Remaining turns: 18
-
-    0   1   2   3   4  
-A:  .   .   .   .   .  
-B:  .   .   .   .   .  
-C: dT9  .  dT8  .   .  
-D: dF9 aP3  .   .   .  
-E:  .   .   .   .   .  
-
-Current Board Information: 
-
-Next player: Defender
-Turns played: 83
-Remaining turns: 17
-
-    0   1   2   3   4  
-A:  .   .   .   .   .  
-B:  .   .   .   .   .  
-C: dT9  .  dT8  .   .  
-D: dF8 aP2  .   .   .  
-E:  .   .   .   .   .  
+C:  .   .  aA3  .   .  
+D:  .   .   .   .   .  
+E:  .   .   .   .  dA3 
+Attacker wins in 82 moves!
