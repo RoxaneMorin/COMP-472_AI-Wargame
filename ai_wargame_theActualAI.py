@@ -18,7 +18,6 @@ from pip._vendor import requests
 MAX_HEURISTIC_SCORE = 2000000000
 MIN_HEURISTIC_SCORE = -2000000000
 
-
 # Putting these in a separate file for now, but they'll have to go in the main code for ease of reference.
 # How should we pass the current player, board, etc?
 
@@ -211,6 +210,11 @@ def heuristic_score(current_player, current_game) -> int:
     
     # Score the given board configuration.# 
     
+    # If we are using the new heuristic, call it before anything else.
+    if current_game.options.heuristic_function  == HeurType.e1 :
+        return new_heuristic(current_player, current_game)
+    
+    
     total_units_attacker = 0
     total_units_defender = 0
     
@@ -267,18 +271,19 @@ def heuristic_score(current_player, current_game) -> int:
         #print(e0)
         return e0
     
+    # Old e1, commenting out.
     # Attacker vs Defender units left alive.
-    elif current_game.options.heuristic_function  == HeurType.e1 :
-        e1 = (total_units_attacker - total_units_defender)
+    # elif current_game.options.heuristic_function  == HeurType.e1 :
+    #     e1 = (total_units_attacker - total_units_defender)
         
-        # Winning is very good!
-        if total_units_attacker == 0:
-            e1 -= 9999
-        elif total_units_defender == 0:
-            e1 += 9999
+    #     # Winning is very good!
+    #     if total_units_attacker == 0:
+    #         e1 = e1 - 9999
+    #     elif total_units_defender == 0:
+    #         e1 = e1 + 9999
         
-        #print(e1)
-        return e1
+    #     #print(e1)
+    #     return e1
     
     # Total health of one's units vs enemy's (weighted by unit type?)
     elif current_game.options.heuristic_function  == HeurType.e2 :
@@ -286,9 +291,55 @@ def heuristic_score(current_player, current_game) -> int:
         
         # Winning is very good!
         if remaining_hp_attacker == 0:
-            e1 -= 9999
+            e2 = e2 - 9999
         elif remaining_hp_defender == 0:
-            e1 += 9999
+            e2 = e2 + 9999
         
         #print(e2)
         return e2
+    
+# New beefed up health heuristic.
+def new_heuristic(current_player, current_game) -> int:
+
+    remaining_hp_attacker = 0
+    remaining_hp_defender = 0
+    
+    for coords, unit in current_game.player_units(Player.Attacker):
+        if unit.type == UnitType.Virus:
+            remaining_hp_attacker += unit.health * 4.6
+        elif unit.type == UnitType.Tech:
+            remaining_hp_attacker += unit.health * 2
+        elif unit.type == UnitType.Firewall:
+            remaining_hp_attacker += unit.health * 1
+        else: # AI or program
+            remaining_hp_attacker += unit.health * 2.6
+    
+    for coords, unit in current_game.player_units(Player.Defender):
+        if unit.type == UnitType.Virus:
+            remaining_hp_defender += unit.health * 4.6
+        elif unit.type == UnitType.Tech:
+            remaining_hp_defender += unit.health * 2
+        elif unit.type == UnitType.Firewall:
+            remaining_hp_defender += unit.health * 1
+        else: # AI or program
+            remaining_hp_defender += unit.health * 2.6
+    
+    score = (remaining_hp_attacker * 0.829 - remaining_hp_defender)
+    # Scale attacker's score to even out the initial health difference. Let's see how that goes.
+    
+    # Winning is very good!
+    if remaining_hp_attacker == 0:
+        score = score - 9999
+    elif remaining_hp_defender == 0:
+        score = score + 9999
+    
+    return score
+    
+# Average AI damage: 2.6
+# Average Virus damage: 4.6
+# Average Tech damage: 2
+# Average Firewall damage: 1
+# Average Program damage: 2.6
+
+# Initial for defender: 100.8
+# Initial for attacker: 120.6
