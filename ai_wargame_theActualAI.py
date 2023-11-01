@@ -88,6 +88,9 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
         if generateDescendents == True and new_node.myDepth < maxdepth and new_game.has_winner() == None :
             new_node.myChildren = generate_child_nodes(current_player.next(), new_game, current_depth+1, maxdepth, new_node, generateDescendents = False)
             
+    # Shuffling child nodes ensures that we don't get the same game over and over again as different branches will be pruned.
+    random.shuffle(child_nodes)
+    
     return child_nodes
 
 
@@ -280,8 +283,8 @@ def heuristic_score(current_game) -> int:
             else: # AI or program
                 remaining_hp_defender += unit.health * 2.6
         
-        e1 = (remaining_hp_attacker * 0.829 - remaining_hp_defender)
-        # Scale attacker's score to even out the initial health difference. Let's see how that goes.
+        e1 = (remaining_hp_attacker - remaining_hp_defender)
+        #e1 = (remaining_hp_attacker * 0.829 - remaining_hp_defender) # Scale attacker's score to even out the initial health difference. Let's see how that goes.
         
         # Winning is very good!
         if remaining_hp_attacker == 0:
