@@ -151,7 +151,7 @@ def minimax (current_player, current_node, maxdepth):
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
     
-    if current_player == Player.Attacker: # Maximizing player
+    if current_player == Player.Defender: # Maximizing player
         best_value = MIN_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
@@ -184,13 +184,14 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
     
-    if current_player == Player.Attacker: # Maximizing player
+    if current_player == Player.Defender: # Maximizing player
         best_value = MIN_HEURISTIC_SCORE
         
         for child in current_node.myChildren:
             #Implement alphabeta pruning.
             current_value = minimax_pruning(current_player.next(), child, maxdepth, current_depth+1, a, b)
             best_value = max(best_value, current_value)   
+            
             a = max(a, best_value)
             if b <= a :
                 break;
@@ -203,6 +204,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
             #Implement alphabeta pruning.
             current_value = minimax_pruning(current_player.next(), child, maxdepth, current_depth+1, a, b)
             best_value = min(best_value, current_value)
+            
             b = min(b, best_value)
             if b <= a:
                 break;
