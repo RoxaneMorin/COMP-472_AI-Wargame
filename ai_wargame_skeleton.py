@@ -482,7 +482,7 @@ class Game:
         
         ## Line where we replace the random move.
         #(score, move, avg_depth) = self.random_move()
-        (score, move) = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
+        (score, move, cumu_eval, depth_eval) = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
         
         
         elapsed_seconds = (datetime.now() - start_time).total_seconds()
@@ -490,7 +490,8 @@ class Game:
         
         print(f"Heuristic score: {score}")
         #print(f"Average recursive depth: {avg_depth:0.1f}")
-        print(f"Evals per depth: ",end='')
+        print(f"Cumulative evals: {cumu_eval}")
+        print(f"Evals per depth: \n{depth_eval}")
         
         for k in sorted(self.stats.evaluations_per_depth.keys()):
             print(f"{k}:{self.stats.evaluations_per_depth[k]} ",end='')
