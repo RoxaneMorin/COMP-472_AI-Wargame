@@ -261,6 +261,9 @@ def heuristic_score(current_game) -> int:
         remaining_hp_attacker = 0
         remaining_hp_defender = 0
         
+        ai_alive_attacker = False
+        ai_alive_defender = False
+        
         for coords, unit in current_game.player_units(Player.Attacker):
             if unit.type == UnitType.Virus:
                 remaining_hp_attacker += unit.health * 4.6
@@ -268,8 +271,12 @@ def heuristic_score(current_game) -> int:
                 remaining_hp_attacker += unit.health * 2
             elif unit.type == UnitType.Firewall:
                 remaining_hp_attacker += unit.health * 1
-            else: # AI or program
+            elif unit.type == UnitType.Program:
                 remaining_hp_attacker += unit.health * 2.6
+            else: # AI
+                remaining_hp_attacker += unit.health * 25 # Weight the AI more as it should be killed to win.
+                ai_alive_attacker = True
+                    
         
         current_game.player_units(Player.Defender)
         
@@ -280,19 +287,23 @@ def heuristic_score(current_game) -> int:
                 remaining_hp_defender += unit.health * 2
             elif unit.type == UnitType.Firewall:
                 remaining_hp_defender += unit.health * 1
-            else: # AI or program
+            elif unit.type == UnitType.Program:
                 remaining_hp_defender += unit.health * 2.6
+            else: # AI
+                remaining_hp_defender += unit.health * 25 # Weight the AI more as it should be killed to win.
+                ai_alive_defender = True
         
         e1 = (remaining_hp_attacker - remaining_hp_defender)
         #e1 = (remaining_hp_attacker * 0.829 - remaining_hp_defender) # Scale attacker's score to even out the initial health difference. Let's see how that goes.
         
         # Winning is very good!
-        if remaining_hp_attacker == 0:
+        if remaining_hp_attacker == 0 or ai_alive_attacker == False:
             e1 = e1 - 9999
             
-        elif remaining_hp_defender == 0:
+        elif remaining_hp_defender == 0 or ai_alive_defender == False:
             e1 = e1 + 9999
         
+        #print(e1)
         return e1
 
     
@@ -305,20 +316,31 @@ def heuristic_score(current_game) -> int:
         remaining_hp_attacker = 0
         remaining_hp_defender = 0
         
+        ai_alive_attacker = False
+        ai_alive_defender = False
+        
         for coords, unit in current_game.player_units(Player.Attacker):
             total_units_attacker += 1
             remaining_hp_attacker += unit.health
+            
+            if unit.type == UnitType.AI:
+                ai_alive_attacker = True
+            
         
         for coords, unit in current_game.player_units(Player.Defender):
             total_units_defender += 1
             remaining_hp_defender += unit.health
+            
+            if unit.type == UnitType.AI:
+                ai_alive_defender = True
+        
         
         e2 = (remaining_hp_attacker - remaining_hp_defender)
         
         # Winning is very good!
-        if remaining_hp_attacker == 0:
+        if remaining_hp_attacker == 0 or ai_alive_attacker == False:
             e2 = e2 - 9999
-        elif remaining_hp_defender == 0:
+        elif remaining_hp_defender == 0 or ai_alive_defender == False:
             e2 = e2 + 9999
         
         #print(e2)

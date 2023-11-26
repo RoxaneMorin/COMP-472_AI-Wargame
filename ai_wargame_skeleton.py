@@ -398,18 +398,40 @@ class Game:
     
     def has_winner(self) -> Player | None:
         """Check if the game is over and returns winner"""
-        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
-        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
         
-        #print("Remaining attacker units: {}".format(remaining_attacker))
-        #print("Remaining defender units: {}".format(remaining_defender))
+        # Stuff we missed the first time around.
+        ai_alive_attacker = False
+        ai_alive_defender = False
         
-        if remaining_attacker == 0:
-            #print("No attacker units left.")
+        # Verify whether the players' AIs are alive.
+        for coords, unit in self.player_units(Player.Attacker):
+            if unit.type == UnitType.AI:
+                ai_alive_attacker = True
+                break
+        
+        for coords, unit in self.player_units(Player.Defender):
+            if unit.type == UnitType.AI:
+                ai_alive_defender = True
+                break
+        
+        if ai_alive_attacker == False:
             return Player.Defender
-        elif remaining_defender == 0:
-            #print("No deffender units left.")
+        elif ai_alive_defender == False:
             return Player.Attacker
+        
+        # No longer needed now that we check for the AI's death.
+#        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
+#        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
+#        
+#        #print("Remaining attacker units: {}".format(remaining_attacker))
+#        #print("Remaining defender units: {}".format(remaining_defender))
+#        
+#        if remaining_attacker == 0:
+#            #print("No attacker units left.")
+#            return Player.Defender
+#        elif remaining_defender == 0:
+#            #print("No deffender units left.")
+#            return Player.Attacker
         
         #print("Remaining turns: {}".format(self.options.max_turns - self.turns_played))
         
