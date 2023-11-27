@@ -55,10 +55,11 @@ class GameTreeNode:
         
     # Calculate the node's heuristic score.
     def score_me(self):
-        global CUMU_EVAL
         self.myScore = heuristic_score(self.myGameConfiguration) 
-        CUMU_EVAL += 1
-        CURU_EVAL += 1
+        global CUMU_EVAL
+        CUMU_EVAL = CUMU_EVAL + 1
+        global CURR_EVAL
+        CURR_EVAL = CURR_EVAL + 1
         #print(self.myScore)
 
     def get_move(self) -> Tuple[int, CoordPair | None, float]:
