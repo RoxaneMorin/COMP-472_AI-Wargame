@@ -17,10 +17,11 @@ from pip._vendor import requests
 # maximum and minimum values for our heuristic scores (usually represents an end of game condition)
 MAX_HEURISTIC_SCORE = 2000000000
 MIN_HEURISTIC_SCORE = -2000000000
+
 # cumulative evals for # of states
-CUMU_EVAL = 0
-CURR_EVAL = 0
-DEPTH_EVAL = {}
+cumul_eval = 0
+curr_eval = 0
+eval_depth = {}
 
 
 # Putting these in a separate file for now, but they'll have to go in the main code for ease of reference.
@@ -56,10 +57,10 @@ class GameTreeNode:
     # Calculate the node's heuristic score.
     def score_me(self):
         self.myScore = heuristic_score(self.myGameConfiguration) 
-        global CUMU_EVAL
-        CUMU_EVAL = CUMU_EVAL + 1
-        global CURR_EVAL
-        CURR_EVAL = CURR_EVAL + 1
+        #global cumul_eval
+        #cumul_eval = cumul_eval + 1
+        global curr_eval
+        curr_eval = curr_eval + 1
         #print(self.myScore)
 
     def get_move(self) -> Tuple[int, CoordPair | None, float]:
@@ -106,7 +107,7 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
 
 # Basic recursive minimax algorithm
 def move_by_minimax(current_game, current_player, maxdepth): # Should we pass the game itself?
-    global CURR_EVAL
+    global curr_eval
     best_move = None
     best_value = MIN_HEURISTIC_SCORE if (current_player == Player.Attacker) else MAX_HEURISTIC_SCORE
     
@@ -136,20 +137,26 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
             if (Options.alpha_beta == False):
                 current_value = minimax(current_player.next(), child, maxdepth)
             else:
-                current_value,  = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)   
+                current_value = minimax_pruning(current_player.next(), child, maxdepth, 0, MIN_HEURISTIC_SCORE, MAX_HEURISTIC_SCORE)   
             
             if current_value < best_value: # Having the player check above instead of here repeats more code, but ensures we make fewer checks.
                 best_value = current_value
                 best_move = child.get_move()
-                
-    CURR_EVAL = 0
-    return best_value, best_move, CUMU_EVAL, DEPTH_EVAL
+    
+    global cumul_eval
+    cumul_eval +=  sum(eval_depth.values())        
+    curr_eval = 0
+    
+    #total_evals = sum(eval_depth.values())
+    #print("Total_evals in move_by_minimax: {}".format(total_evals))
+    
+    return best_value, best_move, cumul_eval, eval_depth
 
     # To do: handle max time elapsed.
 
 
 def minimax (current_player, current_node, maxdepth):
-    global DEPTH_EVAL
+    global eval_depth
 
     # Attacker is max, defender is min.
     
@@ -158,7 +165,7 @@ def minimax (current_player, current_node, maxdepth):
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
         current_node.score_me()
-        DEPTH_EVAL[current_node.myDepth] = CURR_EVAL
+        eval_depth[current_node.myDepth] = curr_eval
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
@@ -185,7 +192,7 @@ def minimax (current_player, current_node, maxdepth):
 
  # Implement optional alpha-beta pruning.
 def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b):
-    global DEPTH_EVAL
+    global eval_depth
 
     # Attacker is max, defender is min.    
     if (current_node.myDepth == maxdepth) or current_node.myGameConfiguration.has_winner() != None: # Have we reached the maximum depth?
@@ -193,7 +200,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
         current_node.score_me()
-        DEPTH_EVAL[current_node.myDepth] = CURR_EVAL
+        eval_depth[current_node.myDepth] = curr_eval
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)

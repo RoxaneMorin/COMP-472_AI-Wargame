@@ -299,7 +299,7 @@ class Game:
         """Pretty text representation of the game."""
         dim = self.options.dim
         output = ""
-        output += f"Next player: {self.next_player.name}\n"
+        output += f"\nNext player: {self.next_player.name}\n"
         output += f"Turns played: {self.turns_played}\n"
         output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         coord = Coord()
@@ -420,18 +420,18 @@ class Game:
             return Player.Attacker
         
         # No longer needed now that we check for the AI's death.
-#        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
-#        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
-#        
-#        #print("Remaining attacker units: {}".format(remaining_attacker))
-#        #print("Remaining defender units: {}".format(remaining_defender))
-#        
-#        if remaining_attacker == 0:
-#            #print("No attacker units left.")
-#            return Player.Defender
-#        elif remaining_defender == 0:
-#            #print("No deffender units left.")
-#            return Player.Attacker
+        remaining_attacker = sum(1 for _ in self.player_units(Player.Attacker))
+        remaining_defender = sum(1 for _ in self.player_units(Player.Defender))
+        
+        #print("Remaining attacker units: {}".format(remaining_attacker))
+        #print("Remaining defender units: {}".format(remaining_defender))
+        
+        if remaining_attacker == 0:
+            #print("No attacker units left.")
+            return Player.Defender
+        elif remaining_defender == 0:
+            #print("No deffender units left.")
+            return Player.Attacker
         
         #print("Remaining turns: {}".format(self.options.max_turns - self.turns_played))
         
@@ -482,22 +482,23 @@ class Game:
         
         ## Line where we replace the random move.
         #(score, move, avg_depth) = self.random_move()
-        (score, move, cumu_eval, depth_eval) = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
-        
+        score, move, cumu_eval, depth_eval = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
+        total_evals = sum(depth_eval.values())
         
         elapsed_seconds = (datetime.now() - start_time).total_seconds()
         self.stats.total_seconds += elapsed_seconds
         
         print(f"Heuristic score: {score}")
         #print(f"Average recursive depth: {avg_depth:0.1f}")
-        print(f"Cumulative evals: {cumu_eval}")
-        print(f"Evals per depth: \n{depth_eval}")
+
+        print(f"\nEvals per depth:")
+        for i in range(0, len(depth_eval)):
+            print("+ Level {} : {}".format(i, depth_eval[i]))
         
-        for k in sorted(self.stats.evaluations_per_depth.keys()):
-            print(f"{k}:{self.stats.evaluations_per_depth[k]} ",end='')
-        print()
+        print(f'Total evals this round: {total_evals}')
+        print(f"Cumulative evals so far: {cumu_eval}")
         
-        total_evals = sum(self.stats.evaluations_per_depth.values())
+        #print("Total evals in suggest move: {}".format(total_evals))
         
         if self.stats.total_seconds > 0:
             print(f"Eval perf.: {total_evals/self.stats.total_seconds/1000:0.1f}k/s")
