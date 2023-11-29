@@ -19,8 +19,12 @@ MAX_HEURISTIC_SCORE = 2000000000
 MIN_HEURISTIC_SCORE = -2000000000
 
 # cumulative evals for # of states
+
+all_curr_scored = 0
+
 cumul_eval = 0
 curr_eval = 0
+
 eval_depth = {}
 
 
@@ -57,10 +61,13 @@ class GameTreeNode:
     # Calculate the node's heuristic score.
     def score_me(self):
         self.myScore = heuristic_score(self.myGameConfiguration) 
-        #global cumul_eval
-        #cumul_eval = cumul_eval + 1
+        
+        global cumul_eval
+        cumul_eval = cumul_eval + 1
+        
         global curr_eval
         curr_eval = curr_eval + 1
+        
         #print(self.myScore)
 
     def get_move(self) -> Tuple[int, CoordPair | None, float]:
@@ -107,9 +114,14 @@ def generate_child_nodes(current_player, current_game, current_depth, maxdepth, 
 
 # Basic recursive minimax algorithm
 def move_by_minimax(current_game, current_player, maxdepth): # Should we pass the game itself?
-    global curr_eval
     best_move = None
     best_value = MIN_HEURISTIC_SCORE if (current_player == Player.Attacker) else MAX_HEURISTIC_SCORE
+    
+    global curr_eval
+    curr_eval = 0
+    
+    global eval_depth
+    eval_depth = dict.fromkeys(range(0, maxdepth), 0)
     
     
     ## Should we generate the tree as we go along instead?
@@ -143,14 +155,7 @@ def move_by_minimax(current_game, current_player, maxdepth): # Should we pass th
                 best_value = current_value
                 best_move = child.get_move()
     
-    global cumul_eval
-    cumul_eval +=  sum(eval_depth.values())        
-    curr_eval = 0
-    
-    #total_evals = sum(eval_depth.values())
-    #print("Total_evals in move_by_minimax: {}".format(total_evals))
-    
-    return best_value, best_move, cumul_eval, eval_depth
+    return best_value, best_move, cumul_eval, curr_eval, eval_depth
 
     # To do: handle max time elapsed.
 
@@ -165,7 +170,6 @@ def minimax (current_player, current_node, maxdepth):
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
         current_node.score_me()
-        eval_depth[current_node.myDepth] = curr_eval
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
@@ -177,6 +181,8 @@ def minimax (current_player, current_node, maxdepth):
             # To do: Implement alphabeta pruning.
             current_value = minimax(current_player.next(), child, maxdepth)
             best_value = max(best_value, current_value)
+            
+        eval_depth[current_node.myDepth] = eval_depth[current_node.myDepth] + 1
         return best_value
         
     else: # Minimizing player.
@@ -186,7 +192,8 @@ def minimax (current_player, current_node, maxdepth):
             # To do: Implement alphabeta pruning.
             current_value = minimax(current_player.next(), child, maxdepth)
             best_value = min(best_value, current_value)     
-            
+         
+        eval_depth[current_node.myDepth] = eval_depth[current_node.myDepth] + 1
         return best_value
 
 
@@ -200,7 +207,6 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
         # To do: also check whether the node leads in someone's victory?
         # Do we calculate the score here?
         current_node.score_me()
-        eval_depth[current_node.myDepth] = curr_eval
         return current_node.myScore
     
     current_node.myChildren = generate_child_nodes(current_player.next(), current_node.myGameConfiguration, current_node.myDepth+1, maxdepth, current_node, generateDescendents = False)
@@ -215,7 +221,10 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
             
             a = max(a, best_value)
             if b <= a :
+                #print("Did max pruning.")
                 break;
+
+        eval_depth[current_node.myDepth] = eval_depth[current_node.myDepth] + 1
         return best_value
     
     else: # Minimizing player.
@@ -228,7 +237,10 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
             
             b = min(b, best_value)
             if b <= a:
+                #print("Did min pruning.")
                 break;
+        
+        eval_depth[current_node.myDepth] = eval_depth[current_node.myDepth] + 1
         return best_value
 
 

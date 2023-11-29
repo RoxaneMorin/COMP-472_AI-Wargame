@@ -482,26 +482,24 @@ class Game:
         
         ## Line where we replace the random move.
         #(score, move, avg_depth) = self.random_move()
-        score, move, cumu_eval, depth_eval = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
-        total_evals = sum(depth_eval.values())
-        
+        score, move, cumu_eval, curr_eval, depth_eval = ai_wargame_theActualAI.move_by_minimax(self.clone(), self.next_player, self.options.max_depth)
         elapsed_seconds = (datetime.now() - start_time).total_seconds()
         self.stats.total_seconds += elapsed_seconds
         
         print(f"Heuristic score: {score}")
         #print(f"Average recursive depth: {avg_depth:0.1f}")
 
-        print(f"\nEvals per depth:")
+        print(f'\nNodes scored this round: {curr_eval}')
+        print(f"Total nodes scored: {cumu_eval}")
+        
+        print(f"Score comparisons per depth (above leaf nodes):")
         for i in range(0, len(depth_eval)):
             print("+ Level {} : {}".format(i, depth_eval[i]))
-        
-        print(f'Total evals this round: {total_evals}')
-        print(f"Cumulative evals so far: {cumu_eval}")
         
         #print("Total evals in suggest move: {}".format(total_evals))
         
         if self.stats.total_seconds > 0:
-            print(f"Eval perf.: {total_evals/self.stats.total_seconds/1000:0.1f}k/s")
+            print(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
         return move
