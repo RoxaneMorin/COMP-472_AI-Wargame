@@ -288,29 +288,29 @@ class Game:
         else:
             with open('gametrace-f-5-100.txt', 'a') as file: 
                 if self.turns_played == 0:
-                    file.write("Initial Board Configuration: \n\n" + output)
+                    file.write("Initial Board Configuration: \n" + output)
                 else:
-                    file.write("\nCurrent Board Information: \n\n" + output)
+                    file.write("\n\n\nCurrent Board Information: \n" + output)
                 file.flush()
 
-    def write_to_file_move(coord_src, coord_dst):
+    def write_to_file_move(self, coord_src, coord_dst):
         with open('gametrace-f-5-100.txt', 'a') as file: 
             file.write(f"Move Played: {coord_src} + {coord_dst}\n")
             file.flush()
     
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
          with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Heuristic score: {score}\n")
-            file.write(f"Nodes scored this round: {curr_eval}\n")
+            file.write(f"\nHeuristic score: {score}\n")
+            file.write(f"\nNodes scored this round: {curr_eval}\n")
             file.write(f"Total nodes scored: {cumu_eval}\n")
             file.write(f"Score comparisons per depth (above leaf nodes):\n")
             for i in range(0, len(depth_eval)):
                 file.write("+ Level {} : {}\n".format(i, depth_eval[i]))
 
             if self.stats.total_seconds > 0:
-                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
+                file.write(f"\nEval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
 
-            file.write(f"Elapsed time: {elap_sec:0.1f}s")
+            file.write(f"\nElapsed time: {elap_sec:0.1f}s")
             file.flush()
     
     def to_string(self) -> str:
