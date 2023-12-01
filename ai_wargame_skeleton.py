@@ -339,7 +339,7 @@ class Game:
                 else:
                     output += f"{str(unit):^3} "
             output += "\n"
-        self.write_to_file(output)
+        self.write_to_file_board(output)
         return output
 
     def __str__(self) -> str:
