@@ -238,7 +238,7 @@ def minimax_pruning (current_player, current_node, maxdepth, current_depth, a, b
             b = min(b, best_value)
             if b <= a:
                 #print("Did min pruning.")
-                break;
+                break
         
         eval_depth[current_node.myDepth] = eval_depth[current_node.myDepth] + 1
         return best_value

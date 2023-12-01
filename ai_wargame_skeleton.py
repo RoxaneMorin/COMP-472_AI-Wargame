@@ -227,9 +227,8 @@ class Game:
             if self.is_valid_move(coords, wordy):
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: self.write_to_file_move(coords.src, coords.dst)
                 self.clone()  #clone the board
-
                 return (True,"Move successful ({}).".format(coords.to_string()))
             
             #perform attack actione2 e1
@@ -277,7 +276,7 @@ class Game:
         self.next_player = self.next_player.next()
         self.turns_played += 1
 
-    def write_to_file(self,output):
+    def write_to_file_board(self,output):
         if self.is_finished():
             with open('gametrace-f-5-100.txt', 'a') as file:  
                 winner = self.has_winner()
@@ -292,10 +291,12 @@ class Game:
                     file.write("Initial Board Configuration: \n\n" + output)
                 else:
                     file.write("\nCurrent Board Information: \n\n" + output)
-                    #file.write(f"Heuristic score: {myScore}")
-                    file.write(f"Move played: {self.coords.to_string()}")
                 file.flush()
 
+    def write_to_fille_move(coord_src, coord_dst):
+        with open('gametrace-f-5-100.txt', 'a') as file: 
+            file.write(f"Move Played: {coord_src} + {coord_dst}\n")
+            file.flush()
     
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
          with open('gametrace-f-5-100.txt', 'a') as file: 
@@ -519,7 +520,7 @@ class Game:
             print(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
-        print_to_file_stats(score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
+        self.write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
         return move
 
     def post_move_to_broker(self, move: CoordPair):
