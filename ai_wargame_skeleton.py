@@ -12,7 +12,6 @@ from ai_wargame_coords import Coord, CoordPair
 import ai_wargame_theActualAI
 from copy import deepcopy
 
-
 import random
 from pip._vendor import requests
 
@@ -35,8 +34,19 @@ class Game:
     _defender_has_ai : bool = True
 
     #create file to write output game trace
-    file = open("gametrace-f-5-100.txt", 'w')
-
+    file = None
+    filename = ""
+    #file = open("gametrace-f-5-100.txt", 'w')
+    
+    def create_file(self):
+        # Compose the file name.
+        current_time = datetime.now().time()
+        time_string = current_time.strftime("%H_%M_%S")
+        
+        filename = "gametrace-f-{}-{}-{}-{}.txt".format(self.options.heuristic_function, self.options.max_depth, self.options.max_turns, time_string)
+        #create file to write output game trace
+        return open(filename, 'w'), filename
+    
     def __post_init__(self):
         """Automatically called after class init to set up the default board state."""
         dim = self.options.dim
@@ -54,14 +64,13 @@ class Game:
         self.set(Coord(md-2,md),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md,md-2),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md-1,md-1),Unit(player=Player.Attacker,type=UnitType.Firewall))
-
+        
     def clone(self) -> Game:
         # Make a new copy of a game for minimax recursion.
         # Shallow copy of everything except the board (options and stats are shared).
         new = copy.copy(self)
         new.board = copy.deepcopy(self.board)
         return new
-
 
     def is_empty(self, coord : Coord) -> bool:
         """Check if contents of a board cell of the game at Coord is empty (must be valid coord)."""
@@ -245,8 +254,7 @@ class Game:
                 #fix attacker & defender HP
                 self.mod_health(coords.src, -d_to_a)
                 self.mod_health(coords.dst, -a_to_d)
-                if wordy: 
-                    self.write_to_file_move(coords.src, coords.dst)
+                if wordy: self.write_to_file_move(coords.src, coords.dst)
                 return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
@@ -259,8 +267,7 @@ class Game:
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
-                if wordy: 
-                    self.write_to_file_move(coords.src, coords.dst)
+                if wordy: self.write_to_file_move(coords.src, coords.dst)
                 return (True,"Repair successful ({}).".format(coords.to_string()))
             
             # perform self destruct
@@ -529,6 +536,9 @@ class Game:
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
         self.write_to_file_stats(score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
+        
+        self.write_to_file_move(move.src, move.dst)
+        
         return move
 
     def post_move_to_broker(self, move: CoordPair):
@@ -626,6 +636,7 @@ def main():
 
     # create a new game
     game = Game(options=options)
+    game.file, game.filename = game.create_file()
 
     # the main game loop
     while True:
@@ -642,13 +653,15 @@ def main():
         elif game.options.game_type == GameType.CompVsDefender and game.next_player == Player.Defender:
             game.human_turn()
         else:
-            player = game.next_player # Not sure this is actually being used.
+            #player = game.next_player # Not sure this is actually being used.
             move = game.computer_turn()
             if move is not None:
                 game.post_move_to_broker(move)
             else:
                 print("Computer doesn't know what to do!!!")
                 exit(1)
+
+    game.file.close()
 
 
 ##############################################################################################################
