@@ -281,9 +281,9 @@ class Game:
             with open('gametrace-f-5-100.txt', 'a') as file:  
                 winner = self.has_winner()
                 if winner:
-                    file.write(winner.name + " wins in " + str(self.turns_played) + " moves!")
+                    file.write("\n\n" + winner.name + " wins in " + str(self.turns_played) + " moves!")
                 else:
-                    file.write("The game ended in a draw after " + str(self.turns_played) + " moves.")
+                    file.write("\n\nThe game ended in a draw after " + str(self.turns_played) + " moves.")
                 file.flush()
         else:
             with open('gametrace-f-5-100.txt', 'a') as file: 
