@@ -244,7 +244,7 @@ class Game:
                 #fix attacker & defender HP
                 self.mod_health(coords.src, -d_to_a)
                 self.mod_health(coords.dst, -a_to_d)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: self.file.write("\n\nMove played: " + str(coords.src) + " " + str(coords.dst))
                 return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
@@ -257,7 +257,7 @@ class Game:
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: self.file.write("\n\nMove played: " + str(coords.src) + " " + str(coords.dst))
                 return (True,"Repair successful ({}).".format(coords.to_string()))
             
             # perform self destruct
@@ -295,7 +295,7 @@ class Game:
 
     def write_to_file_move(self, coord_src, coord_dst):
         with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Move Played: {coord_src} + {coord_dst}\n")
+            file.write(f"\n\nMove played: {coord_src} + {coord_dst}\n")
             file.flush()
     
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
