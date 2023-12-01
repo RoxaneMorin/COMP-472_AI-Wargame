@@ -285,50 +285,51 @@ class Game:
         self.next_player = self.next_player.next()
         self.turns_played += 1
 
-    def write_to_file_board(self,output):
-        if self.is_finished():
-            with open(self.filename, 'a') as file:  
-                winner = self.has_winner()
-                if winner:
-                    file.write("\n\n" + winner.name + " wins in " + str(self.turns_played) + " moves!")
-                else:
-                    file.write("\n\nThe game ended in a draw after " + str(self.turns_played) + " moves.")
-                file.flush()
-        else:
-            with open(self.filename, 'a') as file: 
-                if self.turns_played == 0:
-                    file.write("Initial Board Configuration: \n" + output)
-                else:
-                    file.write("\n\n\nCurrent Board Information: \n" + output)
-                file.flush()
+    def write_to_file_board(self, output):
+        with open(self.filename, 'a' if self.turns_played > 0 else 'w') as file: 
+            if self.turns_played == 0:
+                file.write("Initial Board Configuration: " + output)
+            else:
+                # For every move except the last move, include player information
+                file.write("\nCurrent Board Information: " + output)
+                file.write(f"\nNext player: {self.next_player.name}\n")
+                file.write(f"Turns played: {self.turns_played}\n")
+                file.write(f"Remaining turns: {self.options.max_turns - self.turns_played}\n")
+
+                if self.is_finished():
+                    winner = self.has_winner()
+                    if winner:
+                        file.write(winner.name + " wins in " + str(self.turns_played) + " moves!\n")
+                    else:
+                        file.write("The game ended in a draw after " + str(self.turns_played) + " moves.\n")
+                    file.write("\nFinal Board State:\n" + output)
+            file.flush()
 
     def write_to_file_move(self, coord_src, coord_dst):
         with open(self.filename, 'a') as file: 
-            file.write(f"\n\nMove played: {coord_src} to {coord_dst}")
+            file.write(f"Move Played: {coord_src.to_string()} + {coord_dst.to_string()}\n")
             file.flush()
-    
+        
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
-         with open(self.filename, 'a') as file: 
-            file.write(f"\nHeuristic score: {score}\n")
-            file.write(f"\nNodes scored this round: {curr_eval}\n")
+        with open(self.filename, 'a') as file: 
+            file.write(f"\n\nHeuristic score: {score}\n")
+            file.write(f"Nodes scored this round: {curr_eval}\n")
             file.write(f"Total nodes scored: {cumu_eval}\n")
             file.write(f"Score comparisons per depth (above leaf nodes):\n")
+
             for i in range(0, len(depth_eval)):
                 file.write("+ Level {} : {}\n".format(i, depth_eval[i]))
 
             if self.stats.total_seconds > 0:
-                file.write(f"\nEval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
+                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s\n")
 
-            file.write(f"\nElapsed time: {elap_sec:0.1f}s")
+            file.write(f"Elapsed time: {elap_sec:0.1f}s\n")
             file.flush()
     
     def to_string(self) -> str:
         """Pretty text representation of the game."""
         dim = self.options.dim
         output = ""
-        output += f"\nNext player: {self.next_player.name}\n"
-        output += f"Turns played: {self.turns_played}\n"
-        output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         coord = Coord()
         output += "\n   "
         for col in range(dim):
@@ -348,7 +349,11 @@ class Game:
                 else:
                     output += f"{str(unit):^3} "
             output += "\n"
+        #pass board output to be written to file
         self.write_to_file_board(output)
+        output += f"\nNext player: {self.next_player.name}\n"
+        output += f"Turns played: {self.turns_played}\n"
+        output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         return output
 
     def __str__(self) -> str:
