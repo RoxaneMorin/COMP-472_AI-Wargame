@@ -53,7 +53,7 @@ class Options:
     game_type : GameType = GameType.AttackerVsDefender
     alpha_beta : bool = True
     max_turns : int | None = 100
-    randomize_moves : bool = True
+    randomize_moves : bool = False
     broker : str | None = None
     heuristic_function : HeurType = HeurType.e0
 
