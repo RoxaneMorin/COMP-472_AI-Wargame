@@ -1,324 +1,528 @@
 
-
-Move Played: C4 B4
-
-Move Played: B1 B2
-
-Move Played: E2 E1
-
-Move Played: B2 B3
-
-Move Played: D4 C4
-
-Move Played: A2 B2
-
-Move Played: D3 C3
-
-Move Played: B3 B4
-
-Move Played: C3 B3
-
-Move Played: B4 A4
-
-Move Played: A1 A2
-
-Move Played: C3 C2
-
-Move Played: A2 A3
-
-Move Played: A4 A3
-
-Move Played: C0 D0
-
-Move Played: A4 A3
-
-Move Played: B0 B1
-
-Move Played: A4 A3
-
-Move Played: B1 B2
-
-Move Played: A4 A3
-
-Move Played: D0 D1
-
-Move Played: B1 B0
-
-Move Played: E3 E2
-
-Move Played: D1 E1
-
-Move Played: C4 C3
-
-Move Played: C3 C4
-
-Move Played: D1 E1
-
-Move Played: C4 B4
-
-Move Played: D1 E1
-
-Move Played: E4 D4
-
-Move Played: D1 E1
-
-Move Played: B4 B3
-
-Move Played: A0 B0
-
-Move Played: B3 A3
-
-Move Played: A0 B0
-
-Move Played: E2 D2
-
-Move Played: B0 B1
-
-Move Played: D2 C2
-
-Move Played: B1 B2
-
-Move Played: C2 B2
-
-Move Played: B2 B3
-
-Move Played: D4 C4
-
-Move Played: D1 E1
-
-Move Played: B3 C3
-
-Move Played: C4 C3
 Current Board Information: 
 
-Next player: Defender
-Turns played: 1
-Remaining turns: 99
-
-    0   1   2   3   4  
-A: dA9 dT9 dF9  .   .  
-B: dT9 dP9  .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .   .   .  aF9 aV9 
-E:  .   .  aP9 aV9 aA9 
-
-Current Board Information: 
 
 Next player: Attacker
-Turns played: 2
-Remaining turns: 98
+Turns played: 28
+Remaining turns: 72
 
     0   1   2   3   4  
-A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .  aP9 
-C: dF9 dP9  .   .   .  
-D:  .   .   .  aF9 aV9 
-E:  .   .  aP9 aV9 aA9 
+A:  .  dA9 dF7 aP7  .  
+B:  .   .  dT9  .   .  
+C: dT7  .  aV4 aF9  .  
+D: dF6  .   .  aV9  .  
+E:  .   .   .   .  aA9 
+Turns played: 28
+Remaining turns: 72
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=893.297599)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 3
-Remaining turns: 97
+Turns played: 29
+Remaining turns: 71
 
     0   1   2   3   4  
-A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .  aP9 
-C: dF9 dP9  .   .   .  
-D:  .   .   .  aF9 aV9 
-E:  .  aP9  .  aV9 aA9 
+A:  .  dA9 dF7 aP7  .  
+B:  .   .  dT9  .   .  
+C: dT7 aV4  .  aF9  .  
+D: dF6  .   .  aV9  .  
+E:  .   .   .   .  aA9 
+Turns played: 29
+Remaining turns: 71
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=940.6188119999999)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 4
-Remaining turns: 96
+Turns played: 30
+Remaining turns: 70
 
     0   1   2   3   4  
-A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP9  .  aF9 aV9 
-E:  .  aP9  .  aV9 aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT9  .   .  
+C: dT7 aV4  .  aF9  .  
+D: dF6  .   .  aV9  .  
+E:  .   .   .   .  aA9 
+Turns played: 30
+Remaining turns: 70
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=990.5562339999999)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 5
-Remaining turns: 95
+Turns played: 31
+Remaining turns: 69
 
     0   1   2   3   4  
-A: dA9 dT9 dF9  .   .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP9  .  aF9 aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT9  .   .  
+C: dT7 aV4  .  aF9  .  
+D: dF6  .   .  aV9 aA9 
+E:  .   .   .   .   .  
+Turns played: 31
+Remaining turns: 69
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1035.79214)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 6
-Remaining turns: 94
+Turns played: 32
+Remaining turns: 68
 
     0   1   2   3   4  
-A: dA9 dT9  .  dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP9  .  aF9 aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT9  .   .  
+C: dT1  .   .  aF9  .  
+D: dF6  .   .  aV9 aA9 
+E:  .   .   .   .   .  
+Turns played: 32
+Remaining turns: 68
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1064.540408)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 7
-Remaining turns: 93
+Turns played: 33
+Remaining turns: 67
 
     0   1   2   3   4  
-A: dA9 dT9  .  dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP9 aF9  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT9 aF9  .  
+C: dT1  .   .   .   .  
+D: dF6  .   .  aV9 aA9 
+E:  .   .   .   .   .  
+Turns played: 33
+Remaining turns: 67
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1073.491735)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 8
-Remaining turns: 92
+Turns played: 34
+Remaining turns: 66
 
     0   1   2   3   4  
-A: dA9  .  dT9 dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP9 aF9  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT8 aF8  .  
+C: dT1  .   .   .   .  
+D: dF6  .   .  aV9 aA9 
+E:  .   .   .   .   .  
+Turns played: 34
+Remaining turns: 66
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1089.7777580000002)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 9
-Remaining turns: 91
+Turns played: 35
+Remaining turns: 65
 
     0   1   2   3   4  
-A: dA9  .  dT9 dF9  .  
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP8 aF8  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT8 aF8  .  
+C: dT1  .   .   .   .  
+D: dF6  .  aV9  .  aA9 
+E:  .   .   .   .   .  
+Turns played: 35
+Remaining turns: 65
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1099.1997420000002)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 10
-Remaining turns: 90
+Turns played: 36
+Remaining turns: 64
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF9 
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP8 aF8  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT8 aF8  .  
+C:  .  dT1  .   .   .  
+D: dF6  .  aV9  .  aA9 
+E:  .   .   .   .   .  
+Turns played: 36
+Remaining turns: 64
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1137.9283910000001)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 11
-Remaining turns: 89
+Turns played: 37
+Remaining turns: 63
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF9 
-B: dT9  .   .   .  aP9 
-C: dF9  .   .   .   .  
-D:  .  dP7 aF7  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9 dT8 aF8  .  
+C:  .  dT1  .   .   .  
+D: dF6 aV9  .   .  aA9 
+E:  .   .   .   .   .  
+Turns played: 37
+Remaining turns: 63
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1149.919421)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 12
-Remaining turns: 88
+Turns played: 38
+Remaining turns: 62
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF8 
-B: dT9  .   .   .  aP8 
-C: dF9  .   .   .   .  
-D:  .  dP7 aF7  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9  .  aF8  .  
+C:  .  dT1 dT8  .   .  
+D: dF6 aV9  .   .  aA9 
+E:  .   .   .   .   .  
+Turns played: 38
+Remaining turns: 62
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1187.748926)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 13
-Remaining turns: 87
+Turns played: 39
+Remaining turns: 61
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF8 
-B: dT9  .   .   .  aP8 
-C: dF9  .   .   .   .  
-D:  .  dP6 aF6  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .  dT8  .   .  
+D: dF6 aV3  .   .  aA9 
+E:  .   .   .   .   .  
+Turns played: 39
+Remaining turns: 61
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1210.031561)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 14
-Remaining turns: 86
+Turns played: 40
+Remaining turns: 60
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF7 
-B: dT9  .   .   .  aP7 
-C: dF9  .   .   .   .  
-D:  .  dP6 aF6  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6 aV3 dT8  .  aA9 
+E:  .   .   .   .   .  
+Turns played: 40
+Remaining turns: 60
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1220.74079)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 15
-Remaining turns: 85
+Turns played: 41
+Remaining turns: 59
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF7 
-B: dT9  .   .   .  aP7 
-C: dF9  .   .   .   .  
-D:  .  dP5 aF5  .  aV9 
-E:  .  aP9 aV9  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6 aV3 dT8 aA9  .  
+E:  .   .   .   .   .  
+Turns played: 41
+Remaining turns: 59
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1234.2869640000001)
 Current Board Information: 
+
 
 Next player: Attacker
-Turns played: 16
-Remaining turns: 84
+Turns played: 42
+Remaining turns: 58
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF7 
-B: dT9  .   .   .  aP7 
-C: dF7  .   .   .   .  
-D:  .   .  aF3  .  aV9 
-E:  .  aP7 aV7  .  aA9 
+A:  .   .  dF7 aP7  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6  .  dT2 aA9  .  
+E:  .   .   .   .   .  
+Turns played: 42
+Remaining turns: 58
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1245.718035)
 Current Board Information: 
+
 
 Next player: Defender
-Turns played: 17
-Remaining turns: 83
+Turns played: 43
+Remaining turns: 57
 
     0   1   2   3   4  
-A: dA9  .  dT9  .  dF7 
-B: dT9  .   .   .  aP7 
-C: dF7  .   .   .   .  
-D:  .   .  aF3  .  aV9 
-E: aP7  .  aV7  .  aA9 
+A:  .   .  dF6 aP6  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6  .  dT2 aA9  .  
+E:  .   .   .   .   .  
+Turns played: 43
+Remaining turns: 57
 
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1247.1133960000002)
 Current Board Information: 
 
+
 Next player: Attacker
-Turns played: 18
-Remaining turns: 82
+Turns played: 44
+Remaining turns: 56
 
     0   1   2   3   4  
-A: dA9  .   .  dT9 dF7 
-B: dT9  .   .   .  aP7 
-C: dF7  .   .   .   .  
-D:  .   .  aF3  .  aV9 
-E: aP7  .  aV7  .  aA9 
+A:  .   .  dF6 aP6  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6  .   .  aA9  .  
+E:  .   .  dT2  .   .  
+Turns played: 44
+Remaining turns: 56
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1256.941878)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 45
+Remaining turns: 55
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .  dA9  .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6  .  aA9  .   .  
+E:  .   .  dT2  .   .  
+Turns played: 45
+Remaining turns: 55
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1262.264543)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 46
+Remaining turns: 54
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .   .   .  aF8  .  
+C:  .  dA9  .   .   .  
+D: dF6  .  aA9  .   .  
+E:  .   .  dT2  .   .  
+Turns played: 46
+Remaining turns: 54
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1268.527329)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 47
+Remaining turns: 53
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .   .   .  aF8  .  
+C:  .  dA9  .   .   .  
+D: dF6  .  aA8  .   .  
+E:  .   .   .   .   .  
+Turns played: 47
+Remaining turns: 53
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1269.680576)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 48
+Remaining turns: 52
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .   .   .  aF8  .  
+C:  .   .   .   .   .  
+D: dF6 dA9 aA8  .   .  
+E:  .   .   .   .   .  
+Turns played: 48
+Remaining turns: 52
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1270.493107)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 49
+Remaining turns: 51
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D: dF6 dA9 aA8  .   .  
+E:  .   .   .   .   .  
+Turns played: 49
+Remaining turns: 51
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1270.899652)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 50
+Remaining turns: 50
+
+    0   1   2   3   4  
+A:  .   .  dF6 aP6  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA9 aA8  .   .  
+E: dF6  .   .   .   .  
+Turns played: 50
+Remaining turns: 50
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1271.5535630000002)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 51
+Remaining turns: 49
+
+    0   1   2   3   4  
+A:  .   .  dF5 aP5  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA9 aA8  .   .  
+E: dF6  .   .   .   .  
+Turns played: 51
+Remaining turns: 49
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1271.9634260000003)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 52
+Remaining turns: 48
+
+    0   1   2   3   4  
+A:  .   .  dF5 aP5  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA6 aA5  .   .  
+E: dF6  .   .   .   .  
+Turns played: 52
+Remaining turns: 48
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1272.6458210000003)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 53
+Remaining turns: 47
+
+    0   1   2   3   4  
+A:  .   .  dF4 aP4  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA6 aA5  .   .  
+E: dF6  .   .   .   .  
+Turns played: 53
+Remaining turns: 47
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1273.1491570000003)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 54
+Remaining turns: 46
+
+    0   1   2   3   4  
+A:  .   .  dF4 aP4  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA6 aA5  .   .  
+E:  .  dF6  .   .   .  
+Turns played: 54
+Remaining turns: 46
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1273.7777560000002)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 55
+Remaining turns: 45
+
+    0   1   2   3   4  
+A:  .   .  dF4 aP4  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA3 aA2  .   .  
+E:  .  dF6  .   .   .  
+Turns played: 55
+Remaining turns: 45
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1275.621047)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 56
+Remaining turns: 44
+
+    0   1   2   3   4  
+A:  .   .  dF4 aP4  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA3 aA2  .   .  
+E:  .   .  dF6  .   .  
+Turns played: 56
+Remaining turns: 44
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1276.069078)
+Current Board Information: 
+
+
+Next player: Defender
+Turns played: 57
+Remaining turns: 43
+
+    0   1   2   3   4  
+A:  .   .  dF4 aP4  .  
+B:  .   .  aF8  .   .  
+C:  .   .   .   .   .  
+D:  .  dA3 aA1  .   .  
+E:  .   .  dF5  .   .  
+Turns played: 57
+Remaining turns: 43
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1276.782551)
+Current Board Information: 
+
+
+Next player: Attacker
+Turns played: 58
+Remaining turns: 42
+
+    0   1   2   3   4  
+A:  .   .  dF3 aP4  .  
+B:  .   .  aF7  .   .  
+C:  .   .   .   .   .  
+D:  .  dA3 aA1  .   .  
+E:  .   .  dF5  .   .  
+Turns played: 58
+Remaining turns: 42
+
+Heuristic score: Stats(evaluations_per_depth={}, total_seconds=1276.9211950000001)Defender wins in 59 moves!

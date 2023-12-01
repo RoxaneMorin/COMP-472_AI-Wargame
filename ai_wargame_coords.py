@@ -15,6 +15,10 @@ class Coord:
     row : int = 0
     col : int = 0
 
+    def __init__(self, row: int = 0, col: int = 0):
+        self.row = row
+        self.col = col
+
     def col_string(self) -> str:
         """Text representation of this Coord's column."""
         coord_char = '?'

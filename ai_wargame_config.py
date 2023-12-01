@@ -25,7 +25,7 @@ class Player(Enum):
 
     def next(self) -> Player:
         """The next (other) player."""
-        if self is Player.Attacker:
+        if self == Player.Attacker:
             return Player.Defender
         else:
             return Player.Attacker

@@ -292,9 +292,26 @@ class Game:
                     file.write("Initial Board Configuration: \n\n" + output)
                 else:
                     file.write("\nCurrent Board Information: \n\n" + output)
+                    #file.write(f"Heuristic score: {myScore}")
+                    file.write(f"Move played: {self.coords.to_string()}")
                 file.flush()
-        
 
+    
+    def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
+         with open('gametrace-f-5-100.txt', 'a') as file: 
+            file.write(f"Heuristic score: {score}\n")
+            file.write(f"Nodes scored this round: {curr_eval}\n")
+            file.write(f"Total nodes scored: {cumu_eval}\n")
+            file.write(f"Score comparisons per depth (above leaf nodes):\n")
+            for i in range(0, len(depth_eval)):
+                file.write("+ Level {} : {}".format(i, depth_eval[i]))
+
+            if self.stats.total_seconds > 0:
+                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
+
+            file.write(f"Elapsed time: {elap_sec:0.1f}s")
+            file.flush()
+    
     def to_string(self) -> str:
         """Pretty text representation of the game."""
         dim = self.options.dim
@@ -502,6 +519,7 @@ class Game:
             print(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
+        print_to_file_stats(score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
         return move
 
     def post_move_to_broker(self, move: CoordPair):
