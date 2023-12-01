@@ -293,7 +293,7 @@ class Game:
                     file.write("\nCurrent Board Information: \n\n" + output)
                 file.flush()
 
-    def write_to_fille_move(coord_src, coord_dst):
+    def write_to_file_move(coord_src, coord_dst):
         with open('gametrace-f-5-100.txt', 'a') as file: 
             file.write(f"Move Played: {coord_src} + {coord_dst}\n")
             file.flush()
@@ -520,7 +520,7 @@ class Game:
             print(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
-        self.write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
+        self.write_to_file_stats(score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
         return move
 
     def post_move_to_broker(self, move: CoordPair):
