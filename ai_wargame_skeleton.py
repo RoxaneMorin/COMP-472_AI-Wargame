@@ -12,7 +12,6 @@ from ai_wargame_coords import Coord, CoordPair
 import ai_wargame_theActualAI
 from copy import deepcopy
 
-
 import random
 from pip._vendor import requests
 
@@ -35,8 +34,19 @@ class Game:
     _defender_has_ai : bool = True
 
     #create file to write output game trace
-    file = open("gametrace-f-5-100.txt", 'w')
-
+    file = None
+    filename = ""
+    #file = open("gametrace-f-5-100.txt", 'w')
+    
+    def create_file(self):
+        # Compose the file name.
+        current_time = datetime.now().time()
+        time_string = current_time.strftime("%H_%M_%S")
+        
+        filename = "gametrace-f-{}-{}-{}-{}.txt".format(self.options.heuristic_function, self.options.max_depth, self.options.max_turns, time_string)
+        #create file to write output game trace
+        return open(filename, 'w'), filename
+    
     def __post_init__(self):
         """Automatically called after class init to set up the default board state."""
         dim = self.options.dim
@@ -54,14 +64,13 @@ class Game:
         self.set(Coord(md-2,md),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md,md-2),Unit(player=Player.Attacker,type=UnitType.Program))
         self.set(Coord(md-1,md-1),Unit(player=Player.Attacker,type=UnitType.Firewall))
-
+        
     def clone(self) -> Game:
         # Make a new copy of a game for minimax recursion.
         # Shallow copy of everything except the board (options and stats are shared).
         new = copy.copy(self)
         new.board = copy.deepcopy(self.board)
         return new
-
 
     def is_empty(self, coord : Coord) -> bool:
         """Check if contents of a board cell of the game at Coord is empty (must be valid coord)."""
@@ -227,7 +236,7 @@ class Game:
             if self.is_valid_move(coords, wordy):
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
-                if wordy: self.write_to_file_move(coords.src, coords.dst)
+                #if wordy: self.write_to_file_move(coords.src, coords.dst)
                 self.clone()  #clone the board
                 return (True,"Move successful ({}).".format(coords.to_string()))
             
@@ -244,7 +253,7 @@ class Game:
                 #fix attacker & defender HP
                 self.mod_health(coords.src, -d_to_a)
                 self.mod_health(coords.dst, -a_to_d)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                #if wordy: self.file.write("\n\nMove played: " + str(coords.src) + " " + str(coords.dst))
                 return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
@@ -257,7 +266,7 @@ class Game:
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                #if wordy: self.file.write("\n\nMove played: " + str(coords.src) + " " + str(coords.dst))
                 return (True,"Repair successful ({}).".format(coords.to_string()))
             
             # perform self destruct
@@ -278,39 +287,39 @@ class Game:
 
     def write_to_file_board(self,output):
         if self.is_finished():
-            with open('gametrace-f-5-100.txt', 'a') as file:  
+            with open(self.filename, 'a') as file:  
                 winner = self.has_winner()
                 if winner:
-                    file.write(winner.name + " wins in " + str(self.turns_played) + " moves!")
+                    file.write("\n\n" + winner.name + " wins in " + str(self.turns_played) + " moves!")
                 else:
-                    file.write("The game ended in a draw after " + str(self.turns_played) + " moves.")
+                    file.write("\n\nThe game ended in a draw after " + str(self.turns_played) + " moves.")
                 file.flush()
         else:
-            with open('gametrace-f-5-100.txt', 'a') as file: 
+            with open(self.filename, 'a') as file: 
                 if self.turns_played == 0:
-                    file.write("Initial Board Configuration: \n\n" + output)
+                    file.write("Initial Board Configuration: \n" + output)
                 else:
-                    file.write("\nCurrent Board Information: \n\n" + output)
+                    file.write("\n\n\nCurrent Board Information: \n" + output)
                 file.flush()
 
-    def write_to_file_move(coord_src, coord_dst):
-        with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Move Played: {coord_src} + {coord_dst}\n")
+    def write_to_file_move(self, coord_src, coord_dst):
+        with open(self.filename, 'a') as file: 
+            file.write(f"\n\nMove played: {coord_src} to {coord_dst}")
             file.flush()
     
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
-         with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Heuristic score: {score}\n")
-            file.write(f"Nodes scored this round: {curr_eval}\n")
+         with open(self.filename, 'a') as file: 
+            file.write(f"\nHeuristic score: {score}\n")
+            file.write(f"\nNodes scored this round: {curr_eval}\n")
             file.write(f"Total nodes scored: {cumu_eval}\n")
             file.write(f"Score comparisons per depth (above leaf nodes):\n")
             for i in range(0, len(depth_eval)):
                 file.write("+ Level {} : {}\n".format(i, depth_eval[i]))
 
             if self.stats.total_seconds > 0:
-                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
+                file.write(f"\nEval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
 
-            file.write(f"Elapsed time: {elap_sec:0.1f}s")
+            file.write(f"\nElapsed time: {elap_sec:0.1f}s")
             file.flush()
     
     def to_string(self) -> str:
@@ -521,6 +530,9 @@ class Game:
             
         print(f"Elapsed time: {elapsed_seconds:0.1f}s")
         self.write_to_file_stats(score, curr_eval, cumu_eval, depth_eval, elapsed_seconds)
+        
+        self.write_to_file_move(move.src, move.dst)
+        
         return move
 
     def post_move_to_broker(self, move: CoordPair):
@@ -618,6 +630,7 @@ def main():
 
     # create a new game
     game = Game(options=options)
+    game.file, game.filename = game.create_file()
 
     # the main game loop
     while True:
@@ -634,13 +647,15 @@ def main():
         elif game.options.game_type == GameType.CompVsDefender and game.next_player == Player.Defender:
             game.human_turn()
         else:
-            player = game.next_player # Not sure this is actually being used.
+            #player = game.next_player # Not sure this is actually being used.
             move = game.computer_turn()
             if move is not None:
                 game.post_move_to_broker(move)
             else:
                 print("Computer doesn't know what to do!!!")
                 exit(1)
+
+    game.file.close()
 
 
 ##############################################################################################################
