@@ -227,7 +227,8 @@ class Game:
             if self.is_valid_move(coords, wordy):
                 self.set(coords.dst,self.get(coords.src))
                 self.set(coords.src,None)
-                if wordy: self.write_to_file_move(coords.src, coords.dst)
+                if wordy: 
+                    self.write_to_file_move(coords.src, coords.dst)
                 self.clone()  #clone the board
                 return (True,"Move successful ({}).".format(coords.to_string()))
             
@@ -244,7 +245,8 @@ class Game:
                 #fix attacker & defender HP
                 self.mod_health(coords.src, -d_to_a)
                 self.mod_health(coords.dst, -a_to_d)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: 
+                    self.write_to_file_move(coords.src, coords.dst)
                 return (True,"Attack successful ({}).".format(coords.to_string()))
             
             #perform repair action
@@ -257,7 +259,8 @@ class Game:
                 
                 #fix target HP
                 target.mod_health(+heal_amount)
-                if wordy: self.file.write("\n\nMove Played: " + str(coords.src) + " " + str(coords.dst))
+                if wordy: 
+                    self.write_to_file_move(coords.src, coords.dst)
                 return (True,"Repair successful ({}).".format(coords.to_string()))
             
             # perform self destruct
@@ -276,31 +279,34 @@ class Game:
         self.next_player = self.next_player.next()
         self.turns_played += 1
 
-    def write_to_file_board(self,output):
-        if self.is_finished():
-            with open('gametrace-f-5-100.txt', 'a') as file:  
-                winner = self.has_winner()
-                if winner:
-                    file.write(winner.name + " wins in " + str(self.turns_played) + " moves!")
-                else:
-                    file.write("The game ended in a draw after " + str(self.turns_played) + " moves.")
-                file.flush()
-        else:
-            with open('gametrace-f-5-100.txt', 'a') as file: 
-                if self.turns_played == 0:
-                    file.write("Initial Board Configuration: \n\n" + output)
-                else:
-                    file.write("\nCurrent Board Information: \n\n" + output)
-                file.flush()
+    def write_to_file_board(self, output):
+        with open('gametrace-f-5-100.txt', 'a' if self.turns_played > 0 else 'w') as file:
+            if self.turns_played == 0:
+                file.write("Initial Board Configuration: " + output)
+            else:
+                # For every move except the last move, include player information
+                file.write("\nCurrent Board Information: " + output)
+                file.write(f"\nNext player: {self.next_player.name}\n")
+                file.write(f"Turns played: {self.turns_played}\n")
+                file.write(f"Remaining turns: {self.options.max_turns - self.turns_played}\n")
 
-    def write_to_file_move(coord_src, coord_dst):
+                if self.is_finished():
+                    winner = self.has_winner()
+                    if winner:
+                        file.write(winner.name + " wins in " + str(self.turns_played) + " moves!\n")
+                    else:
+                        file.write("The game ended in a draw after " + str(self.turns_played) + " moves.\n")
+                    file.write("\nFinal Board State:\n" + output)
+            file.flush()
+
+    def write_to_file_move(self, coord_src, coord_dst):
         with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Move Played: {coord_src} + {coord_dst}\n")
+            file.write(f"Move Played: {coord_src.to_string()} + {coord_dst.to_string()}\n")
             file.flush()
     
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
          with open('gametrace-f-5-100.txt', 'a') as file: 
-            file.write(f"Heuristic score: {score}\n")
+            file.write(f"\n\nHeuristic score: {score}\n")
             file.write(f"Nodes scored this round: {curr_eval}\n")
             file.write(f"Total nodes scored: {cumu_eval}\n")
             file.write(f"Score comparisons per depth (above leaf nodes):\n")
@@ -308,20 +314,17 @@ class Game:
                 file.write("+ Level {} : {}\n".format(i, depth_eval[i]))
 
             if self.stats.total_seconds > 0:
-                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s")
+                file.write(f"Eval perf.: {curr_eval/self.stats.total_seconds/1000:0.1f}k/s\n")
 
-            file.write(f"Elapsed time: {elap_sec:0.1f}s")
+            file.write(f"Elapsed time: {elap_sec:0.1f}s\n")
             file.flush()
     
     def to_string(self) -> str:
         """Pretty text representation of the game."""
         dim = self.options.dim
         output = ""
-        output += f"\nNext player: {self.next_player.name}\n"
-        output += f"Turns played: {self.turns_played}\n"
-        output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         coord = Coord()
-        output += "\n   "
+        output += "\n  "
         for col in range(dim):
             coord.col = col
             label = coord.col_string()
@@ -339,7 +342,12 @@ class Game:
                 else:
                     output += f"{str(unit):^3} "
             output += "\n"
+        #pass the board to function 
         self.write_to_file_board(output)
+
+        output += f"\nNext player: {self.next_player.name}\n"
+        output += f"Turns played: {self.turns_played}\n"
+        output += f"Remaining turns: {self.options.max_turns - self.turns_played}\n"
         return output
 
     def __str__(self) -> str:
@@ -582,7 +590,7 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--max_depth', type=int, help='maximum search depth')
     parser.add_argument('--max_time', type=float, help='maximum search time')
-    parser.add_argument('--game_type', type=str, default="manual", help='game type: auto|attacker|defender|manual')
+    parser.add_argument('--game_type', type=str, default="auto", help='game type: auto|attacker|defender|manual')
     parser.add_argument('--broker', type=str, help='play via a game broker')
     parser.add_argument('--heuristic_function', type=str, default="e0", help='heuristic functions: e0|e1|e2')
     args = parser.parse_args()
