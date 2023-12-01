@@ -654,7 +654,7 @@ def main():
             else:
                 print("Computer doesn't know what to do!!!")
                 exit(1)
-    
+
     game.file.close()
 
 
