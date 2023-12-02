@@ -288,10 +288,10 @@ class Game:
     def write_to_file_board(self, output):
         with open(self.filename, 'a' if self.turns_played > 0 else 'w') as file: 
             if self.turns_played == 0:
-                file.write("Initial Board Configuration: " + output)
+                file.write("\nInitial Board Configuration: \n" + output)
             else:
                 # For every move except the last move, include player information
-                file.write("\nCurrent Board Information: " + output)
+                file.write("\n\nCurrent Board Information: \n" + output)
                 file.write(f"\nNext player: {self.next_player.name}\n")
                 file.write(f"Turns played: {self.turns_played}\n")
                 file.write(f"Remaining turns: {self.options.max_turns - self.turns_played}\n")
@@ -302,17 +302,17 @@ class Game:
                         file.write(winner.name + " wins in " + str(self.turns_played) + " moves!\n")
                     else:
                         file.write("The game ended in a draw after " + str(self.turns_played) + " moves.\n")
-                    file.write("\nFinal Board State:\n" + output)
+                    #file.write("\nFinal Board State:\n" + output)
             file.flush()
 
     def write_to_file_move(self, coord_src, coord_dst):
         with open(self.filename, 'a') as file: 
-            file.write(f"Move Played: {coord_src.to_string()} + {coord_dst.to_string()}\n")
+            file.write(f"\nMove Played: {coord_src.to_string()} to {coord_dst.to_string()}\n")
             file.flush()
         
     def write_to_file_stats(self, score, curr_eval, cumu_eval, depth_eval, elap_sec):
         with open(self.filename, 'a') as file: 
-            file.write(f"\n\nHeuristic score: {score}\n")
+            file.write(f"\nHeuristic score: {score}\n")
             file.write(f"Nodes scored this round: {curr_eval}\n")
             file.write(f"Total nodes scored: {cumu_eval}\n")
             file.write(f"Score comparisons per depth (above leaf nodes):\n")

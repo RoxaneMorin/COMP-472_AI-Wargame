@@ -1,0 +1,1544 @@
+
+Initial Board Configuration: 
+
+    0   1   2   3   4  
+A: dA9 dT9 dF9  .   .  
+B: dT9 dP9  .   .   .  
+C: dF9  .   .   .  aP9 
+D:  .   .   .  aF9 aV9 
+E:  .   .  aP9 aV9 aA9 
+
+Heuristic score: 61.200000000000045
+Nodes scored this round: 2969
+Total nodes scored: 2969
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 126
++ Level 2 : 407
+Eval perf.: 1.6k/s
+Elapsed time: 1.9s
+
+Move Played: C4 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 dF9  .   .  
+B: dT9 dP9  .   .  aP9 
+C: dF9  .   .   .   .  
+D:  .   .   .  aF9 aV9 
+E:  .   .  aP9 aV9 aA9 
+
+Next player: Defender
+Turns played: 1
+Remaining turns: 99
+
+Heuristic score: 59.60000000000002
+Nodes scored this round: 4015
+Total nodes scored: 6984
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 138
++ Level 2 : 442
+Eval perf.: 1.0k/s
+Elapsed time: 2.2s
+
+Move Played: A2 to B2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9 dF9  .  aP9 
+C: dF9  .   .   .   .  
+D:  .   .   .  aF9 aV9 
+E:  .   .  aP9 aV9 aA9 
+
+Next player: Attacker
+Turns played: 2
+Remaining turns: 98
+
+Heuristic score: 61.200000000000045
+Nodes scored this round: 3503
+Total nodes scored: 10487
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 146
++ Level 2 : 430
+Eval perf.: 0.6k/s
+Elapsed time: 2.2s
+
+Move Played: D3 to C3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9 dF9  .  aP9 
+C: dF9  .   .  aF9  .  
+D:  .   .   .   .  aV9 
+E:  .   .  aP9 aV9 aA9 
+
+Next player: Defender
+Turns played: 3
+Remaining turns: 97
+
+Heuristic score: 58.0
+Nodes scored this round: 4003
+Total nodes scored: 14490
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 139
++ Level 2 : 487
+Eval perf.: 0.5k/s
+Elapsed time: 2.4s
+
+Move Played: B2 to B3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF9 aP9 
+C: dF9  .   .  aF9  .  
+D:  .   .   .   .  aV9 
+E:  .   .  aP9 aV9 aA9 
+
+Next player: Attacker
+Turns played: 4
+Remaining turns: 96
+
+Heuristic score: 59.60000000000002
+Nodes scored this round: 4516
+Total nodes scored: 19006
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 142
++ Level 2 : 601
+Eval perf.: 0.4k/s
+Elapsed time: 2.7s
+
+Move Played: E2 to E1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF9 aP9 
+C: dF9  .   .  aF9  .  
+D:  .   .   .   .  aV9 
+E:  .  aP9  .  aV9 aA9 
+
+Next player: Defender
+Turns played: 5
+Remaining turns: 95
+
+Heuristic score: 56.400000000000034
+Nodes scored this round: 4871
+Total nodes scored: 23877
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 157
++ Level 2 : 589
+Eval perf.: 0.3k/s
+Elapsed time: 2.8s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF8 aP8 
+C: dF9  .   .  aF9  .  
+D:  .   .   .   .  aV9 
+E:  .  aP9  .  aV9 aA9 
+
+Next player: Attacker
+Turns played: 6
+Remaining turns: 94
+
+Heuristic score: 58.0
+Nodes scored this round: 4915
+Total nodes scored: 28792
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 13
++ Level 1 : 161
++ Level 2 : 672
+Eval perf.: 0.3k/s
+Elapsed time: 3.2s
+
+Move Played: E3 to D3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF8 aP8 
+C: dF9  .   .  aF9  .  
+D:  .   .   .  aV9 aV9 
+E:  .  aP9  .   .  aA9 
+
+Next player: Defender
+Turns played: 7
+Remaining turns: 93
+
+Heuristic score: 54.80000000000007
+Nodes scored this round: 4781
+Total nodes scored: 33573
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 157
++ Level 2 : 543
+Eval perf.: 0.2k/s
+Elapsed time: 2.7s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF7 aP7 
+C: dF9  .   .  aF9  .  
+D:  .   .   .  aV9 aV9 
+E:  .  aP9  .   .  aA9 
+
+Next player: Attacker
+Turns played: 8
+Remaining turns: 92
+
+Heuristic score: 56.400000000000034
+Nodes scored this round: 5372
+Total nodes scored: 38945
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 13
++ Level 1 : 167
++ Level 2 : 689
+Eval perf.: 0.2k/s
+Elapsed time: 3.2s
+
+Move Played: E1 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF7 aP7 
+C: dF9  .   .  aF9  .  
+D:  .  aP9  .  aV9 aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 9
+Remaining turns: 91
+
+Heuristic score: 52.60000000000002
+Nodes scored this round: 4590
+Total nodes scored: 43535
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 154
++ Level 2 : 522
+Eval perf.: 0.2k/s
+Elapsed time: 2.5s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF6 aP6 
+C: dF9  .   .  aF9  .  
+D:  .  aP9  .  aV9 aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 10
+Remaining turns: 90
+
+Heuristic score: 54.80000000000007
+Nodes scored this round: 5447
+Total nodes scored: 48982
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 13
++ Level 1 : 166
++ Level 2 : 731
+Eval perf.: 0.2k/s
+Elapsed time: 3.3s
+
+Move Played: D3 to D2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF6 aP6 
+C: dF9  .   .  aF9  .  
+D:  .  aP9 aV9  .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 11
+Remaining turns: 89
+
+Heuristic score: 50.0
+Nodes scored this round: 5336
+Total nodes scored: 54318
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 154
++ Level 2 : 669
+Eval perf.: 0.2k/s
+Elapsed time: 3.0s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF5 aP5 
+C: dF9  .   .  aF9  .  
+D:  .  aP9 aV9  .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 12
+Remaining turns: 88
+
+Heuristic score: 53.0
+Nodes scored this round: 8278
+Total nodes scored: 62596
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 215
++ Level 2 : 1072
+Eval perf.: 0.2k/s
+Elapsed time: 5.1s
+
+Move Played: D2 to C2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF5 aP5 
+C: dF9  .  aV9 aF9  .  
+D:  .  aP9  .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 13
+Remaining turns: 87
+
+Heuristic score: 40.80000000000001
+Nodes scored this round: 7515
+Total nodes scored: 70111
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 156
++ Level 2 : 990
+Eval perf.: 0.2k/s
+Elapsed time: 4.1s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF4 aP4 
+C: dF9  .  aV9 aF9  .  
+D:  .  aP9  .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 14
+Remaining turns: 86
+
+Heuristic score: 51.39999999999998
+Nodes scored this round: 8826
+Total nodes scored: 78937
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 216
++ Level 2 : 1131
+Eval perf.: 0.2k/s
+Elapsed time: 5.5s
+
+Move Played: D1 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF4 aP4 
+C: dF9  .  aV9 aF9  .  
+D: aP9  .   .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 15
+Remaining turns: 85
+
+Heuristic score: 36.60000000000002
+Nodes scored this round: 5257
+Total nodes scored: 84194
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 135
++ Level 2 : 678
+Eval perf.: 0.1k/s
+Elapsed time: 2.8s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF9  .  aV9 aF9  .  
+D: aP9  .   .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 16
+Remaining turns: 84
+
+Heuristic score: 49.19999999999999
+Nodes scored this round: 8222
+Total nodes scored: 92416
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 14
++ Level 1 : 193
++ Level 2 : 1111
+Eval perf.: 0.2k/s
+Elapsed time: 5.0s
+
+Move Played: C2 to C1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF9 aV9  .  aF9  .  
+D: aP9  .   .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 17
+Remaining turns: 83
+
+Heuristic score: 40.200000000000045
+Nodes scored this round: 5373
+Total nodes scored: 97789
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 136
++ Level 2 : 701
+Eval perf.: 0.1k/s
+Elapsed time: 2.9s
+
+Move Played: C0 to C1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF8 aV8  .  aF9  .  
+D: aP9  .   .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 18
+Remaining turns: 82
+
+Heuristic score: 45.599999999999966
+Nodes scored this round: 8950
+Total nodes scored: 106739
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 215
++ Level 2 : 1094
+Eval perf.: 0.1k/s
+Elapsed time: 5.0s
+
+Move Played: C1 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF8  .   .  aF9  .  
+D: aP9 aV8  .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Defender
+Turns played: 19
+Remaining turns: 81
+
+Heuristic score: 39.60000000000002
+Nodes scored this round: 4923
+Total nodes scored: 111662
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 153
++ Level 2 : 607
+Eval perf.: 0.1k/s
+Elapsed time: 2.7s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF7  .   .  aF9  .  
+D: aP8 aV8  .   .  aV9 
+E:  .   .   .   .  aA9 
+
+Next player: Attacker
+Turns played: 20
+Remaining turns: 80
+
+Heuristic score: 44.0
+Nodes scored this round: 7232
+Total nodes scored: 118894
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 14
++ Level 1 : 192
++ Level 2 : 1004
+Eval perf.: 0.1k/s
+Elapsed time: 4.5s
+
+Move Played: E4 to E3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF7  .   .  aF9  .  
+D: aP8 aV8  .   .  aV9 
+E:  .   .   .  aA9  .  
+
+Next player: Defender
+Turns played: 21
+Remaining turns: 79
+
+Heuristic score: 37.60000000000002
+Nodes scored this round: 5347
+Total nodes scored: 124241
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 153
++ Level 2 : 707
+Eval perf.: 0.1k/s
+Elapsed time: 3.1s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF6  .   .  aF9  .  
+D: aP7 aV8  .   .  aV9 
+E:  .   .   .  aA9  .  
+
+Next player: Attacker
+Turns played: 22
+Remaining turns: 78
+
+Heuristic score: 45.200000000000045
+Nodes scored this round: 9382
+Total nodes scored: 133623
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 16
++ Level 1 : 237
++ Level 2 : 1141
+Eval perf.: 0.1k/s
+Elapsed time: 5.5s
+
+Move Played: E3 to E2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF3 aP3 
+C: dF6  .   .  aF9  .  
+D: aP7 aV8  .   .  aV9 
+E:  .   .  aA9  .   .  
+
+Next player: Defender
+Turns played: 23
+Remaining turns: 77
+
+Heuristic score: 35.0
+Nodes scored this round: 5559
+Total nodes scored: 139182
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 153
++ Level 2 : 683
+Eval perf.: 0.1k/s
+Elapsed time: 3.3s
+
+Move Played: B3 to B4
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF2 aP2 
+C: dF6  .   .  aF9  .  
+D: aP7 aV8  .   .  aV9 
+E:  .   .  aA9  .   .  
+
+Next player: Attacker
+Turns played: 24
+Remaining turns: 76
+
+Heuristic score: 42.60000000000002
+Nodes scored this round: 9585
+Total nodes scored: 148767
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 16
++ Level 1 : 237
++ Level 2 : 1133
+Eval perf.: 0.1k/s
+Elapsed time: 5.4s
+
+Move Played: E2 to E1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF2 aP2 
+C: dF6  .   .  aF9  .  
+D: aP7 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 25
+Remaining turns: 75
+
+Heuristic score: 38.0
+Nodes scored this round: 6914
+Total nodes scored: 155681
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 153
++ Level 2 : 959
+Eval perf.: 0.1k/s
+Elapsed time: 4.0s
+
+Move Played: B0 to C0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF2 aP2 
+C: dF9  .   .  aF9  .  
+D: aP7 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 26
+Remaining turns: 74
+
+Heuristic score: 43.200000000000045
+Nodes scored this round: 8412
+Total nodes scored: 164093
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 211
++ Level 2 : 1000
+Eval perf.: 0.1k/s
+Elapsed time: 4.6s
+
+Move Played: C3 to B3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF1 aP2 
+C: dF9  .   .  aF8  .  
+D: aP7 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 27
+Remaining turns: 73
+
+Heuristic score: 35.400000000000034
+Nodes scored this round: 5174
+Total nodes scored: 169267
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 129
++ Level 2 : 812
+Eval perf.: 0.1k/s
+Elapsed time: 3.1s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  dF1 aP2 
+C: dF8  .   .  aF8  .  
+D: aP6 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 28
+Remaining turns: 72
+
+Heuristic score: 41.60000000000002
+Nodes scored this round: 8645
+Total nodes scored: 177912
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 215
++ Level 2 : 958
+Eval perf.: 0.1k/s
+Elapsed time: 4.7s
+
+Move Played: C3 to B3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .   .  aP2 
+C: dF8  .   .  aF7  .  
+D: aP6 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 29
+Remaining turns: 71
+
+Heuristic score: 37.0
+Nodes scored this round: 4507
+Total nodes scored: 182419
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 94
++ Level 2 : 798
+Eval perf.: 0.0k/s
+Elapsed time: 2.8s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .   .  aP2 
+C: dF7  .   .  aF7  .  
+D: aP5 aV8  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 30
+Remaining turns: 70
+
+Heuristic score: 39.80000000000001
+Nodes scored this round: 9778
+Total nodes scored: 192197
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 17
++ Level 1 : 268
++ Level 2 : 954
+Eval perf.: 0.1k/s
+Elapsed time: 4.9s
+
+Move Played: E1 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .   .  aP2 
+C: dF7  .   .  aF7  .  
+D: aP5 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 31
+Remaining turns: 69
+
+Heuristic score: 35.400000000000034
+Nodes scored this round: 2925
+Total nodes scored: 195122
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 94
++ Level 2 : 470
+Eval perf.: 0.0k/s
+Elapsed time: 1.9s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .   .  aP2 
+C: dF6  .   .  aF7  .  
+D: aP4 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 32
+Remaining turns: 68
+
+Heuristic score: 39.599999999999966
+Nodes scored this round: 10478
+Total nodes scored: 205600
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 16
++ Level 1 : 241
++ Level 2 : 1112
+Eval perf.: 0.1k/s
+Elapsed time: 5.6s
+
+Move Played: B4 to B3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  aP2  .  
+C: dF6  .   .  aF7  .  
+D: aP4 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 33
+Remaining turns: 67
+
+Heuristic score: 33.80000000000001
+Nodes scored this round: 3154
+Total nodes scored: 208754
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 93
++ Level 2 : 488
+Eval perf.: 0.0k/s
+Elapsed time: 1.8s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .   .   .  
+B: dT9 dP9  .  aP2  .  
+C: dF5  .   .  aF7  .  
+D: aP3 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 34
+Remaining turns: 66
+
+Heuristic score: 39.400000000000034
+Nodes scored this round: 8463
+Total nodes scored: 217217
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 217
++ Level 2 : 966
+Eval perf.: 0.1k/s
+Elapsed time: 4.5s
+
+Move Played: B3 to A3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .  aP2  .  
+B: dT9 dP9  .   .   .  
+C: dF5  .   .  aF7  .  
+D: aP3 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 35
+Remaining turns: 65
+
+Heuristic score: 31.80000000000001
+Nodes scored this round: 3399
+Total nodes scored: 220616
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 95
++ Level 2 : 502
+Eval perf.: 0.0k/s
+Elapsed time: 2.0s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9  .  aP2  .  
+B: dT9 dP9  .   .   .  
+C: dF4  .   .  aF7  .  
+D: aP2 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 36
+Remaining turns: 64
+
+Heuristic score: 43.60000000000002
+Nodes scored this round: 7353
+Total nodes scored: 227969
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 215
++ Level 2 : 796
+Eval perf.: 0.1k/s
+Elapsed time: 3.8s
+
+Move Played: A3 to A2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9 dP9  .   .   .  
+C: dF4  .   .  aF7  .  
+D: aP2 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 37
+Remaining turns: 63
+
+Heuristic score: 32.60000000000002
+Nodes scored this round: 3522
+Total nodes scored: 231491
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 92
++ Level 2 : 576
+Eval perf.: 0.0k/s
+Elapsed time: 1.9s
+
+Move Played: B0 to C0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9 dP9  .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 aV9  .   .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 38
+Remaining turns: 62
+
+Heuristic score: 40.60000000000002
+Nodes scored this round: 7480
+Total nodes scored: 238971
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 216
++ Level 2 : 819
+Eval perf.: 0.1k/s
+Elapsed time: 3.8s
+
+Move Played: D1 to D2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9 dP9  .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2  .  aV9  .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 39
+Remaining turns: 61
+
+Heuristic score: -30.00000000000003
+Nodes scored this round: 3324
+Total nodes scored: 242295
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 92
++ Level 2 : 524
+Eval perf.: 0.0k/s
+Elapsed time: 1.9s
+
+Move Played: B1 to C1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9  .   .   .   .  
+C: dF7 dP9  .  aF7  .  
+D: aP2  .  aV9  .  aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 40
+Remaining turns: 60
+
+Heuristic score: 38.60000000000002
+Nodes scored this round: 10364
+Total nodes scored: 252659
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 18
++ Level 1 : 288
++ Level 2 : 1108
+Eval perf.: 0.1k/s
+Elapsed time: 5.7s
+
+Move Played: D2 to D3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9  .   .   .   .  
+C: dF7 dP9  .  aF7  .  
+D: aP2  .   .  aV9 aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 41
+Remaining turns: 59
+
+Heuristic score: -97.20000000000002
+Nodes scored this round: 3777
+Total nodes scored: 256436
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 118
++ Level 2 : 513
+Eval perf.: 0.0k/s
+Elapsed time: 2.1s
+
+Move Played: C1 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT9 aP2  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP9  .  aV9 aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Attacker
+Turns played: 42
+Remaining turns: 58
+
+Heuristic score: -24.0
+Nodes scored this round: 10765
+Total nodes scored: 267201
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 220
++ Level 2 : 1415
+Eval perf.: 0.1k/s
+Elapsed time: 5.7s
+
+Move Played: A2 to A1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP9  .  aV9 aV9 
+E:  .  aA9  .   .   .  
+
+Next player: Defender
+Turns played: 43
+Remaining turns: 57
+
+Heuristic score: -96.6
+Nodes scored this round: 5640
+Total nodes scored: 272841
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 138
++ Level 2 : 726
+Eval perf.: 0.0k/s
+Elapsed time: 2.7s
+
+Move Played: D1 to E1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP6  .  aV9 aV9 
+E:  .  aA6  .   .   .  
+
+Next player: Attacker
+Turns played: 44
+Remaining turns: 56
+
+Heuristic score: -26.80000000000001
+Nodes scored this round: 9964
+Total nodes scored: 282805
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 15
++ Level 1 : 217
++ Level 2 : 1318
+Eval perf.: 0.1k/s
+Elapsed time: 5.1s
+
+Move Played: D3 to D2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP6 aV9  .  aV9 
+E:  .  aA6  .   .   .  
+
+Next player: Defender
+Turns played: 45
+Remaining turns: 55
+
+Heuristic score: -10163.4
+Nodes scored this round: 7045
+Total nodes scored: 289850
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 13
++ Level 1 : 157
++ Level 2 : 1059
+Eval perf.: 0.0k/s
+Elapsed time: 4.0s
+
+Move Played: D1 to E1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP3 aV9  .  aV9 
+E:  .  aA3  .   .   .  
+
+Next player: Attacker
+Turns played: 46
+Remaining turns: 54
+
+Heuristic score: -93.19999999999999
+Nodes scored this round: 8408
+Total nodes scored: 298258
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 17
++ Level 1 : 256
++ Level 2 : 1051
+Eval perf.: 0.1k/s
+Elapsed time: 4.8s
+
+Move Played: D4 to D3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF7  .   .  aF7  .  
+D: aP2 dP3 aV9 aV9  .  
+E:  .  aA3  .   .   .  
+
+Next player: Defender
+Turns played: 47
+Remaining turns: 53
+
+Heuristic score: -10167.4
+Nodes scored this round: 5661
+Total nodes scored: 303919
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 133
++ Level 2 : 807
+Eval perf.: 0.0k/s
+Elapsed time: 2.8s
+
+Move Played: D1 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF5  .   .  aF7  .  
+D:  .   .  aV7 aV9  .  
+E:  .  aA1  .   .   .  
+
+Next player: Attacker
+Turns played: 48
+Remaining turns: 52
+
+Heuristic score: -145.6
+Nodes scored this round: 5906
+Total nodes scored: 309825
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 13
++ Level 1 : 169
++ Level 2 : 657
+Eval perf.: 0.0k/s
+Elapsed time: 2.8s
+
+Move Played: D2 to E2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C: dF5  .   .  aF7  .  
+D:  .   .   .  aV9  .  
+E:  .  aA1 aV7  .   .  
+
+Next player: Defender
+Turns played: 49
+Remaining turns: 51
+
+Heuristic score: -10174.8
+Nodes scored this round: 3139
+Total nodes scored: 312964
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 10
++ Level 1 : 96
++ Level 2 : 504
+Eval perf.: 0.0k/s
+Elapsed time: 1.7s
+
+Move Played: C0 to D0
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D: dF5  .   .  aV9  .  
+E:  .  aA1 aV7  .   .  
+
+Next player: Attacker
+Turns played: 50
+Remaining turns: 50
+
+Heuristic score: -10161.6
+Nodes scored this round: 5890
+Total nodes scored: 318854
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 14
++ Level 1 : 179
++ Level 2 : 900
+Eval perf.: 0.0k/s
+Elapsed time: 3.3s
+
+Move Played: E1 to E2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D: dF5  .   .  aV9  .  
+E:  .  aA1 aV8  .   .  
+
+Next player: Defender
+Turns played: 51
+Remaining turns: 49
+
+Heuristic score: -10175.4
+Nodes scored this round: 2645
+Total nodes scored: 321499
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 78
++ Level 2 : 358
+Eval perf.: 0.0k/s
+Elapsed time: 1.3s
+
+Move Played: D0 to D1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1 aV8  .   .  
+
+Next player: Attacker
+Turns played: 52
+Remaining turns: 48
+
+Heuristic score: -10165.6
+Nodes scored this round: 2853
+Total nodes scored: 324352
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 12
++ Level 1 : 129
++ Level 2 : 471
+Eval perf.: 0.0k/s
+Elapsed time: 1.6s
+
+Move Played: E1 to E2
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1 aV9  .   .  
+
+Next player: Defender
+Turns played: 53
+Remaining turns: 47
+
+Heuristic score: -10172.8
+Nodes scored this round: 1313
+Total nodes scored: 325665
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 7
++ Level 1 : 50
++ Level 2 : 180
+Eval perf.: 0.0k/s
+Elapsed time: 0.6s
+
+Move Played: A0 to A1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT7 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1 aV9  .   .  
+
+Next player: Attacker
+Turns played: 54
+Remaining turns: 46
+
+Heuristic score: -10164.2
+Nodes scored this round: 2598
+Total nodes scored: 328263
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 110
++ Level 2 : 442
+Eval perf.: 0.0k/s
+Elapsed time: 1.5s
+
+Move Played: E2 to E3
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT7 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1  .  aV9  .  
+
+Next player: Defender
+Turns played: 55
+Remaining turns: 45
+
+Heuristic score: -10169.6
+Nodes scored this round: 1218
+Total nodes scored: 329481
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 7
++ Level 1 : 50
++ Level 2 : 162
+Eval perf.: 0.0k/s
+Elapsed time: 0.6s
+
+Move Played: A0 to A1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT8 aP1  .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1  .  aV9  .  
+
+Next player: Attacker
+Turns played: 56
+Remaining turns: 44
+
+Heuristic score: -10165.2
+Nodes scored this round: 2557
+Total nodes scored: 332038
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 11
++ Level 1 : 118
++ Level 2 : 440
+Eval perf.: 0.0k/s
+Elapsed time: 1.4s
+
+Move Played: A2 to A1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT5  .   .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1  .  aV9  .  
+
+Next player: Defender
+Turns played: 57
+Remaining turns: 43
+
+Heuristic score: -10169.2
+Nodes scored this round: 1323
+Total nodes scored: 333361
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 7
++ Level 1 : 51
++ Level 2 : 184
+Eval perf.: 0.0k/s
+Elapsed time: 0.6s
+
+Move Played: A0 to A1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6  .   .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF5  .  aV9  .  
+E:  .  aA1  .  aV9  .  
+
+Next player: Attacker
+Turns played: 58
+Remaining turns: 42
+
+Heuristic score: -10167.2
+Nodes scored this round: 1601
+Total nodes scored: 334962
+Score comparisons per depth (above leaf nodes):
++ Level 0 : 9
++ Level 1 : 82
++ Level 2 : 318
+Eval perf.: 0.0k/s
+Elapsed time: 0.9s
+
+Move Played: E1 to E1
+
+
+Current Board Information: 
+
+    0   1   2   3   4  
+A: dA9 dT6  .   .   .  
+B: dT9  .   .   .   .  
+C:  .   .   .  aF7  .  
+D:  .  dF3  .  aV9  .  
+E:  .   .   .  aV9  .  
+
+Next player: Defender
+Turns played: 59
+Remaining turns: 41
+Defender wins in 59 moves!
